@@ -1,0 +1,26 @@
+{
+  "name": "not-an-orm",
+  "version": "1.0.0",
+  "description": "A Command-Line Interface that generates TypeScript code from SQLite files in your code base.",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "npx ts-node src/index.ts generate",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.3",
+    "@types/change-case": "^2.3.1",
+    "@types/fs-extra": "^9.0.13",
+    "@types/glob": "^8.0.0",
+    "better-sqlite3": "^8.0.1",
+    "ts-node": "^10.9.1"
+  },
+  "dependencies": {
+    "change-case": "^4.1.2",
+    "commander": "^9.4.1",
+    "dbgate-query-splitter": "^4.9.3",
+    "fs-extra": "^11.1.0",
+    "glob": "^8.0.3"
+  }
+}
