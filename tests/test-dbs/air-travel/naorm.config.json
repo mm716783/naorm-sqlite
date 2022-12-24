@@ -1,0 +1,47 @@
+{
+    "dbName": "naorm.db",
+    "outDir": "generated",
+    "include": ["**/*.sql"],
+    "exclude": ["**/cmd.sql"],
+    "conventionSets": [
+        {
+            "name": "Raw",
+            "typescriptConstruct": "interface",
+            "extends": null,
+            "importStatements": ["import { Database } from 'better-sqlite3'"],
+            "typeConventions": []
+        },
+        {
+            "name": "Parsed",
+            "typescriptConstruct": "interface",
+            "extends": null,
+            "importStatements": ["import { Database } from 'better-sqlite3'"],
+            "typeConventions": [{
+                "sqliteDeclaredType": "TINYINT",
+                "typescriptGeneratedType": "boolean"
+            },{
+                "sqliteDeclaredType": "VARCHAR(10)",
+                "typescriptGeneratedType": "Date"
+            },{
+                "sqliteDeclaredType": "VARCHAR(30)",
+                "typescriptGeneratedType": "Date"
+            }]
+        }
+    ],
+    "statementOverrides": [{
+        "statementIdentifier": "Passenger",
+        "skipStatementCompilation": true,
+        "dependentOn": ["Aircraft"],
+        "notDependentOn": []
+    },{
+        "statementIdentifier": "Aircraft",
+        "skipStatementCompilation": false,
+        "dependentOn": ["Airline"],
+        "notDependentOn": []
+    },{
+        "statementIdentifier": "vwFlightOrigins",
+        "skipStatementCompilation": false,
+        "dependentOn": [],
+        "notDependentOn": ["Aircraft"]
+    }]
+}

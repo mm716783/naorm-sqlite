@@ -1,0 +1,3 @@
+
+CREATE UNIQUE INDEX AirportIX1 ON Airport(Id);
+CREATE UNIQUE INDEX AirportIX4 ON Airport(Id);
