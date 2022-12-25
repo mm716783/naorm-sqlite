@@ -9,6 +9,7 @@ export function analyzeSQLFiles(dbDir: string, sqlFiles: string[], config: NAORM
     const allFileNames: string[] = [];
     const allStatementsByFileMap = new Map<string, ParsedSQLStatement[]>();
     const tableAndViewStatements = new Map<string, ParsedSQLStatement>();
+    const indexStatements: ParsedSQLStatement[] = [];
     const otherStatements: ParsedSQLStatement[] = [];
     const allStatementOverrides = new Map<string, NAORMStatementOverride>();
     config.statementOverrides.forEach(o => allStatementOverrides.set(o.statementIdentifier, o));
@@ -23,13 +24,17 @@ export function analyzeSQLFiles(dbDir: string, sqlFiles: string[], config: NAORM
             if(statementOverride) { 
                 s.skipStatementCompilation = statementOverride.skipStatementCompilation; 
             }
-            if(!s.skipStatementCompilation && (s.statementType === 'table' || s.statementType === 'view')) {
+            if(s.skipStatementCompilation) {
+                otherStatements.push(s);
+            } else if(s.statementType === 'table' || s.statementType === 'view') {
                 if(tableAndViewStatements.has(s.statementIdentifier as string)) {
                     const conflictingPath = tableAndViewStatements.get(s.statementIdentifier as string)?.fullFilePath;
                     throw new Error('Duplicate Identifier' + s.statementIdentifier + ' found in files: ' + conflictingPath + ' and ' + s.fullFilePath);
                 } else {
                     tableAndViewStatements.set(s.statementIdentifier as string, s);
                 }
+            } else if(s.statementType === 'index') {
+                indexStatements.push(s);
             } else {
                 otherStatements.push(s);
             }
@@ -41,6 +46,7 @@ export function analyzeSQLFiles(dbDir: string, sqlFiles: string[], config: NAORM
     const tableAndViewIdentifiers = Array.from(tableAndViewStatements.keys());
     const allTableAndViewStatements = Array.from(tableAndViewStatements.values());
     determineDependencies(tableAndViewIdentifiers, allTableAndViewStatements, allStatementOverrides);
+    determineDependencies(tableAndViewIdentifiers, indexStatements, allStatementOverrides);
     determineDependencies(tableAndViewIdentifiers, otherStatements, allStatementOverrides);
     allTableAndViewStatements.sort((a, b) => {
         if(a.statementDependencies.includes(b.statementIdentifier) &&
@@ -51,7 +57,7 @@ export function analyzeSQLFiles(dbDir: string, sqlFiles: string[], config: NAORM
         if(b.statementDependencies.includes(a.statementIdentifier)) { return -1; }
         return 0;
     })
-    const statementsToGenerate = [...allTableAndViewStatements, ...otherStatements]
+    const statementsToGenerate = [...allTableAndViewStatements, ...indexStatements, ...otherStatements]
     const dependenciesToExport: any[] = []
     statementsToGenerate.forEach(s => {
         dependenciesToExport.push({ 
@@ -62,6 +68,7 @@ export function analyzeSQLFiles(dbDir: string, sqlFiles: string[], config: NAORM
     fs.writeFileSync(path.join(dbDir, 'generated', 'naorm-dependencies.json'), JSON.stringify(dependenciesToExport, null, '\t'));
     return { 
         tableAndViewStatements,
+        indexStatements,
         otherStatements,
         statementsToGenerate,
         allStatementsByFile: Array.from(allStatementsByFileMap.values())

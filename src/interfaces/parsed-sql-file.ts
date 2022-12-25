@@ -15,7 +15,7 @@ export interface ParsedSQLStatement {
     preStatementJSDoc: string | null;
     preStatementComment: string;
     statement: string;
-    statementType: 'table' | 'view' | 'dml' | 'other';
+    statementType: 'table' | 'view' | 'index' | 'dml' | 'other';
     statementIdentifier: string;
     skipStatementCompilation: boolean;
     statementDependencies: string[];

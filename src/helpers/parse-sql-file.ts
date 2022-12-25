@@ -67,7 +67,7 @@ function getPreStatementJSDoc(preStatementFullComment: string): string | null {
 }
 
 function determineStatementType(statementText: string, fallbackIdentifier: string): {
-    statementType: 'table' | 'view' | 'dml' | 'other',
+    statementType: 'table' | 'view' | 'index' | 'dml' | 'other',
     statementIdentifier: string,
 } {
     // TODO: These aren't sophisticated enough to handle quoted identifiers or attached databases
@@ -86,6 +86,14 @@ function determineStatementType(statementText: string, fallbackIdentifier: strin
             return {
                 statementType: 'view',
                 statementIdentifier: viewMatches[1]
+            } 
+        }
+
+        const indexMatches = statementText.match(/^CREATE\s+(?:UNIQUE\s+)?INDEX\s+(?:IF\s+NOT\s+EXISTS\s+)?(.+?)(?:\sON)/i);
+        if(indexMatches) {
+            return {
+                statementType: 'index',
+                statementIdentifier: indexMatches[1]
             } 
         }
     }

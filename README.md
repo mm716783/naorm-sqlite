@@ -904,8 +904,6 @@ Besides these, there are also certain limitations when it comes to Not an ORM's 
 
 * Not an ORM does not currently compile statements other than `CREATE TABLE`, `CREATE VIEW`, and DML statements. Therefore, you could write invalid SQL in a different type of statement, and Not an ORM will not throw an error or complain. As such, you may not realize something is wrong until your application tries to run the statement. In a future enhancement, it may become possible to compile a such statements, or perhaps a subset of them, as an additional validation mechanism.
 
-* Not an ORM does not currently support the [`INDEXED BY`](https://www.sqlite.org/lang_indexedby.html) within DML statements. This may be possible in a future enhancement.
-
 * Not an ORM does not currently support [virtual tables]((https://www.sqlite.org/lang_createvtab.html)), nor any View or DML statement that depends on a virtual table. This may be possible in a future enhancement.
 
 * Not an ORM does not support [attached databases](https://www.sqlite.org/lang_attach.html), and is unlikely to do so in the near future.
