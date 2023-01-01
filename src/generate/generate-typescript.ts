@@ -1,11 +1,11 @@
 import { NAORMConfig, NAORMConventionSet } from "../interfaces/naorm-config";
-import path from 'path';
-import fs from 'fs';
+import { join } from 'path';
+import { mkdirSync, writeFileSync } from 'fs';
 import { ParsedSQLStatement } from "../interfaces/parsed-sql-file";
 import { NAORMResultColumn } from "../interfaces/naorm-result-column";
 
 export function generateTypeScript(parsedStatements: ParsedSQLStatement[], fileIdentifier: string, outDir: string, config: NAORMConfig) {
-    const outFilePath = path.join(outDir, parsedStatements[0].fullFilePath.replace('.sql', '.ts'));
+    const outFilePath = join(outDir, parsedStatements[0].fullFilePath.replace('.sql', '.ts'));
 
     const importStatments = new Set();
     const models: string[] = [];
@@ -26,8 +26,8 @@ export function generateTypeScript(parsedStatements: ParsedSQLStatement[], fileI
     }
     const batchArrayExport = `export const ${fileIdentifier}Statements = [\n\t${sqlStatementStringIds.join(',\n\t')}\n];`;
     const outFileContent = `${Array.from(importStatments.values()).join('\n')}\n\n${models.join('\n\n')}\n\n${columnDefinitionStrings.join('\n')}\n\n${sqlStatementStrings.join('\n')}\n\n${batchArrayExport}`.trim();
-    fs.mkdirSync(path.join(outFilePath, '..'), { recursive: true });
-    fs.writeFileSync(outFilePath, outFileContent);
+    mkdirSync(join(outFilePath, '..'), { recursive: true });
+    writeFileSync(outFilePath, outFileContent);
 }
 
 function generateOneTypeScriptModel(parsedStatement: ParsedSQLStatement, conventionSet: NAORMConventionSet): string {

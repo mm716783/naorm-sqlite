@@ -1,6 +1,6 @@
 import { camelCase } from 'camel-case';
-import fs from 'fs';
-import path from 'path';
+import { writeFileSync } from 'fs';
+import { basename, join } from 'path';
 import { parseSQLFile } from '../helpers/parse-sql-file';
 import { NAORMConfig, NAORMStatementOverride } from '../interfaces/naorm-config';
 import { ParsedSQLStatement } from '../interfaces/parsed-sql-file';
@@ -14,11 +14,11 @@ export function analyzeSQLFiles(dbDir: string, sqlFiles: string[], config: NAORM
     const allStatementOverrides = new Map<string, NAORMStatementOverride>();
     config.statementOverrides.forEach(o => allStatementOverrides.set(o.statementIdentifier, o));
     sqlFiles.forEach(s => {
-        const fileNameBase = camelCase(path.basename(s, '.sql'));
+        const fileNameBase = camelCase(basename(s, '.sql'));
         const sameFileNameCount = allFileNames.filter(f => f === fileNameBase).length;
         allFileNames.push(fileNameBase);
         const fileIdentifier = fileNameBase + (sameFileNameCount ? ('_' + sameFileNameCount) : '');
-        const parsedFile = parseSQLFile(path.join(dbDir, s), fileIdentifier);
+        const parsedFile = parseSQLFile(join(dbDir, s), fileIdentifier);
         parsedFile.sqlStatements.forEach(s => {
             const statementOverride = allStatementOverrides.get(s.statementIdentifier);
             if(statementOverride) { 
@@ -65,7 +65,7 @@ export function analyzeSQLFiles(dbDir: string, sqlFiles: string[], config: NAORM
             dependencies: s.statementDependencies   
         });
     })
-    fs.writeFileSync(path.join(dbDir, 'generated', 'naorm-dependencies.json'), JSON.stringify(dependenciesToExport, null, '\t'));
+    writeFileSync(join(dbDir, 'generated', 'naorm-dependencies.json'), JSON.stringify(dependenciesToExport, null, '\t'));
     return { 
         tableAndViewStatements,
         indexStatements,

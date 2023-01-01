@@ -10,7 +10,7 @@ export interface NAORMConfig {
 export interface NAORMConventionSet {
     name: string;
     typescriptConstruct: 'class' | 'interface';
-    extends: string;
+    extends: string | null;
     importStatements: string[];
     typeConventions: NAORMTypeConversion[];
 }

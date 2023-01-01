@@ -5,7 +5,7 @@ export function getPathToConfigFile(pathArgument: string): string {
     try {
         if(existsSync(pathArgument)) {
             if(lstatSync(pathArgument).isDirectory()) {
-                const filePath = join(pathArgument, 'naorm.config.json');
+                const filePath = join(pathArgument, 'naorm-config.json');
                 if(existsSync(filePath)) {
                     return filePath;
                 }

@@ -579,7 +579,7 @@ Unlike other SQL implementations, SQLite [does not enforce static, rigid typing]
 
 To solve these problems, Not an ORM defines a concept called a Type Convention. This is the mechanism by which Not an ORM determines which type to assign to a property in a generated TypeScript class or interface. Type Conventions operate based on the [Declared Type](https://www.sqlite.org/datatype3.html#determination_of_column_affinity) of a column in SQLite, rather than its [Type Affinity](https://www.sqlite.org/datatype3.html#affinity), and are completely customizable within your project. This greatly expands the options available for model generation, and can be extended to handle JavaScript [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) objects, [BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt) objects, structured [JSON](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON) data, and more.
 
-The TypeScript snippets in the examples above were all generated using Not an ORM's default Type Conventions, which map the Declared Types of SQL columns to TypeScript types using rules similar to [the ones used by SQLite to map Declared Types to Type Affinities](https://www.sqlite.org/datatype3.html#determination_of_column_affinity). Custom Type Conventions can be defined in the `naorm.config.json` file. The concepts utilized in these configurations are described sequentially in the sections below by way of example.
+The TypeScript snippets in the examples above were all generated using Not an ORM's default Type Conventions, which map the Declared Types of SQL columns to TypeScript types using rules similar to [the ones used by SQLite to map Declared Types to Type Affinities](https://www.sqlite.org/datatype3.html#determination_of_column_affinity). Custom Type Conventions can be defined in the `naorm-config.json` file. The concepts utilized in these configurations are described sequentially in the sections below by way of example.
 
 * [Custom Type Conventions for Booleans](#custom-type-conventions-for-booleans)
 * [Custom Type Conventions for Dates](#custom-type-conventions-for-dates)
@@ -769,7 +769,7 @@ CREATE TABLE Flight (
 )
 ```
 
-In this scenario, your `FlightPlan` type is probably defined somewhere within your code base, rather than in another library, so you may need to use a relative path in your import statement. This is possible by defining the path relative to the directory containing your `naorm.config.json` file. 
+In this scenario, your `FlightPlan` type is probably defined somewhere within your code base, rather than in another library, so you may need to use a relative path in your import statement. This is possible by defining the path relative to the directory containing your `naorm-config.json` file. 
 
 ```
 ...

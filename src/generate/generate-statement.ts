@@ -1,5 +1,4 @@
 import betterSQLite3 from 'better-sqlite3';
-import { NAORMConfig } from '../interfaces/naorm-config';
 import { getColumnTypesFromSQL } from '../helpers/get-column-type-from-sql';
 import { ParsedSQLStatement } from '../interfaces/parsed-sql-file';
 

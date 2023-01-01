@@ -1,13 +1,13 @@
 import { splitQuery, sqliteSplitterOptions } from "dbgate-query-splitter";
 import { SplitResultItemRich } from 'dbgate-query-splitter/lib/splitQuery';
-import fs from 'fs';
-import path from 'path';
+import { readFileSync } from 'fs';
+import { basename } from 'path';
 import { ParsedSQLFile, ParsedSQLStatement } from '../interfaces/parsed-sql-file';
 
 export function parseSQLFile(filePath: string, fileIdentifier: string): ParsedSQLFile {
-    const fileContents = fs.readFileSync(filePath).toString();
+    const fileContents = readFileSync(filePath).toString();
     let parsedSQLFile: ParsedSQLFile = {
-        fileName: path.basename(filePath),
+        fileName: basename(filePath),
         fullFilePath: filePath,
         fileIdentifier: fileIdentifier,
         contents: fileContents,

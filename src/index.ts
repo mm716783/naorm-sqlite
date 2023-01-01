@@ -3,16 +3,24 @@
 import { program } from 'commander';
 import { generate  } from './generate/generate';
 import { getPathToConfigFile } from './helpers/get-path-to-config-file';
+import { init } from './init/init';
 
 
 program.command('generate')
     .argument('[path-to-config]', 'Path to NAORM Config file', '.')
     .action((pathArgument: string, options, command) => {
-        console.log('start')
-        console.time('Generation Complete')
+        console.log('Not an ORM for SQLite')
+        console.time('Not an ORM for SQLite - Completed');
         const pathToConfig = getPathToConfigFile(pathArgument);
+        console.log('Using config file at ', pathToConfig);
         generate(pathToConfig);
-        console.timeEnd('Generation Complete')
+        console.timeEnd('Not an ORM for SQLite - Completed');
+    }
+)
+
+program.command('init')
+    .action(async () => {
+        await init();
     }
 )
 
