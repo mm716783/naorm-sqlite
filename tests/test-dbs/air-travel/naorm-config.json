@@ -1,6 +1,6 @@
 {
     "dbName": "naorm.db",
-    "outDir": "generated",
+    "outDir": "naorm-generated",
     "include": ["**/*.sql"],
     "exclude": ["**/cmd.sql"],
     "conventionSets": [

@@ -65,7 +65,7 @@ export function analyzeSQLFiles(dbDir: string, sqlFiles: string[], config: NAORM
             dependencies: s.statementDependencies   
         });
     })
-    writeFileSync(join(dbDir, 'generated', 'naorm-dependencies.json'), JSON.stringify(dependenciesToExport, null, '\t'));
+    writeFileSync(join(dbDir, 'naorm-generated', 'naorm-dependencies.json'), JSON.stringify(dependenciesToExport, null, '\t'));
     return { 
         tableAndViewStatements,
         indexStatements,
