@@ -1,41 +1,50 @@
 import { NAORMConfig, NAORMConventionSet } from "../interfaces/naorm-config";
 import path from 'path';
 import fs from 'fs';
-import { ParsedSQLStatement, ResultSetColumn } from "../interfaces/parsed-sql-file";
+import { ParsedSQLStatement } from "../interfaces/parsed-sql-file";
+import { NAORMResultColumn } from "../interfaces/naorm-result-column";
 
-export function generateTypeScript(parsedStatements: ParsedSQLStatement[], outDir: string, config: NAORMConfig) {
+export function generateTypeScript(parsedStatements: ParsedSQLStatement[], fileIdentifier: string, outDir: string, config: NAORMConfig) {
     const outFilePath = path.join(outDir, parsedStatements[0].fullFilePath.replace('.sql', '.ts'));
 
     const importStatments = new Set();
     const models: string[] = [];
     const columnDefinitionStrings: string[] = [];
     const sqlStatementStrings: string[] = [];
+    const sqlStatementStringIds: string[] = [];
     for(const parsedStatement of parsedStatements) {
+        sqlStatementStringIds.push(`${parsedStatement.statementIdentifier}SQL`);
         const sourceSQLString = `export const ${parsedStatement.statementIdentifier}SQL = \`${parsedStatement.statement}\`;`;
         sqlStatementStrings.push(`${(parsedStatement.preStatementJSDoc || '') + '\n'}${sourceSQLString}`.trim());
-        if(parsedStatement.resultSetColumns.length) {
+        if(parsedStatement.resultColumns.length) {
             config.conventionSets.forEach(c => {
                 c.importStatements.forEach(s => importStatments.add(s.trim()));
                 models.push(generateOneTypeScriptModel(parsedStatement, c));
-                columnDefinitionStrings.push(`${(parsedStatement.preStatementJSDoc || '') + '\n'}export const ${parsedStatement.statementIdentifier}${c.name || ''}Columns = ${JSON.stringify(parsedStatement.resultSetColumns, null, '\t')}`.trim());
+                columnDefinitionStrings.push(`${(parsedStatement.preStatementJSDoc || '') + '\n'}export const ${parsedStatement.statementIdentifier}${c.name || ''}Columns = ${JSON.stringify(parsedStatement.resultColumns, null, '\t')}`.trim());
             });
         }
-    } 
-    const outFileContent = `${Array.from(importStatments.values()).join('\n')}\n\n${models.join('\n\n')}\n\n${columnDefinitionStrings.join('\n')}\n\n${sqlStatementStrings.join('\n')}`.trim();
+    }
+    const batchArrayExport = `export const ${fileIdentifier}Statements = [\n\t${sqlStatementStringIds.join(',\n\t')}\n];`;
+    const outFileContent = `${Array.from(importStatments.values()).join('\n')}\n\n${models.join('\n\n')}\n\n${columnDefinitionStrings.join('\n')}\n\n${sqlStatementStrings.join('\n')}\n\n${batchArrayExport}`.trim();
     fs.mkdirSync(path.join(outFilePath, '..'), { recursive: true });
     fs.writeFileSync(outFilePath, outFileContent);
 }
 
 function generateOneTypeScriptModel(parsedStatement: ParsedSQLStatement, conventionSet: NAORMConventionSet): string {
     let modelString = `${(parsedStatement.preStatementJSDoc || '') + '\n'}export ${conventionSet.typescriptConstruct} ${parsedStatement.statementIdentifier}${conventionSet.name || ''} ${conventionSet.extends || ''} {
-${parsedStatement.resultSetColumns.map(c => generateOneTypeScriptFieldName(c, conventionSet)).join('\n')}\n}`.trim();
+${parsedStatement.resultColumns.map(c => generateOneTypeScriptFieldName(c, conventionSet)).join('\n')}\n}`.trim();
     return modelString;
 }
 
-function generateOneTypeScriptFieldName(columnDefinition: ResultSetColumn, conventionSet: NAORMConventionSet) {
+function generateOneTypeScriptFieldName(columnDefinition: NAORMResultColumn, conventionSet: NAORMConventionSet) {
     const typeToCheck = columnDefinition.naormTypeComment || columnDefinition.declaredType;
-    const type = conventionSet.typeConventions.find(t => t.sqliteDeclaredType === typeToCheck)?.typescriptGeneratedType || getDefaultType(typeToCheck) || 'any';
+    const applicableTypeConvention = conventionSet.typeConventions.find(t => t.sqliteDeclaredType === typeToCheck)?.typescriptGeneratedType;
+    const type = applicableTypeConvention || (getDefaultType(typeToCheck) + checkNotNull(columnDefinition.naormTypeComment)) || 'any';
     return (columnDefinition.jsDocComment ? `\t${columnDefinition.jsDocComment.trim()}\n` : '') + `\t"${columnDefinition.columnName}": ${type};`
+}
+
+function checkNotNull(naormTypeComment: string | null): string {
+    return naormTypeComment ? (naormTypeComment.includes('NOT NULL') ? '' : ' | null') : ' | null';
 }
 
 function getDefaultType(type: string | null) {

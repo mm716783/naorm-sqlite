@@ -1,16 +1,22 @@
+#!/usr/bin/env node
+
 import { program } from 'commander';
 import { generate  } from './generate/generate';
+import { getPathToConfigFile } from './helpers/get-path-to-config-file';
 
 
 program.command('generate')
-    .argument('[path-to-db-directory]', 'Path to DB directory', '.')
-    .option('-c, --config-file-name <path>', 'Name of JSON config file', 'naorm.config.json')
-    .action((pathToDBDirectory: string, options, command) => {
+    .argument('[path-to-config]', 'Path to NAORM Config file', '.')
+    .action((pathArgument: string, options, command) => {
         console.log('start')
         console.time('Generation Complete')
-        generate(pathToDBDirectory, options.configFileName);
+        const pathToConfig = getPathToConfigFile(pathArgument);
+        generate(pathToConfig);
         console.timeEnd('Generation Complete')
     }
 )
 
 program.parse();
+
+export * from './interfaces/naorm-config';
+export * from './interfaces/naorm-result-column';

@@ -4,16 +4,17 @@ import fs from 'fs';
 import path from 'path';
 import { ParsedSQLFile, ParsedSQLStatement } from '../interfaces/parsed-sql-file';
 
-export function parseSQLFile(filePath: string, fallbackIdentifierBase: string): ParsedSQLFile {
+export function parseSQLFile(filePath: string, fileIdentifier: string): ParsedSQLFile {
     const fileContents = fs.readFileSync(filePath).toString();
     let parsedSQLFile: ParsedSQLFile = {
         fileName: path.basename(filePath),
         fullFilePath: filePath,
+        fileIdentifier: fileIdentifier,
         contents: fileContents,
         sqlStatements: [],
         eofComment: ''
     }
-    parsedSQLFile.sqlStatements = splitSQLFileIntoStatements(parsedSQLFile, fallbackIdentifierBase);
+    parsedSQLFile.sqlStatements = splitSQLFileIntoStatements(parsedSQLFile);
     if(parsedSQLFile.sqlStatements.length) {
         const lastStatement = parsedSQLFile.sqlStatements[parsedSQLFile.sqlStatements.length - 1];
         parsedSQLFile.eofComment = fileContents.slice(lastStatement.splitResultItem.trimEnd?.position);
@@ -23,24 +24,24 @@ export function parseSQLFile(filePath: string, fallbackIdentifierBase: string): 
     return parsedSQLFile;
 }
 
-function splitSQLFileIntoStatements(parsedSQLFile: ParsedSQLFile, fallbackIdentifierBase: string): ParsedSQLStatement[] {
+function splitSQLFileIntoStatements(parsedSQLFile: ParsedSQLFile): ParsedSQLStatement[] {
     const options = {
         ...sqliteSplitterOptions, 
         ignoreComments: true,
         returnRichInfo: true 
     };
     const statements = splitQuery(parsedSQLFile.contents, options);
-    return statements.map((s, i) => parseSQLStatement(parsedSQLFile, s as SplitResultItemRich, fallbackIdentifierBase, i))
+    return statements.map((s, i) => parseSQLStatement(parsedSQLFile, s as SplitResultItemRich, i))
 }
 
-function parseSQLStatement(parsedSQLFile: ParsedSQLFile, splitResultItem: SplitResultItemRich, fallbackIdentifierBase: string, index: number): ParsedSQLStatement {
+function parseSQLStatement(parsedSQLFile: ParsedSQLFile, splitResultItem: SplitResultItemRich, index: number): ParsedSQLStatement {
     const preStatementFullComment = parsedSQLFile.contents.slice(splitResultItem.start.position, splitResultItem.trimStart?.position);
     const preStatementJSDoc = getPreStatementJSDoc(preStatementFullComment);
     const preStatementComment = preStatementJSDoc 
         ? preStatementFullComment.replace(preStatementJSDoc, '') 
         : preStatementFullComment;
     const overrideIdentifier = preStatementFullComment.match(/NAORM-ID:\s+(\S+?)\s+/i)?.[1];
-    const fallbackIdentifier = fallbackIdentifierBase + (index ? '_' + index : '');
+    const fallbackIdentifier = parsedSQLFile.fileIdentifier + (index ? '_' + index : '');
     const statementTypeResult = determineStatementType(splitResultItem.text, overrideIdentifier || fallbackIdentifier);
     const parsedSQLStatement: ParsedSQLStatement = {
         fileName: parsedSQLFile.fileName,
@@ -52,7 +53,7 @@ function parseSQLStatement(parsedSQLFile: ParsedSQLFile, splitResultItem: SplitR
         ...statementTypeResult,
         skipStatementCompilation: statementTypeResult.statementType === 'other',
         statementDependencies: [],
-        resultSetColumns: []
+        resultColumns: []
     }
 
     return parsedSQLStatement;

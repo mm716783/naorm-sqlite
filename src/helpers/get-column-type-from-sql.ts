@@ -1,13 +1,14 @@
 import { ColumnDefinition } from "better-sqlite3";
-import { ParsedSQLStatement, ResultSetColumn } from "../interfaces/parsed-sql-file";
+import { ParsedSQLStatement } from "../interfaces/parsed-sql-file";
+import { NAORMResultColumn } from "../interfaces/naorm-result-column";
 
-export function getColumnTypesFromSQL(parsedSqlStatement: ParsedSQLStatement, columnDefinitions: ColumnDefinition[], allTableViewStatements: Map<string, ParsedSQLStatement>): ResultSetColumn[] {
-    const resultSetColumns: ResultSetColumn[] = [];
+export function getColumnTypesFromSQL(parsedSqlStatement: ParsedSQLStatement, columnDefinitions: ColumnDefinition[], allTableViewStatements: Map<string, ParsedSQLStatement>): NAORMResultColumn[] {
+    const resultColumns: NAORMResultColumn[] = [];
 
     let lastJSDocCommentEndPosition: number = 0;
     columnDefinitions.forEach(c => {
         
-        const resultSetColumn: ResultSetColumn = {
+        const resultColumn: NAORMResultColumn = {
             columnName: c.name,
             sourceDatabase: c.database,
             sourceTable: c.table,
@@ -24,8 +25,8 @@ export function getColumnTypesFromSQL(parsedSqlStatement: ParsedSQLStatement, co
 
         if(!jsDocComment?.text || !naormTypeComment) {
             const dependecies: ParsedSQLStatement[] = [];
-            if(resultSetColumn.sourceTable && allTableViewStatements.get(resultSetColumn.sourceTable)) {
-                const tableDependency = allTableViewStatements.get(resultSetColumn.sourceTable);
+            if(resultColumn.sourceTable && allTableViewStatements.get(resultColumn.sourceTable)) {
+                const tableDependency = allTableViewStatements.get(resultColumn.sourceTable);
                 if(tableDependency) { dependecies.push(tableDependency); };
             }
             parsedSqlStatement.statementDependencies.forEach(d => {
@@ -37,26 +38,25 @@ export function getColumnTypesFromSQL(parsedSqlStatement: ParsedSQLStatement, co
 
             for(const dependency of dependecies) {
                 if(jsDocComment?.text && naormTypeComment) { break; }
-                const dependencyColumn = dependency.resultSetColumns.find(col => col.columnName === c.name);
+                const dependencyColumn = dependency.resultColumns.find(col => col.columnName === c.name);
                 naormTypeComment = naormTypeComment || dependencyColumn?.naormTypeComment || null;
                 jsDocCommentText = jsDocCommentText || dependencyColumn?.jsDocComment || null;
             }
         }
 
-        resultSetColumn.jsDocComment = jsDocCommentText;
-        resultSetColumn.naormTypeComment = naormTypeComment;
-        resultSetColumns.push(resultSetColumn);
+        resultColumn.jsDocComment = jsDocCommentText;
+        resultColumn.naormTypeComment = naormTypeComment;
+        resultColumns.push(resultColumn);
     });
-    return resultSetColumns;
+    return resultColumns;
 }
 
 function getNaormTypeComment(sql: string, columnName: string): string | null {
-    // TODO: Make this more sophisticated
-    // - Ensure match is not within quotes or comment
-    // - Ensure match is not within parentheses (e.g. sub-query or CTE)
-    const matches = sql.match(new RegExp(columnName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + "\\\s*\\\/\\\*\\\s*(.+?)\\\s*\\\*\\\/"))
+    const regex = new RegExp(columnName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + "\\\s*\\\/\\\*\\\s*NAORM-TYPE:(.+?)\\\s*\\\*\\\/", 'is');
+    const matches = sql.match(regex)
     if(matches && matches.length) {
-        return matches[0]?.replace(columnName, '').replace(/\s+\/\*\s+/, '').replace('*/', '').trim();
+        const result = matches[0]?.replace(columnName, '').replace(/\s*\/\*\s*NAORM-TYPE:/i, '').replace('*/', '').trim();
+        return result;
     }
     return null;
 }

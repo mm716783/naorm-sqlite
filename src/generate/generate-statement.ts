@@ -9,14 +9,14 @@ export function generateStatement(parsedStatement: ParsedSQLStatement, allTableV
             db.exec(parsedStatement.statement);
             const preparedStatement = db.prepare('SELECT * FROM ' + parsedStatement.statementIdentifier);
             const computedColumns = preparedStatement.columns()
-            parsedStatement.resultSetColumns = getColumnTypesFromSQL(parsedStatement, computedColumns, allTableViewStatements);
+            parsedStatement.resultColumns = getColumnTypesFromSQL(parsedStatement, computedColumns, allTableViewStatements);
         } else if(parsedStatement.statementType === 'index') {
             db.exec(parsedStatement.statement);
         } else if(parsedStatement.statementType === 'dml') {
             const preparedStatement = db.prepare(parsedStatement.statement);
             if(preparedStatement.reader) {
                 const computedColumns = preparedStatement.columns();
-                parsedStatement.resultSetColumns = getColumnTypesFromSQL(parsedStatement, computedColumns, allTableViewStatements);
+                parsedStatement.resultColumns = getColumnTypesFromSQL(parsedStatement, computedColumns, allTableViewStatements);
             } 
         }
     }  

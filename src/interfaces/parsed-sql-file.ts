@@ -1,8 +1,10 @@
 import { SplitResultItemRich } from "dbgate-query-splitter/lib/splitQuery";
+import { NAORMResultColumn } from "./naorm-result-column";
 
 export interface ParsedSQLFile {
     fileName: string;
     fullFilePath: string;
+    fileIdentifier: string;
     contents: string;
     sqlStatements: ParsedSQLStatement[]
     eofComment: string;
@@ -19,16 +21,5 @@ export interface ParsedSQLStatement {
     statementIdentifier: string;
     skipStatementCompilation: boolean;
     statementDependencies: string[];
-    resultSetColumns: ResultSetColumn[];
-}
-
-export interface ResultSetColumn {
-    columnName: string;
-    sourceColumn: string | null;
-    sourceTable: string | null;
-    sourceDatabase: string | null;
-    declaredType: string | null;
-    naormTypeComment: string | null;
-    typeScriptTypeAnnotation: string | null;
-    jsDocComment: string | null;
+    resultColumns: NAORMResultColumn[];
 }

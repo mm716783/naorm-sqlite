@@ -2,7 +2,7 @@
 
 A Command Line Interface for generating TypeScript from SQLite files in your code base.
 
-Many [TypeScript](https://www.typescriptlang.org/) projects use [SQLite](https://www.sqlite.org/index.html), but maintaining SQL in a TypeScript code base is challenging and fraught with pitfalls. And while using an Object-Relational Mapping (ORM) tool can solve certain problems, it also comes with learning curves and limitations for SQL developers. Not an ORM (NAORM) allows SQLite projects to leverage the benefits of TypeScript with a SQL-first approach. 
+Many [TypeScript](https://www.typescriptlang.org/) projects use [SQLite](https://www.sqlite.org/index.html), but maintaining SQL in a TypeScript code base is challenging and fraught with pitfalls. And while using an Object-Relational Mapping (ORM) tool can solve certain problems, it also comes with learning curves and limitations for SQL developers. Not an ORM (NAORM - pronounced "norm") allows SQLite projects to leverage the benefits of TypeScript with a SQL-first approach. 
 
 ### Key Features:
 
@@ -10,7 +10,6 @@ Many [TypeScript](https://www.typescriptlang.org/) projects use [SQLite](https:/
 2. Generate [TypeScript models](https://www.typescriptlang.org/docs/handbook/typescript-tooling-in-5-minutes.html#interfaces) for any SQL table, view, or query result
 3. Write [JSDoc comments](https://jsdoc.app/about-getting-started.html#adding-documentation-comments-to-your-code) in SQL, see them in VS Code's [IntelliSense](https://code.visualstudio.com/docs/languages/typescript#_intellisense)
 4. Accommodate dates, booleans, BigInts, JSON, and more with type safety
- 
 
 ### Contents:
 * [Getting Started](#getting-started)
@@ -21,6 +20,8 @@ Many [TypeScript](https://www.typescriptlang.org/) projects use [SQLite](https:/
 * [Custom Type Conventions](#custom-type-conventions)
 * [Limitations](#limitations)
 
+
+*For more on NOARM, check out the [author's blog](https://medium.com/@mm716783) on Medium.*
 
 # Getting Started
 
@@ -45,7 +46,7 @@ Not an ORM lets you develop all kinds of SQLite statements in SQL files, then us
 
 Not an ORM is generally compatible with most ways of using SQLite and TypeScript together, including within Node.js applications, hybrid web apps, and the browser. Behind the scenes, Not an ORM utilizes [`better-sqlite3`](https://www.npmjs.com/package/better-sqlite3). However, your application can use any SQLite plugin or library that you choose.
 
-Not an ORM does not directly interact with your application's SQLite database, nor does it have any components for your application's runtime. Rather, Not an ORM uses `better-sqlite3` to maintain a copy of your database's schema in your development environment, which it then utilizes to generate  TypeScript models and metadata that you can use in your project.
+Not an ORM does not directly interact with your application's SQLite database, nor does it have any components for your application's runtime. Rather, Not an ORM uses `better-sqlite3` to maintain a copy of your database's schema in your development environment, which it then utilizes to generate TypeScript models and metadata that you can use in your project.
 
 Not an ORM handles three main categories of SQLite statements:
 * [`CREATE TABLE` and `CREATE VIEW` statements](#create-table-and-create-view-statements)
@@ -338,17 +339,6 @@ In this scenario, or in any other scenario where Not an ORM mis-identifies a dep
     "notDependentOn": ["Passenger"]
 }];
 ```
-
-## Regenerating One SQL File
-
-Another use for Not an ORM's dependency analysis feature is the capability to regenerate TypeScript for only a single SQL file, plus any files containing statements that depend on it. Note that this capability is dependent on the `naorm-empty.db` file having not been manually modified since the last time that the full `generate` script was run.
-
-To regenerate a single file, specify the file path with the `-f` option. In VS Code, this command can also be configured to run whenever a SQL file is modified using an extension such as [Run on Save](https://marketplace.visualstudio.com/items?itemName=emeraldwalk.RunOnSave).
-```
-npx naorm generate -f <path-to>/airport.sql
-```
-
-However, this method is susceptible to error if any table names, view names, or SQL file names have been changed since the the last time that the full `generate` command was run. You should always run the full `generate` command when performing these actions or when switching branches.
 
 
 # JSDoc Annotations

@@ -1,4 +1,4 @@
-import { camelCase } from 'change-case';
+import { camelCase } from 'camel-case';
 import fs from 'fs';
 import path from 'path';
 import { parseSQLFile } from '../helpers/parse-sql-file';
@@ -15,10 +15,10 @@ export function analyzeSQLFiles(dbDir: string, sqlFiles: string[], config: NAORM
     config.statementOverrides.forEach(o => allStatementOverrides.set(o.statementIdentifier, o));
     sqlFiles.forEach(s => {
         const fileNameBase = camelCase(path.basename(s, '.sql'));
-        allFileNames.push(fileNameBase);
         const sameFileNameCount = allFileNames.filter(f => f === fileNameBase).length;
-        const fallbackIdentifierBase = fileNameBase + (sameFileNameCount ? ('_' + sameFileNameCount) : '');
-        const parsedFile = parseSQLFile(path.join(dbDir, s), fallbackIdentifierBase);
+        allFileNames.push(fileNameBase);
+        const fileIdentifier = fileNameBase + (sameFileNameCount ? ('_' + sameFileNameCount) : '');
+        const parsedFile = parseSQLFile(path.join(dbDir, s), fileIdentifier);
         parsedFile.sqlStatements.forEach(s => {
             const statementOverride = allStatementOverrides.get(s.statementIdentifier);
             if(statementOverride) { 
@@ -39,7 +39,7 @@ export function analyzeSQLFiles(dbDir: string, sqlFiles: string[], config: NAORM
                 otherStatements.push(s);
             }
         });
-        allStatementsByFileMap.set(s, parsedFile.sqlStatements);
+        allStatementsByFileMap.set(fileIdentifier, parsedFile.sqlStatements);
     });
 
 
@@ -71,7 +71,7 @@ export function analyzeSQLFiles(dbDir: string, sqlFiles: string[], config: NAORM
         indexStatements,
         otherStatements,
         statementsToGenerate,
-        allStatementsByFile: Array.from(allStatementsByFileMap.values())
+        allStatementsByFileMap
     };
 }
 
