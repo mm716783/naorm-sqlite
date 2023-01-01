@@ -11,6 +11,8 @@ Many [TypeScript](https://www.typescriptlang.org/) projects use [SQLite](https:/
 3. Write [JSDoc comments](https://jsdoc.app/about-getting-started.html#adding-documentation-comments-to-your-code) in SQL, see them in VS Code's [IntelliSense](https://code.visualstudio.com/docs/languages/typescript#_intellisense)
 4. Accommodate dates, booleans, BigInts, JSON, and more with type safety
 
+![Screen capture of a SQL view being edited in VS Code, with the corresponding TypeScript model updating automatically.](/img/NAORM.gif?raw=true "Develop SQLite in SQL Files, and NAORM will generate the appropriate TypeScript.")
+
 ### Contents:
 * [Getting Started](#getting-started)
 * [How it Works](#how-it-works)
