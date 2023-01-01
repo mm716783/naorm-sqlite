@@ -1,7 +1,11 @@
 {
   "name": "naorm-sqlite",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A Command-Line Interface that generates TypeScript code from SQLite files in your code base.",
+  "keywords": ["sqlite", "typescript", "orm", "naorm", "cli"],
+  "homepage": "https://github.com/mm716783/naorm-sqlite",
+  "repository": "github:mm716783/naorm-sqlite",
+  "license": "MIT",
   "main": "dist/index.js",
   "bin": {
     "naorm": "dist/index.js"
