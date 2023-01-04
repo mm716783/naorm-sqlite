@@ -1,7 +1,7 @@
 import { camelCase } from 'camel-case';
 import { writeFileSync } from 'fs';
 import { basename, join } from 'path';
-import { parseSQLFile } from '../helpers/parse-sql-file';
+import { parseSQLFile } from '../parse-sql-file/parse-sql-file';
 import { NAORMConfig, NAORMStatementOverride } from '../interfaces/naorm-config';
 import { ParsedSQLStatement } from '../interfaces/parsed-sql-file';
 
@@ -31,7 +31,7 @@ export function analyzeSQLFiles(dbDir: string, sqlFiles: string[], config: NAORM
                     const conflictingPath = tableAndViewStatements.get(s.statementIdentifier as string)?.fullFilePath;
                     throw new Error('Duplicate Identifier' + s.statementIdentifier + ' found in files: ' + conflictingPath + ' and ' + s.fullFilePath);
                 } else {
-                    tableAndViewStatements.set(s.statementIdentifier as string, s);
+                    tableAndViewStatements.set(s.statementIdentifier, s);
                 }
             } else if(s.statementType === 'index') {
                 indexStatements.push(s);
@@ -58,14 +58,7 @@ export function analyzeSQLFiles(dbDir: string, sqlFiles: string[], config: NAORM
         return 0;
     })
     const statementsToGenerate = [...allTableAndViewStatements, ...indexStatements, ...otherStatements]
-    const dependenciesToExport: any[] = []
-    statementsToGenerate.forEach(s => {
-        dependenciesToExport.push({ 
-            statementIdentifier: s.statementIdentifier,
-            dependencies: s.statementDependencies   
-        });
-    })
-    writeFileSync(join(dbDir, 'naorm-generated', 'naorm-dependencies.json'), JSON.stringify(dependenciesToExport, null, '\t'));
+    writeFileSync(join(dbDir, 'naorm-generated', 'naorm-output.json'), JSON.stringify(statementsToGenerate, null, '\t'));
     return { 
         tableAndViewStatements,
         indexStatements,
@@ -103,12 +96,6 @@ function determineDependencies(tableAndViewIdentifiers: string[], statementsToCh
 }
 
 function checkStatementDependency(parsedSQLStatement: ParsedSQLStatement, dependentStatementIdentifier: string) {
-    // TODO: Enhance for recognition of comma join syntax
-    // TODO: Enhance for quoted identifiers
-    const isDependent = parsedSQLStatement.statement.includes(dependentStatementIdentifier);
-    // (new RegExp('FROM\\s+' + dependentStatementIdentifier, 'gmi').test(parsedSQLStatement.statement)
-    //     || new RegExp('JOIN\\s+' + dependentStatementIdentifier, 'gmi').test(parsedSQLStatement.statement)
-    //     || new RegExp('INTO\\s+' + dependentStatementIdentifier, 'gmi').test(parsedSQLStatement.statement));
-    // console.log(parsedSQLStatement.statementIdentifier + ' Depends on ' + dependentStatementIdentifier + '? ' + isDependent);
+    const isDependent = parsedSQLStatement.possibleStatementDependencies.has(dependentStatementIdentifier);
     return isDependent;
 }

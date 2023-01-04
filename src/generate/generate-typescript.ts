@@ -13,14 +13,14 @@ export function generateTypeScript(parsedStatements: ParsedSQLStatement[], fileI
     const sqlStatementStrings: string[] = [];
     const sqlStatementStringIds: string[] = [];
     for(const parsedStatement of parsedStatements) {
-        sqlStatementStringIds.push(`${parsedStatement.statementIdentifier}SQL`);
-        const sourceSQLString = `export const ${parsedStatement.statementIdentifier}SQL = \`${parsedStatement.statement}\`;`;
+        sqlStatementStringIds.push(`${parsedStatement.statementIdentifier.replace(/\s/g, '_')}SQL`);
+        const sourceSQLString = `export const ${parsedStatement.statementIdentifier.replace(/\s/g, '_')}SQL = \`${parsedStatement.statement.replace(/`/g, "\\`")}\`;`;
         sqlStatementStrings.push(`${(parsedStatement.preStatementJSDoc || '') + '\n'}${sourceSQLString}`.trim());
         if(parsedStatement.resultColumns.length) {
             config.conventionSets.forEach(c => {
                 c.importStatements.forEach(s => importStatments.add(s.trim()));
                 models.push(generateOneTypeScriptModel(parsedStatement, c));
-                columnDefinitionStrings.push(`${(parsedStatement.preStatementJSDoc || '') + '\n'}export const ${parsedStatement.statementIdentifier}${c.name || ''}Columns = ${JSON.stringify(parsedStatement.resultColumns, null, '\t')}`.trim());
+                columnDefinitionStrings.push(`${(parsedStatement.preStatementJSDoc || '') + '\n'}export const ${parsedStatement.statementIdentifier.replace(/\s/g, '_')}${c.name || ''}Columns = ${JSON.stringify(parsedStatement.resultColumns, null, '\t')}`.trim());
             });
         }
     }
@@ -31,7 +31,7 @@ export function generateTypeScript(parsedStatements: ParsedSQLStatement[], fileI
 }
 
 function generateOneTypeScriptModel(parsedStatement: ParsedSQLStatement, conventionSet: NAORMConventionSet): string {
-    let modelString = `${(parsedStatement.preStatementJSDoc || '') + '\n'}export ${conventionSet.typescriptConstruct} ${parsedStatement.statementIdentifier}${conventionSet.name || ''} ${conventionSet.extends || ''} {
+    let modelString = `${(parsedStatement.preStatementJSDoc || '') + '\n'}export ${conventionSet.typescriptConstruct} ${parsedStatement.statementIdentifier.replace(/\s/g, '_')}${conventionSet.name || ''} ${conventionSet.extends || ''} {
 ${parsedStatement.resultColumns.map(c => generateOneTypeScriptFieldName(c, conventionSet)).join('\n')}\n}`.trim();
     return modelString;
 }
@@ -40,7 +40,7 @@ function generateOneTypeScriptFieldName(columnDefinition: NAORMResultColumn, con
     const typeToCheck = columnDefinition.naormTypeComment || columnDefinition.declaredType;
     const applicableTypeConvention = conventionSet.typeConventions.find(t => t.sqliteDeclaredType === typeToCheck)?.typescriptGeneratedType;
     const type = applicableTypeConvention || (getDefaultType(typeToCheck) + checkNotNull(columnDefinition.naormTypeComment)) || 'any';
-    return (columnDefinition.jsDocComment ? `\t${columnDefinition.jsDocComment.trim()}\n` : '') + `\t"${columnDefinition.columnName}": ${type};`
+    return (columnDefinition.jsDocComment ? `\t${columnDefinition.jsDocComment.trim()}\n` : '') + `\t"${columnDefinition.columnName.replace(/"/g, '\"')}": ${type};`
 }
 
 function checkNotNull(naormTypeComment: string | null): string {
