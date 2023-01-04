@@ -8,14 +8,14 @@
             "name": "Raw",
             "typescriptConstruct": "interface",
             "extends": null,
-            "importStatements": ["import { Database } from 'better-sqlite3'"],
+            "importStatements": [],
             "typeConventions": []
         },
         {
             "name": "Parsed",
             "typescriptConstruct": "interface",
             "extends": null,
-            "importStatements": ["import { Database } from 'better-sqlite3'"],
+            "importStatements": [],
             "typeConventions": [{
                 "sqliteDeclaredType": "TINYINT",
                 "typescriptGeneratedType": "boolean"
