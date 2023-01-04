@@ -7,12 +7,38 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "Generate Air Travel",
             "skipFiles": [
                 "<node_internals>/**"
             ],
             "runtimeExecutable": "npx",
-            "args": ["ts-node", "src/index.ts", "generate", "tests/test-dbs/air-travel"],
+            "args": ["ts-node", "src/cli.ts", "generate", "tests/test-dbs/air-travel"],
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Generate Chinook",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "runtimeExecutable": "npx",
+            "args": ["ts-node", "src/cli.ts", "generate", "tests/test-dbs/chinook"],
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Generate Northwind",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "runtimeExecutable": "npx",
+            "args": ["ts-node", "src/cli.ts", "generate", "tests/test-dbs/northwind"],
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ]
