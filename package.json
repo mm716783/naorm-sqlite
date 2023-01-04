@@ -14,7 +14,7 @@
   "license": "MIT",
   "main": "dist/index.js",
   "bin": {
-    "naorm": "dist/index.js"
+    "naorm": "dist/cli.js"
   },
   "scripts": {
     "start": "npx ts-node src/index.ts generate",

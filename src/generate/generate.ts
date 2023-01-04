@@ -23,6 +23,7 @@ export function generate(pathToConfigFile: string) {
         const computedColumns = db.processStatement(s);
         s.resultColumns = getColumnTypesFromSQL(s, computedColumns, analyzedSQLStatements.tableAndViewStatements);
     });
+    db.close();
     analyzedSQLStatements.allStatementsByFileMap.forEach((f,k) => generateTypeScript(f, k, outDir, config));
     const barrel = Array.from(analyzedSQLStatements.allStatementsByFileMap.values()).map(f => `export * from './${f[0].fullFilePath.replace(/\\/g, '/').replace('.sql', '')}';`);
     writeFileSync(join(outDir, 'barrel.ts'), barrel.join('\n'));
