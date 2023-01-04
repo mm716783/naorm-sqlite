@@ -1,0 +1,32 @@
+{
+    "dbName": "naorm.db",
+    "outDir": "naorm-generated",
+    "include": ["**/*.sql"],
+    "exclude": ["**/cmd.sql"],
+    "conventionSets": [
+        {
+            "name": "Raw",
+            "typescriptConstruct": "interface",
+            "extends": null,
+            "importStatements": [],
+            "typeConventions": []
+        },
+        {
+            "name": "Parsed",
+            "typescriptConstruct": "interface",
+            "extends": null,
+            "importStatements": [],
+            "typeConventions": [{
+                "sqliteDeclaredType": "TINYINT",
+                "typescriptGeneratedType": "boolean"
+            },{
+                "sqliteDeclaredType": "VARCHAR(10)",
+                "typescriptGeneratedType": "Date"
+            },{
+                "sqliteDeclaredType": "VARCHAR(30)",
+                "typescriptGeneratedType": "Date"
+            }]
+        }
+    ],
+    "statementOverrides": []
+}
