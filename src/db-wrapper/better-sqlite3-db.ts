@@ -9,6 +9,10 @@ export class BetterSQLite3DB extends BaseDB {
         super(pathToDB);
         this.db = new betterSQLite3(pathToDB);
     }
+    
+    public close(): void {
+        this.db.close();  
+    }
 
     public processTable(sql: string, rawId: string): betterSQLite3.ColumnDefinition[] {
         this.db.prepare(sql).run();

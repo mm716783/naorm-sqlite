@@ -28,6 +28,10 @@ export class DBWrapper {
         // Both DB classes have the same interface
     }
 
+    public close() {
+        this.db.close();
+    }
+
     public processStatement(parsedStatement: ParsedSQLStatement): betterSQLite3.ColumnDefinition[] {
         try{ 
             const sql = parsedStatement.statement;

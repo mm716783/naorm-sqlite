@@ -18,7 +18,11 @@ export class SQLite3WASMDB extends BaseDB {
     constructor(pathToDB: string) {
         super(pathToDB);
         const SQLite3WASM = (global as any)['naormSQLite3WASM'];
-        this.db = SQLite3WASM.oo1.DB(":memory:",'c');
+        this.db = new SQLite3WASM.oo1.DB(":memory:",'c');
+    }
+
+    public close(): void {
+        this.db.close();  
     }
 
     private getPragmaInfo(id: string) {
