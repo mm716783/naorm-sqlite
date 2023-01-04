@@ -1,5 +1,6 @@
 export interface NAORMConfig {
     dbName: string,
+    dbDir?: string,
     outDir: string,
     include: string[],
     exclude: string[],

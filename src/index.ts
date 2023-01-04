@@ -26,5 +26,6 @@ program.command('init')
 
 program.parse();
 
+export * from './generate/generate';
 export * from './interfaces/naorm-config';
 export * from './interfaces/naorm-result-column';
