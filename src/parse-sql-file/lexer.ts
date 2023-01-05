@@ -184,12 +184,13 @@ export class Lexer {
             break;
           }
         }
-        
-        this.tokens.push({
-            type: 'whitespace',
-            rawValue: ws,
-            normalizedValue: ''
-        });
+        if(ws.length) {
+            this.tokens.push({
+                type: 'whitespace',
+                rawValue: ws,
+                normalizedValue: ''
+            });
+        } 
     }
 
     public lex() {

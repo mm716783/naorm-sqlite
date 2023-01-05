@@ -162,7 +162,7 @@ export class Parser {
     }
         
     private newStatement() {
-        const statementTokens = this.tokens.slice(this.lastTokenEndPos + 1, this.pos + 1);
+        const statementTokens = this.tokens.slice(this.lastTokenEndPos, this.pos + 1);
         // If there are comments but no other tokens
         if(this.isStatementCommentOnly) {
             // Then this is a comment at the end of the file or an extra semicolon, do nothing
