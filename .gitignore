@@ -1,3 +1,4 @@
 node_modules
 naorm-generated
 dist
+coverage

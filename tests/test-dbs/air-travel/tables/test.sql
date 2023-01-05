@@ -1,2 +1,0 @@
-CREATE TABLE test AS
-SELECT Id FROM vwFlightOrigins
