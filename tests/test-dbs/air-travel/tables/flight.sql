@@ -1,3 +1,5 @@
+/** Table containing flights, with two references 
+    to Airport (one for Origin, one for Destination */
 CREATE TABLE Flight(
     'Id' TEXT,
     AirlineId TEXT,
