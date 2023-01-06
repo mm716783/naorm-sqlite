@@ -2,7 +2,7 @@
 
 import { program } from 'commander';
 import { generate  } from './generate/generate';
-import { getPathToConfigFile } from './helpers/get-path-to-config-file';
+import { getPathToConfigFile } from './generate/helpers/get-path-to-config-file';
 import { init } from './init/init';
 
 

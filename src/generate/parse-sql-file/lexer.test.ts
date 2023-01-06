@@ -1,4 +1,4 @@
-import { LexerToken } from "../interfaces/parsed-sql-file";
+import { LexerToken } from "../../interfaces/parsed-sql-file";
 import { Lexer } from "./lexer";
 
 test('Lexer SELECT', () => {

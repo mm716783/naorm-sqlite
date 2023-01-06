@@ -1,10 +1,10 @@
 import { existsSync, rmSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { join, relative } from 'path';
-import { DBWrapper } from '../db-wrapper/db-wrapper';
-import { getFilesFromGlob } from '../helpers/get-files-from-glob';
+import { DBWrapper } from './db-wrapper/db-wrapper';
+import { getFilesFromGlob } from './helpers/get-files-from-glob';
 import { NAORMConfig } from '../interfaces/naorm-config';
 import { ParsedSQLFile } from '../interfaces/parsed-sql-file';
-import { parseSQLFile } from '../parse-sql-file/parse-sql-file';
+import { parseSQLFile } from './parse-sql-file/parse-sql-file';
 import { SQLFileAnalyzer } from './sql-analyzers/sql-file-analyzer';
 import { generateTypeScript } from './generate-typescript';
 import { SQLColumnAnalyzer } from './sql-analyzers/sql-column-analyzer';

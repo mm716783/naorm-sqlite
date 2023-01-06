@@ -1,4 +1,4 @@
-import { LexerToken } from "../interfaces/parsed-sql-file";
+import { LexerToken } from "../../interfaces/parsed-sql-file";
 import { SQLITE_KEYWORDS } from "./sqlite-keywords";
 
 export class Lexer {

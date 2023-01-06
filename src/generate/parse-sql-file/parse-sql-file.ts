@@ -1,6 +1,6 @@
 import { readFileSync } from 'fs';
 import { basename } from 'path';
-import { ParsedSQLFile } from '../interfaces/parsed-sql-file';
+import { ParsedSQLFile } from '../../interfaces/parsed-sql-file';
 import { Lexer } from './lexer';
 import { Parser } from './parser';
 

@@ -1,4 +1,4 @@
-import { LexerToken, ParsedSQLFile, ParsedSQLStatement } from "../interfaces/parsed-sql-file";
+import { LexerToken, ParsedSQLFile, ParsedSQLStatement } from "../../interfaces/parsed-sql-file";
 import { Lexer } from "./lexer";
 import { Parser } from "./parser";
 
