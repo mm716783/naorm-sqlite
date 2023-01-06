@@ -4,7 +4,10 @@ export interface NAORMResultColumn {
     sourceTable: string | null;
     sourceDatabase: string | null;
     declaredType: string | null;
-    naormTypeComment: string | null;
-    typeScriptTypeAnnotation: string | null;
     jsDocComment: string | null;
+    naormTypeComment: string | null;
+    isExplicitlyNotNull: boolean;
+    computedTypeByConventionSet: { 
+        [key: string]: string 
+    };
 }
