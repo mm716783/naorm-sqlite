@@ -1,0 +1,1027 @@
+[
+	{
+		"fileName": "aircraft.sql",
+		"fullFilePath": "tests\\test-dbs\\air-travel\\tables\\aircraft.sql",
+		"fileIdentifier": "aircraft",
+		"preStatementJSDoc": "",
+		"preStatementFullComment": "",
+		"statement": "CREATE TABLE Aircraft(\r\n    Model TEXT\r\n)",
+		"statementTokens": [],
+		"statementCategory": "create",
+		"statementType": "table",
+		"statementIdentifier": "AIRCRAFT",
+		"rawStatementIdentifier": "Aircraft",
+		"possibleStatementDependencies": {},
+		"possibleStatementDependenciesArray": [
+			"AIRCRAFT",
+			"MODEL",
+			"TEXT"
+		],
+		"skipStatementCompilation": false,
+		"statementDependencies": [
+			"AIRCRAFT"
+		],
+		"resultColumns": [
+			{
+				"columnName": "Model",
+				"sourceDatabase": "main",
+				"sourceTable": "Aircraft",
+				"sourceColumn": "Model",
+				"declaredType": "TEXT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "string",
+					"Parsed": "string"
+				}
+			}
+		]
+	},
+	{
+		"fileName": "airline.sql",
+		"fullFilePath": "tests\\test-dbs\\air-travel\\tables\\airline.sql",
+		"fileIdentifier": "airline",
+		"preStatementJSDoc": "",
+		"preStatementFullComment": "",
+		"statement": "CREATE TABLE Airline(\r\n    Name TEXT\r\n)",
+		"statementTokens": [],
+		"statementCategory": "create",
+		"statementType": "table",
+		"statementIdentifier": "AIRLINE",
+		"rawStatementIdentifier": "Airline",
+		"possibleStatementDependencies": {},
+		"possibleStatementDependenciesArray": [
+			"AIRLINE",
+			"NAME",
+			"TEXT"
+		],
+		"skipStatementCompilation": false,
+		"statementDependencies": [
+			"AIRLINE"
+		],
+		"resultColumns": [
+			{
+				"columnName": "Name",
+				"sourceDatabase": "main",
+				"sourceTable": "Airline",
+				"sourceColumn": "Name",
+				"declaredType": "TEXT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "string",
+					"Parsed": "string"
+				}
+			}
+		]
+	},
+	{
+		"fileName": "airport.sql",
+		"fullFilePath": "tests\\test-dbs\\air-travel\\tables\\airport.sql",
+		"fileIdentifier": "airport",
+		"preStatementJSDoc": "",
+		"preStatementFullComment": "",
+		"statement": "CREATE TABLE Airport (\r\n    Id INT,\r\n    IATACode /* NAORM-Type: TEXT NOT NULL */ UNIQUE CHECK(LENGTH(IATACode) = 3),\r\n    Country NOT NULL -- NAORM-Type: TEXT\r\n)",
+		"statementTokens": [],
+		"statementCategory": "create",
+		"statementType": "table",
+		"statementIdentifier": "AIRPORT",
+		"rawStatementIdentifier": "Airport",
+		"possibleStatementDependencies": {},
+		"possibleStatementDependenciesArray": [
+			"AIRPORT",
+			"ID",
+			"INT",
+			"IATACODE",
+			"LENGTH",
+			"IATACODE",
+			"COUNTRY"
+		],
+		"skipStatementCompilation": false,
+		"statementDependencies": [
+			"AIRPORT"
+		],
+		"resultColumns": [
+			{
+				"columnName": "Id",
+				"sourceDatabase": "main",
+				"sourceTable": "Airport",
+				"sourceColumn": "Id",
+				"declaredType": "INT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "number",
+					"Parsed": "number"
+				}
+			},
+			{
+				"columnName": "IATACode",
+				"sourceDatabase": "main",
+				"sourceTable": "Airport",
+				"sourceColumn": "IATACode",
+				"declaredType": null,
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "any",
+					"Parsed": "any"
+				}
+			},
+			{
+				"columnName": "Country",
+				"sourceDatabase": "main",
+				"sourceTable": "Airport",
+				"sourceColumn": "Country",
+				"declaredType": null,
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "any",
+					"Parsed": "any"
+				}
+			}
+		]
+	},
+	{
+		"fileName": "flight.sql",
+		"fullFilePath": "tests\\test-dbs\\air-travel\\tables\\flight.sql",
+		"fileIdentifier": "flight",
+		"preStatementJSDoc": "",
+		"preStatementFullComment": "",
+		"statement": "CREATE TABLE Flight(\r\n    'Id' TEXT,\r\n    AirlineId TEXT,\r\n    /** Test pass-through comment */\r\n    FlightNumber INT,\r\n    ScheduledDepartDateTime DATETIME_TEXT,\r\n    ScheduledArrivalDateTime DATETIME_TEXT,\r\n    ActualDepartDateTime DATETIME_TEXT,\r\n    ActualArrivalDateTime DATETIME_TEXT,\r\n    OriginAirport TEXT,\r\n    DestinationAirport TEXT,\r\n    IsCancelled TINYINT\r\n)",
+		"statementTokens": [],
+		"statementCategory": "create",
+		"statementType": "table",
+		"statementIdentifier": "FLIGHT",
+		"rawStatementIdentifier": "Flight",
+		"possibleStatementDependencies": {},
+		"possibleStatementDependenciesArray": [
+			"FLIGHT",
+			"ID",
+			"TEXT",
+			"AIRLINEID",
+			"TEXT",
+			"FLIGHTNUMBER",
+			"INT",
+			"SCHEDULEDDEPARTDATETIME",
+			"DATETIME_TEXT",
+			"SCHEDULEDARRIVALDATETIME",
+			"DATETIME_TEXT",
+			"ACTUALDEPARTDATETIME",
+			"DATETIME_TEXT",
+			"ACTUALARRIVALDATETIME",
+			"DATETIME_TEXT",
+			"ORIGINAIRPORT",
+			"TEXT",
+			"DESTINATIONAIRPORT",
+			"TEXT",
+			"ISCANCELLED",
+			"TINYINT"
+		],
+		"skipStatementCompilation": false,
+		"statementDependencies": [
+			"FLIGHT"
+		],
+		"resultColumns": [
+			{
+				"columnName": "Id",
+				"sourceDatabase": "main",
+				"sourceTable": "Flight",
+				"sourceColumn": "Id",
+				"declaredType": "TEXT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "string",
+					"Parsed": "string"
+				}
+			},
+			{
+				"columnName": "AirlineId",
+				"sourceDatabase": "main",
+				"sourceTable": "Flight",
+				"sourceColumn": "AirlineId",
+				"declaredType": "TEXT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "string",
+					"Parsed": "string"
+				}
+			},
+			{
+				"columnName": "FlightNumber",
+				"sourceDatabase": "main",
+				"sourceTable": "Flight",
+				"sourceColumn": "FlightNumber",
+				"declaredType": "INT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "number",
+					"Parsed": "number"
+				}
+			},
+			{
+				"columnName": "ScheduledDepartDateTime",
+				"sourceDatabase": "main",
+				"sourceTable": "Flight",
+				"sourceColumn": "ScheduledDepartDateTime",
+				"declaredType": "DATETIME_TEXT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "string",
+					"Parsed": "string"
+				}
+			},
+			{
+				"columnName": "ScheduledArrivalDateTime",
+				"sourceDatabase": "main",
+				"sourceTable": "Flight",
+				"sourceColumn": "ScheduledArrivalDateTime",
+				"declaredType": "DATETIME_TEXT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "string",
+					"Parsed": "string"
+				}
+			},
+			{
+				"columnName": "ActualDepartDateTime",
+				"sourceDatabase": "main",
+				"sourceTable": "Flight",
+				"sourceColumn": "ActualDepartDateTime",
+				"declaredType": "DATETIME_TEXT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "string",
+					"Parsed": "string"
+				}
+			},
+			{
+				"columnName": "ActualArrivalDateTime",
+				"sourceDatabase": "main",
+				"sourceTable": "Flight",
+				"sourceColumn": "ActualArrivalDateTime",
+				"declaredType": "DATETIME_TEXT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "string",
+					"Parsed": "string"
+				}
+			},
+			{
+				"columnName": "OriginAirport",
+				"sourceDatabase": "main",
+				"sourceTable": "Flight",
+				"sourceColumn": "OriginAirport",
+				"declaredType": "TEXT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "string",
+					"Parsed": "string"
+				}
+			},
+			{
+				"columnName": "DestinationAirport",
+				"sourceDatabase": "main",
+				"sourceTable": "Flight",
+				"sourceColumn": "DestinationAirport",
+				"declaredType": "TEXT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "string",
+					"Parsed": "string"
+				}
+			},
+			{
+				"columnName": "IsCancelled",
+				"sourceDatabase": "main",
+				"sourceTable": "Flight",
+				"sourceColumn": "IsCancelled",
+				"declaredType": "TINYINT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "number",
+					"Parsed": "number"
+				}
+			}
+		]
+	},
+	{
+		"fileName": "passenger.sql",
+		"fullFilePath": "tests\\test-dbs\\air-travel\\tables\\passenger.sql",
+		"fileIdentifier": "passenger",
+		"preStatementJSDoc": "",
+		"preStatementFullComment": "",
+		"statement": "CREATE TABLE Passenger(\r\n    FirstName TEXT,\r\n    LastName TEXT,\r\n    Name TEXT GENERATED ALWAYS AS (FirstName || ' ' || LastName) VIRTUAL,\r\n    Name2 TEXT GENERATED ALWAYS AS (FirstName || '_' || LastName) STORED\r\n)",
+		"statementTokens": [],
+		"statementCategory": "create",
+		"statementType": "table",
+		"statementIdentifier": "PASSENGER",
+		"rawStatementIdentifier": "Passenger",
+		"possibleStatementDependencies": {},
+		"possibleStatementDependenciesArray": [
+			"PASSENGER",
+			"FIRSTNAME",
+			"TEXT",
+			"LASTNAME",
+			"TEXT",
+			"NAME",
+			"TEXT",
+			"FIRSTNAME",
+			" ",
+			"LASTNAME",
+			"NAME2",
+			"TEXT",
+			"FIRSTNAME",
+			"_",
+			"LASTNAME",
+			"STORED"
+		],
+		"skipStatementCompilation": false,
+		"statementDependencies": [
+			"PASSENGER"
+		],
+		"resultColumns": [
+			{
+				"columnName": "FirstName",
+				"sourceDatabase": "main",
+				"sourceTable": "Passenger",
+				"sourceColumn": "FirstName",
+				"declaredType": "TEXT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "string",
+					"Parsed": "string"
+				}
+			},
+			{
+				"columnName": "LastName",
+				"sourceDatabase": "main",
+				"sourceTable": "Passenger",
+				"sourceColumn": "LastName",
+				"declaredType": "TEXT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "string",
+					"Parsed": "string"
+				}
+			},
+			{
+				"columnName": "Name",
+				"sourceDatabase": "main",
+				"sourceTable": "Passenger",
+				"sourceColumn": "Name",
+				"declaredType": "TEXT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "string",
+					"Parsed": "string"
+				}
+			},
+			{
+				"columnName": "Name2",
+				"sourceDatabase": "main",
+				"sourceTable": "Passenger",
+				"sourceColumn": "Name2",
+				"declaredType": "TEXT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "string",
+					"Parsed": "string"
+				}
+			}
+		]
+	},
+	{
+		"fileName": "vw-flight-origins.sql",
+		"fullFilePath": "tests\\test-dbs\\air-travel\\views\\vw-flight-origins.sql",
+		"fileIdentifier": "vwFlightOrigins",
+		"preStatementJSDoc": "",
+		"preStatementFullComment": "",
+		"statement": "CREATE VIEW vwFlightOrigins AS\r\nSELECT A.*, F.*,\r\n/** Test expression comment */\r\nCASE WHEN F.FlightNumber = 1 THEN 3 ELSE 4 END AS expressionField /* INT */ \r\nFROM Airport AS A\r\nJOIN Flight AS F\r\n-- FROM Aircraft\r\nON F.OriginAirport = A.Id\r\n",
+		"statementTokens": [],
+		"statementCategory": "create",
+		"statementType": "view",
+		"statementIdentifier": "VWFLIGHTORIGINS",
+		"rawStatementIdentifier": "vwFlightOrigins",
+		"possibleStatementDependencies": {},
+		"possibleStatementDependenciesArray": [
+			"VWFLIGHTORIGINS",
+			"A",
+			"F",
+			"F",
+			"FLIGHTNUMBER",
+			"EXPRESSIONFIELD",
+			"AIRPORT",
+			"A",
+			"FLIGHT",
+			"F",
+			"F",
+			"ORIGINAIRPORT",
+			"A",
+			"ID"
+		],
+		"skipStatementCompilation": false,
+		"statementDependencies": [
+			"AIRPORT",
+			"FLIGHT",
+			"VWFLIGHTORIGINS"
+		],
+		"resultColumns": [
+			{
+				"columnName": "Id",
+				"sourceDatabase": "main",
+				"sourceTable": "Airport",
+				"sourceColumn": "Id",
+				"declaredType": "INT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "number",
+					"Parsed": "number"
+				}
+			},
+			{
+				"columnName": "IATACode",
+				"sourceDatabase": "main",
+				"sourceTable": "Airport",
+				"sourceColumn": "IATACode",
+				"declaredType": null,
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "any",
+					"Parsed": "any"
+				}
+			},
+			{
+				"columnName": "Country",
+				"sourceDatabase": "main",
+				"sourceTable": "Airport",
+				"sourceColumn": "Country",
+				"declaredType": null,
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "any",
+					"Parsed": "any"
+				}
+			},
+			{
+				"columnName": "Id:1",
+				"sourceDatabase": "main",
+				"sourceTable": "Flight",
+				"sourceColumn": "Id",
+				"declaredType": "TEXT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "string",
+					"Parsed": "string"
+				}
+			},
+			{
+				"columnName": "AirlineId",
+				"sourceDatabase": "main",
+				"sourceTable": "Flight",
+				"sourceColumn": "AirlineId",
+				"declaredType": "TEXT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "string",
+					"Parsed": "string"
+				}
+			},
+			{
+				"columnName": "FlightNumber",
+				"sourceDatabase": "main",
+				"sourceTable": "Flight",
+				"sourceColumn": "FlightNumber",
+				"declaredType": "INT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "number",
+					"Parsed": "number"
+				}
+			},
+			{
+				"columnName": "ScheduledDepartDateTime",
+				"sourceDatabase": "main",
+				"sourceTable": "Flight",
+				"sourceColumn": "ScheduledDepartDateTime",
+				"declaredType": "DATETIME_TEXT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "string",
+					"Parsed": "string"
+				}
+			},
+			{
+				"columnName": "ScheduledArrivalDateTime",
+				"sourceDatabase": "main",
+				"sourceTable": "Flight",
+				"sourceColumn": "ScheduledArrivalDateTime",
+				"declaredType": "DATETIME_TEXT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "string",
+					"Parsed": "string"
+				}
+			},
+			{
+				"columnName": "ActualDepartDateTime",
+				"sourceDatabase": "main",
+				"sourceTable": "Flight",
+				"sourceColumn": "ActualDepartDateTime",
+				"declaredType": "DATETIME_TEXT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "string",
+					"Parsed": "string"
+				}
+			},
+			{
+				"columnName": "ActualArrivalDateTime",
+				"sourceDatabase": "main",
+				"sourceTable": "Flight",
+				"sourceColumn": "ActualArrivalDateTime",
+				"declaredType": "DATETIME_TEXT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "string",
+					"Parsed": "string"
+				}
+			},
+			{
+				"columnName": "OriginAirport",
+				"sourceDatabase": "main",
+				"sourceTable": "Flight",
+				"sourceColumn": "OriginAirport",
+				"declaredType": "TEXT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "string",
+					"Parsed": "string"
+				}
+			},
+			{
+				"columnName": "DestinationAirport",
+				"sourceDatabase": "main",
+				"sourceTable": "Flight",
+				"sourceColumn": "DestinationAirport",
+				"declaredType": "TEXT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "string",
+					"Parsed": "string"
+				}
+			},
+			{
+				"columnName": "IsCancelled",
+				"sourceDatabase": "main",
+				"sourceTable": "Flight",
+				"sourceColumn": "IsCancelled",
+				"declaredType": "TINYINT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "number",
+					"Parsed": "number"
+				}
+			},
+			{
+				"columnName": "expressionField",
+				"sourceDatabase": null,
+				"sourceTable": null,
+				"sourceColumn": null,
+				"declaredType": null,
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "any",
+					"Parsed": "any"
+				}
+			}
+		]
+	},
+	{
+		"fileName": "select-airport.sql",
+		"fullFilePath": "tests\\test-dbs\\air-travel\\selects\\select-airport.sql",
+		"fileIdentifier": "selectAirport",
+		"preStatementJSDoc": "",
+		"preStatementFullComment": "\n/*\r\nNAORM-ID: Test1\r\n*/\n\r\n",
+		"statement": "/*\r\nNAORM-ID: Test1\r\n*/\r\nCREATE UNIQUE INDEX AirportIX2 ON Airport(Id);",
+		"statementTokens": [],
+		"statementCategory": "create",
+		"statementType": "index",
+		"statementIdentifier": "AIRPORTIX2",
+		"rawStatementIdentifier": "AirportIX2",
+		"possibleStatementDependencies": {},
+		"possibleStatementDependenciesArray": [
+			"AIRPORTIX2",
+			"AIRPORT",
+			"ID"
+		],
+		"skipStatementCompilation": false,
+		"statementDependencies": [],
+		"resultColumns": []
+	},
+	{
+		"fileName": "select-airport.sql",
+		"fullFilePath": "tests\\test-dbs\\air-travel\\selects\\select-airport.sql",
+		"fileIdentifier": "selectAirport",
+		"preStatementJSDoc": "",
+		"preStatementFullComment": "\n\r\n\n/*\r\nNAORM-ID: Test2\r\n*/\n\r\n",
+		"statement": "\r\n/*\r\nNAORM-ID: Test2\r\n*/\r\nCREATE UNIQUE INDEX AirportIX3 ON Airport(Id);",
+		"statementTokens": [],
+		"statementCategory": "create",
+		"statementType": "index",
+		"statementIdentifier": "AIRPORTIX3",
+		"rawStatementIdentifier": "AirportIX3",
+		"possibleStatementDependencies": {},
+		"possibleStatementDependenciesArray": [
+			"AIRPORTIX3",
+			"AIRPORT",
+			"ID"
+		],
+		"skipStatementCompilation": false,
+		"statementDependencies": [],
+		"resultColumns": []
+	},
+	{
+		"fileName": "select-airport.sql",
+		"fullFilePath": "tests\\test-dbs\\air-travel\\views\\select-airport.sql",
+		"fileIdentifier": "selectAirport_1",
+		"preStatementJSDoc": "",
+		"preStatementFullComment": "\n\r\n",
+		"statement": "\r\nCREATE UNIQUE INDEX AirportIX1 ON Airport(Id);",
+		"statementTokens": [],
+		"statementCategory": "create",
+		"statementType": "index",
+		"statementIdentifier": "AIRPORTIX1",
+		"rawStatementIdentifier": "AirportIX1",
+		"possibleStatementDependencies": {},
+		"possibleStatementDependenciesArray": [
+			"AIRPORTIX1",
+			"AIRPORT",
+			"ID"
+		],
+		"skipStatementCompilation": false,
+		"statementDependencies": [],
+		"resultColumns": []
+	},
+	{
+		"fileName": "select-airport.sql",
+		"fullFilePath": "tests\\test-dbs\\air-travel\\views\\select-airport.sql",
+		"fileIdentifier": "selectAirport_1",
+		"preStatementJSDoc": "",
+		"preStatementFullComment": "\n\r\n",
+		"statement": "\r\nCREATE UNIQUE INDEX AirportIX4 ON Airport(Id);",
+		"statementTokens": [],
+		"statementCategory": "create",
+		"statementType": "index",
+		"statementIdentifier": "AIRPORTIX4",
+		"rawStatementIdentifier": "AirportIX4",
+		"possibleStatementDependencies": {},
+		"possibleStatementDependenciesArray": [
+			"AIRPORTIX4",
+			"AIRPORT",
+			"ID"
+		],
+		"skipStatementCompilation": false,
+		"statementDependencies": [],
+		"resultColumns": []
+	},
+	{
+		"fileName": "select-flights-by-origin.sql",
+		"fullFilePath": "tests\\test-dbs\\air-travel\\selects\\select-flights-by-origin.sql",
+		"fileIdentifier": "selectFlightsByOrigin",
+		"preStatementJSDoc": "",
+		"preStatementFullComment": "",
+		"statement": "SELECT * FROM vwFlightOrigins\r\nWHERE OriginAirport = ''",
+		"statementTokens": [],
+		"statementCategory": "dml",
+		"statementType": "dml",
+		"statementIdentifier": "selectFlightsByOrigin",
+		"rawStatementIdentifier": "",
+		"possibleStatementDependencies": {},
+		"possibleStatementDependenciesArray": [
+			"VWFLIGHTORIGINS",
+			"ORIGINAIRPORT",
+			""
+		],
+		"skipStatementCompilation": false,
+		"statementDependencies": [],
+		"resultColumns": [
+			{
+				"columnName": "Id",
+				"sourceDatabase": "main",
+				"sourceTable": "Airport",
+				"sourceColumn": "Id",
+				"declaredType": "INT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "number",
+					"Parsed": "number"
+				}
+			},
+			{
+				"columnName": "IATACode",
+				"sourceDatabase": "main",
+				"sourceTable": "Airport",
+				"sourceColumn": "IATACode",
+				"declaredType": null,
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "any",
+					"Parsed": "any"
+				}
+			},
+			{
+				"columnName": "Country",
+				"sourceDatabase": "main",
+				"sourceTable": "Airport",
+				"sourceColumn": "Country",
+				"declaredType": null,
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "any",
+					"Parsed": "any"
+				}
+			},
+			{
+				"columnName": "Id:1",
+				"sourceDatabase": "main",
+				"sourceTable": "Flight",
+				"sourceColumn": "Id",
+				"declaredType": "TEXT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "string",
+					"Parsed": "string"
+				}
+			},
+			{
+				"columnName": "AirlineId",
+				"sourceDatabase": "main",
+				"sourceTable": "Flight",
+				"sourceColumn": "AirlineId",
+				"declaredType": "TEXT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "string",
+					"Parsed": "string"
+				}
+			},
+			{
+				"columnName": "FlightNumber",
+				"sourceDatabase": "main",
+				"sourceTable": "Flight",
+				"sourceColumn": "FlightNumber",
+				"declaredType": "INT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "number",
+					"Parsed": "number"
+				}
+			},
+			{
+				"columnName": "ScheduledDepartDateTime",
+				"sourceDatabase": "main",
+				"sourceTable": "Flight",
+				"sourceColumn": "ScheduledDepartDateTime",
+				"declaredType": "DATETIME_TEXT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "string",
+					"Parsed": "string"
+				}
+			},
+			{
+				"columnName": "ScheduledArrivalDateTime",
+				"sourceDatabase": "main",
+				"sourceTable": "Flight",
+				"sourceColumn": "ScheduledArrivalDateTime",
+				"declaredType": "DATETIME_TEXT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "string",
+					"Parsed": "string"
+				}
+			},
+			{
+				"columnName": "ActualDepartDateTime",
+				"sourceDatabase": "main",
+				"sourceTable": "Flight",
+				"sourceColumn": "ActualDepartDateTime",
+				"declaredType": "DATETIME_TEXT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "string",
+					"Parsed": "string"
+				}
+			},
+			{
+				"columnName": "ActualArrivalDateTime",
+				"sourceDatabase": "main",
+				"sourceTable": "Flight",
+				"sourceColumn": "ActualArrivalDateTime",
+				"declaredType": "DATETIME_TEXT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "string",
+					"Parsed": "string"
+				}
+			},
+			{
+				"columnName": "OriginAirport",
+				"sourceDatabase": "main",
+				"sourceTable": "Flight",
+				"sourceColumn": "OriginAirport",
+				"declaredType": "TEXT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "string",
+					"Parsed": "string"
+				}
+			},
+			{
+				"columnName": "DestinationAirport",
+				"sourceDatabase": "main",
+				"sourceTable": "Flight",
+				"sourceColumn": "DestinationAirport",
+				"declaredType": "TEXT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "string",
+					"Parsed": "string"
+				}
+			},
+			{
+				"columnName": "IsCancelled",
+				"sourceDatabase": "main",
+				"sourceTable": "Flight",
+				"sourceColumn": "IsCancelled",
+				"declaredType": "TINYINT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "number",
+					"Parsed": "number"
+				}
+			},
+			{
+				"columnName": "expressionField",
+				"sourceDatabase": null,
+				"sourceTable": null,
+				"sourceColumn": null,
+				"declaredType": null,
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "any",
+					"Parsed": "any"
+				}
+			}
+		]
+	},
+	{
+		"fileName": "select-pragma.sql",
+		"fullFilePath": "tests\\test-dbs\\air-travel\\selects\\select-pragma.sql",
+		"fileIdentifier": "selectPragma",
+		"preStatementJSDoc": "",
+		"preStatementFullComment": "",
+		"statement": "PRAGMA table_info(Airport);",
+		"statementTokens": [],
+		"statementCategory": "other",
+		"statementType": "other",
+		"statementIdentifier": "selectPragma",
+		"rawStatementIdentifier": "",
+		"possibleStatementDependencies": {},
+		"possibleStatementDependenciesArray": [
+			"TABLE_INFO",
+			"AIRPORT"
+		],
+		"skipStatementCompilation": false,
+		"statementDependencies": [],
+		"resultColumns": []
+	},
+	{
+		"fileName": "select-pragma.sql",
+		"fullFilePath": "tests\\test-dbs\\air-travel\\selects\\select-pragma.sql",
+		"fileIdentifier": "selectPragma",
+		"preStatementJSDoc": "",
+		"preStatementFullComment": "\n\r\n",
+		"statement": "\r\nDELETE FROM Flight WHERE FlightNumber = ? RETURNING Id;",
+		"statementTokens": [],
+		"statementCategory": "dml",
+		"statementType": "dml",
+		"statementIdentifier": "selectPragma_1",
+		"rawStatementIdentifier": "",
+		"possibleStatementDependencies": {},
+		"possibleStatementDependenciesArray": [
+			"FLIGHT",
+			"FLIGHTNUMBER",
+			"ID"
+		],
+		"skipStatementCompilation": false,
+		"statementDependencies": [],
+		"resultColumns": [
+			{
+				"columnName": "Id",
+				"sourceDatabase": "main",
+				"sourceTable": "Flight",
+				"sourceColumn": "Id",
+				"declaredType": "TEXT",
+				"naormTypeComment": null,
+				"jsDocComment": null,
+				"isExplicitlyNotNull": false,
+				"computedTypeByConventionSet": {
+					"Raw": "string",
+					"Parsed": "string"
+				}
+			}
+		]
+	}
+]
