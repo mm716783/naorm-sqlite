@@ -1,6 +1,6 @@
 import { LexerToken, ParsedSQLStatement } from "../../interfaces/parsed-sql-file";
 import { ColumnDefinition } from "better-sqlite3";
-import { NAORMResultColumn } from "../../interfaces/naorm-result-column";
+import { NAORMResultColumn } from "../../interfaces/naorm-sql-statement";
 import { NAORMConfig } from "../../interfaces/naorm-config";
 
 export class SQLColumnAnalyzer {

@@ -2,7 +2,7 @@ import { NAORMConfig, NAORMConventionSet } from "../interfaces/naorm-config";
 import { join,  } from 'path';
 import { mkdirSync, writeFileSync } from 'fs';
 import { ParsedSQLFile, ParsedSQLStatement } from "../interfaces/parsed-sql-file";
-import { NAORMResultColumn } from "../interfaces/naorm-result-column";
+import { NAORMResultColumn } from "../interfaces/naorm-sql-statement";
 
 export function generateTypeScript(parsedSQLFile: ParsedSQLFile, config: NAORMConfig, outDir: string) {
     const parsedStatements = parsedSQLFile.sqlStatements;
