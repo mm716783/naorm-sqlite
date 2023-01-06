@@ -30,24 +30,11 @@ export class Parser {
         const t = this.tokens[this.pos];
         this.statement += t.rawValue;
         
-        // If we encounter any identifiers, put them into the possible statement dependencies 
-        if(t.type === 'identifier' || t.type === 'quotedIdentifier') {
-            // These will be used later to see which statements depend on each other
-            this.possibleStatementDependencies.add(t.normalizedValue);   
-            this.possibleStatementDependenciesArray.push(t.normalizedValue);     
-        }
-
-        // If it's the end of the statement, then process it and reset the state
-        if(t.type === 'semicolon' || this.pos === this.tokens.length - 1) {
-            this.newStatement();
-            this.resetNextStatement();
-        } 
-
         // If we haven't determined the statement category yet
-        else if(!this.statementCategory) {
+        if(!this.statementCategory) {
             // Add any comments found before the statement starts to the string of pre-statement comments
             if(t.type === 'whitespace' || t.type === 'cComment' || t.type === 'dashComment' || t.type === 'jsDocComment') {
-                this.preStatementFullComment += `\n${t.rawValue}`;
+                this.preStatementFullComment += `${t.rawValue}`;
                 if(t.type === 'jsDocComment') {
                     // Just like in JSDoc, we only consider the latest comment
                     this.preStatementJSDoc = t.rawValue;
@@ -115,13 +102,27 @@ export class Parser {
                 }
                 const nextToken = this.tokens[this.pos + 1];
                 // Which would be apparent if the next token is a dot
-                if(nextToken?.type !== 'dot') {
+                if(nextToken.type !== 'dot') {
                     this.statementIdentifier = t.normalizedValue;
                     this.rawStatementIdentifier = t.rawValue;
                 }
             }
         }
 
+        // If we encounter any identifiers, put them into the possible statement dependencies 
+        if((t.type === 'identifier' || t.type === 'quotedIdentifier') && t.normalizedValue !== this.statementIdentifier) {
+            // These will be used later to see which statements depend on each other
+            if(!this.possibleStatementDependencies.has(t.normalizedValue)) {
+                this.possibleStatementDependencies.add(t.normalizedValue);   
+                this.possibleStatementDependenciesArray.push(t.normalizedValue);     
+            }
+        }
+
+        // If it's the end of the statement, then process it and reset the state
+        if(t.type === 'semicolon' || this.pos === this.tokens.length - 1) {
+            this.newStatement();
+            this.resetNextStatement();
+        } 
         this.pos++;
     }
 
@@ -148,7 +149,7 @@ export class Parser {
         else {
             const match = this.preStatementFullComment.match(/NAORM-ID:\s*(.+?)\s/i);
             if(match) {
-                return match[0];
+                return match[1];
             } else {
                 // Otherwise use the file identifier, and append an index if needed
                 let identifier = this.fileIdentifier;

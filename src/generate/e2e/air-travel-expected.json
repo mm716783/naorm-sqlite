@@ -11,9 +11,7 @@
 		"statementIdentifier": "AIRCRAFT",
 		"rawStatementIdentifier": "Aircraft",
 		"skipStatementCompilation": false,
-		"statementDependencies": [
-			"AIRCRAFT"
-		],
+		"statementDependencies": [],
 		"resultColumns": [
 			{
 				"columnName": "Model",
@@ -43,9 +41,7 @@
 		"statementIdentifier": "AIRLINE",
 		"rawStatementIdentifier": "Airline",
 		"skipStatementCompilation": false,
-		"statementDependencies": [
-			"AIRLINE"
-		],
+		"statementDependencies": [],
 		"resultColumns": [
 			{
 				"columnName": "Name",
@@ -75,9 +71,7 @@
 		"statementIdentifier": "AIRPORT",
 		"rawStatementIdentifier": "Airport",
 		"skipStatementCompilation": false,
-		"statementDependencies": [
-			"AIRPORT"
-		],
+		"statementDependencies": [],
 		"resultColumns": [
 			{
 				"columnName": "Id",
@@ -128,16 +122,14 @@
 		"fullFilePath": "tests\\test-dbs\\air-travel\\tables\\flight.sql",
 		"fileIdentifier": "flight",
 		"preStatementJSDoc": "/** Table containing flights, with two references \r\n    to Airport (one for Origin, one for Destination */",
-		"preStatementFullComment": "\n/** Table containing flights, with two references \r\n    to Airport (one for Origin, one for Destination */\n\r\n",
+		"preStatementFullComment": "/** Table containing flights, with two references \r\n    to Airport (one for Origin, one for Destination */\r\n",
 		"statement": "/** Table containing flights, with two references \r\n    to Airport (one for Origin, one for Destination */\r\nCREATE TABLE Flight(\r\n    'Id' TEXT,\r\n    AirlineId TEXT,\r\n    /** Test pass-through comment */\r\n    FlightNumber INT,\r\n    ScheduledDepartDateTime DATETIME_TEXT,\r\n    ScheduledArrivalDateTime DATETIME_TEXT,\r\n    ActualDepartDateTime DATETIME_TEXT,\r\n    ActualArrivalDateTime DATETIME_TEXT,\r\n    OriginAirport TEXT,\r\n    DestinationAirport TEXT,\r\n    IsCancelled TINYINT\r\n)",
 		"statementCategory": "create",
 		"statementType": "table",
 		"statementIdentifier": "FLIGHT",
 		"rawStatementIdentifier": "Flight",
 		"skipStatementCompilation": false,
-		"statementDependencies": [
-			"FLIGHT"
-		],
+		"statementDependencies": [],
 		"resultColumns": [
 			{
 				"columnName": "Id",
@@ -293,9 +285,7 @@
 		"statementIdentifier": "PASSENGER",
 		"rawStatementIdentifier": "Passenger",
 		"skipStatementCompilation": false,
-		"statementDependencies": [
-			"PASSENGER"
-		],
+		"statementDependencies": [],
 		"resultColumns": [
 			{
 				"columnName": "FirstName",
@@ -369,8 +359,7 @@
 		"skipStatementCompilation": false,
 		"statementDependencies": [
 			"AIRPORT",
-			"FLIGHT",
-			"VWFLIGHTORIGINS"
+			"FLIGHT"
 		],
 		"resultColumns": [
 			{
@@ -576,7 +565,7 @@
 		"fullFilePath": "tests\\test-dbs\\air-travel\\selects\\select-airport.sql",
 		"fileIdentifier": "selectAirport",
 		"preStatementJSDoc": "",
-		"preStatementFullComment": "\n/*\r\nNAORM-ID: Test1\r\n*/\n\r\n",
+		"preStatementFullComment": "/*\r\nNAORM-ID: Test1\r\n*/\r\n",
 		"statement": "/*\r\nNAORM-ID: Test1\r\n*/\r\nCREATE UNIQUE INDEX AirportIX2 ON Airport(Id);",
 		"statementCategory": "create",
 		"statementType": "index",
@@ -591,7 +580,7 @@
 		"fullFilePath": "tests\\test-dbs\\air-travel\\selects\\select-airport.sql",
 		"fileIdentifier": "selectAirport",
 		"preStatementJSDoc": "",
-		"preStatementFullComment": "\n\r\n\n/*\r\nNAORM-ID: Test2\r\n*/\n\r\n",
+		"preStatementFullComment": "\r\n/*\r\nNAORM-ID: Test2\r\n*/\r\n",
 		"statement": "\r\n/*\r\nNAORM-ID: Test2\r\n*/\r\nCREATE UNIQUE INDEX AirportIX3 ON Airport(Id);",
 		"statementCategory": "create",
 		"statementType": "index",
@@ -606,7 +595,7 @@
 		"fullFilePath": "tests\\test-dbs\\air-travel\\views\\select-airport.sql",
 		"fileIdentifier": "selectAirport_1",
 		"preStatementJSDoc": "",
-		"preStatementFullComment": "\n\r\n",
+		"preStatementFullComment": "\r\n",
 		"statement": "\r\nCREATE UNIQUE INDEX AirportIX1 ON Airport(Id);",
 		"statementCategory": "create",
 		"statementType": "index",
@@ -621,7 +610,7 @@
 		"fullFilePath": "tests\\test-dbs\\air-travel\\views\\select-airport.sql",
 		"fileIdentifier": "selectAirport_1",
 		"preStatementJSDoc": "",
-		"preStatementFullComment": "\n\r\n",
+		"preStatementFullComment": "\r\n",
 		"statement": "\r\nCREATE UNIQUE INDEX AirportIX4 ON Airport(Id);",
 		"statementCategory": "create",
 		"statementType": "index",
@@ -863,7 +852,7 @@
 		"fullFilePath": "tests\\test-dbs\\air-travel\\selects\\select-pragma.sql",
 		"fileIdentifier": "selectPragma",
 		"preStatementJSDoc": "",
-		"preStatementFullComment": "\n\r\n",
+		"preStatementFullComment": "\r\n",
 		"statement": "\r\nDELETE FROM Flight WHERE FlightNumber = ? RETURNING Id;",
 		"statementCategory": "dml",
 		"statementType": "dml",
