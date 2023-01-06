@@ -6,7 +6,7 @@ import { NAORMConfig } from '../interfaces/naorm-config';
 import { ParsedSQLFile } from '../interfaces/parsed-sql-file';
 import { parseSQLFile } from './parse-sql-file/parse-sql-file';
 import { SQLFileAnalyzer } from './sql-analyzers/sql-file-analyzer';
-import { generateTypeScript } from './generate-typescript';
+import { generateTypeScript, writeBarrelFile, writeOutputFile } from './output/output';
 import { SQLColumnAnalyzer } from './sql-analyzers/sql-column-analyzer';
 import { SQLDependencyAnalyzer } from './sql-analyzers/sql-dependency-analyzer';
 
@@ -50,8 +50,7 @@ export function generate(pathToConfigFile: string) {
     db.close();
 
     // Step 5 - Generate the TypeScript and write the output
-    sqlFileAnalyzer.allParsedFilesByFileId.forEach((f) => generateTypeScript(f, config, outDir));
-    const barrel = Array.from(sqlFileAnalyzer.allParsedFilesByFileId.values()).map(f => `export * from './${f.fullFilePath.replace(/\\/g, '/').replace('.sql', '')}';`);
-    writeFileSync(join(outDir, 'barrel.ts'), barrel.join('\n'));
-    writeFileSync(join(dbDir, 'naorm-generated', 'naorm-output.json'), JSON.stringify(sequencedStatements.map(s => { s.statementTokens = []; return s}), null, '\t'));
+    generateTypeScript(sqlFileAnalyzer.allParsedFilesByFileId, config, outDir);
+    writeBarrelFile(sqlFileAnalyzer.allParsedFilesByFileId, outDir);
+    writeOutputFile(sequencedStatements, outDir);
 }
