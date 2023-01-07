@@ -1,7 +1,8 @@
-import { LexerToken, ParsedSQLStatement } from "../../interfaces/parsed-sql-file";
+import { ParsedSQLStatement } from "../../interfaces/parsed-sql-file";
 import { ColumnDefinition } from "better-sqlite3";
 import { NAORMResultColumn } from "../../interfaces/naorm-sql-statement";
 import { NAORMConfig } from "../../interfaces/naorm-config";
+import { SQLColumnCommentParser } from "./sql-column-comment-parser";
 
 export class SQLColumnAnalyzer {
 
@@ -50,14 +51,6 @@ export class SQLColumnAnalyzer {
         
         columnDefinition.computedTypeByConventionSet = results;
     }
-    
-    private getColumnComments(statementTokens: LexerToken[], columnName: string) {
-        let naormTypeComment: string | null = null;
-        let jsDocComment: string | null = null;
-        // TBD
-        
-        return { naormTypeComment, jsDocComment };
-    }
 
     private applyPropertiesFromDependencies(statement: ParsedSQLStatement, resultColumn: NAORMResultColumn) {
         if(!resultColumn.naormTypeComment || !resultColumn.jsDocComment) {
@@ -86,10 +79,12 @@ export class SQLColumnAnalyzer {
         }
     };
 
-    getColumnMetadata(statement: ParsedSQLStatement, computedColumns: ColumnDefinition[]): NAORMResultColumn[] {
+    public getColumnMetadata(statement: ParsedSQLStatement, computedColumns: ColumnDefinition[]): NAORMResultColumn[] {
         const resultColumns: NAORMResultColumn[] = [];
     
-        let lastJSDocCommentEndPosition: number = 0;
+        const columnNames = new Set(computedColumns.map(c => c.name.toUpperCase()));
+        const columnComments = new SQLColumnCommentParser(statement.statementTokens, statement.preStatementJSDoc, columnNames).parse();
+
         computedColumns.forEach(c => {
             const resultColumn: NAORMResultColumn = {
                 columnName: c.name,
@@ -97,7 +92,8 @@ export class SQLColumnAnalyzer {
                 sourceTable: c.table,
                 sourceColumn: c.column,
                 declaredType: c.type,
-                ...this.getColumnComments(statement.statementTokens, c.name),
+                jsDocComment: columnComments.get(c.name.toUpperCase())?.jsDocComment || null,
+                naormTypeComment: columnComments.get(c.name.toUpperCase())?.naormTypeComment || null,
                 isExplicitlyNotNull: false,
                 computedTypeByConventionSet: {}
             };
