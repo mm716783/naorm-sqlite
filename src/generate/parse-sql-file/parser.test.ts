@@ -276,8 +276,8 @@ test('Parser Comment Only', () => {
 
 
 test('Parser EOF Comment', () => {
-    const statement = `SELECT * FROM myTable; -- eof comment\n`;
+    const statement = `SELECT * FROM myTable; -- eof comment`;
     const tokens: LexerToken[] = new Lexer(statement).lex();
     const parse = () => new Parser(tokens, fileName, fullFilePath, fileIdentifier).parse();
-    expect(parse).toThrow();
+    expect(parse).not.toThrow();
 });

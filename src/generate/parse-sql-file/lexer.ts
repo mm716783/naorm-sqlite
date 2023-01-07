@@ -9,8 +9,8 @@ export class Lexer {
     private tokens: LexerToken[] = [];
 
     constructor(sqlString: string) {
-        this.input = sqlString;
-        this.inputLength = sqlString.length;
+        this.input = sqlString.trim();
+        this.inputLength = this.input.length;
     }
 
     private getNextToken() {
