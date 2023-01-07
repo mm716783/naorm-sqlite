@@ -21,10 +21,10 @@ function e2eGenerate(pathToConfigFileFromRoot: string, relativePathToExpectedOut
     fs.writeFileSync(outTSConfigPath, JSON.stringify(tsConfig, null, '\t'));
 
     const outJSONPath = path.join(outDir, 'naorm-output.json');
-    const outJSONContent = fs.readFileSync(outJSONPath).toString();
+    const outJSONContent = JSON.parse(fs.readFileSync(outJSONPath).toString());
     
     const expectedOutJSONPath = path.join(__dirname, relativePathToExpectedOutput);
-    const expectedOutJSONContent = fs.readFileSync(expectedOutJSONPath).toString();
+    const expectedOutJSONContent = JSON.parse(fs.readFileSync(expectedOutJSONPath).toString());
     
     expect(outJSONContent).toEqual(expectedOutJSONContent);
     const tsc = `npx tsc --project ` + outDir;
