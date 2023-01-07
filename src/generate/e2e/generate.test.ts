@@ -14,6 +14,7 @@ function e2eGenerate(pathToConfigFileFromRoot: string, relativePathToExpectedOut
     generate(configPath);
 
     const outDir = path.join(dbDir, 'naorm-generated');
+    if(!fs.existsSync(outDir)) { fs.mkdirSync(outDir); }
     const outTSConfigPath = path.join(outDir, 'tsconfig.json');
     tsConfig.files = ['barrel.ts'];
     delete tsConfig.include;
