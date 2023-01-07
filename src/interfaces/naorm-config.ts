@@ -1,5 +1,6 @@
 export interface NAORMConfig {
     dbName: string,
+    dbDir?: string,
     outDir: string,
     include: string[],
     exclude: string[],
@@ -12,10 +13,10 @@ export interface NAORMConventionSet {
     typescriptConstruct: 'class' | 'interface';
     extends: string | null;
     importStatements: string[];
-    typeConventions: NAORMTypeConversion[];
+    typeConventions: NAORMTypeConvention[];
 }
 
-export interface NAORMTypeConversion {
+export interface NAORMTypeConvention {
     sqliteDeclaredType: string;
     typescriptGeneratedType: string;
 }

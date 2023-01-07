@@ -15,7 +15,7 @@
             "name": "Parsed",
             "typescriptConstruct": "interface",
             "extends": null,
-            "importStatements": ["import fs from 'fs'"],
+            "importStatements": [],
             "typeConventions": [{
                 "sqliteDeclaredType": "TINYINT",
                 "typescriptGeneratedType": "boolean"
@@ -28,20 +28,5 @@
             }]
         }
     ],
-    "statementOverrides": [{
-        "statementIdentifier": "Passenger",
-        "skipStatementCompilation": true,
-        "dependentOn": ["Aircraft"],
-        "notDependentOn": []
-    },{
-        "statementIdentifier": "Aircraft",
-        "skipStatementCompilation": false,
-        "dependentOn": ["Airline"],
-        "notDependentOn": []
-    },{
-        "statementIdentifier": "vwFlightOrigins",
-        "skipStatementCompilation": false,
-        "dependentOn": [],
-        "notDependentOn": ["Aircraft"]
-    }]
+    "statementOverrides": []
 }

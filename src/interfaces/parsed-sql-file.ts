@@ -1,5 +1,4 @@
-import { SplitResultItemRich } from "dbgate-query-splitter/lib/splitQuery";
-import { NAORMResultColumn } from "./naorm-result-column";
+import { NAORMSQLStatement } from "./naorm-sql-statement";
 
 export interface ParsedSQLFile {
     fileName: string;
@@ -7,19 +6,19 @@ export interface ParsedSQLFile {
     fileIdentifier: string;
     contents: string;
     sqlStatements: ParsedSQLStatement[]
-    eofComment: string;
 }
 
-export interface ParsedSQLStatement {
-    fileName: string;
-    fullFilePath: string;
-    splitResultItem: SplitResultItemRich;
-    preStatementJSDoc: string | null;
-    preStatementComment: string;
-    statement: string;
-    statementType: 'table' | 'view' | 'index' | 'dml' | 'other';
-    statementIdentifier: string;
-    skipStatementCompilation: boolean;
-    statementDependencies: string[];
-    resultColumns: NAORMResultColumn[];
+export interface ParsedSQLStatement extends NAORMSQLStatement {
+    // These properties are only used internally
+    statementTokens: LexerToken[];
+    possibleStatementDependencies: Set<string>;
+    possibleStatementDependenciesArray: string[];
 }
+
+export interface LexerToken {
+    type: 'jsDocComment' | 'cComment' | 'dashComment' | 'keyword' | 'dot' | 'as'
+        | 'operator' | 'identifier' | 'quotedIdentifier' | 'semicolon' | 'whitespace';
+    rawValue: string;
+    normalizedValue: string;
+}
+
