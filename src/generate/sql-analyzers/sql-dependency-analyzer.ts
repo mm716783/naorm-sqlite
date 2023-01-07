@@ -33,7 +33,7 @@ export class SQLDependencyAnalyzer {
         return [...dependencies, ...Array.from(additionalDependencies.values())];
     }
 
-    public getStatementExecutionOrder() {
+    public getStatementExecutionOrder(): ParsedSQLStatement[] {
         this.sequencedStatements.forEach(statement => {
             statement.statementDependencies = this.determineStatementDependencies(statement);
         });
