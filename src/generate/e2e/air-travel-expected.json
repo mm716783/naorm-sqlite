@@ -19,8 +19,8 @@
 				"sourceTable": "Aircraft",
 				"sourceColumn": "Model",
 				"declaredType": "TEXT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "string",
@@ -49,8 +49,8 @@
 				"sourceTable": "Airline",
 				"sourceColumn": "Name",
 				"declaredType": "TEXT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "string",
@@ -79,8 +79,8 @@
 				"sourceTable": "Airport",
 				"sourceColumn": "Id",
 				"declaredType": "INT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "number",
@@ -93,12 +93,12 @@
 				"sourceTable": "Airport",
 				"sourceColumn": "IATACode",
 				"declaredType": null,
-				"naormTypeComment": null,
 				"jsDocComment": null,
-				"isExplicitlyNotNull": false,
+				"naormTypeComment": "/* NAORM-Type: TEXT NOT NULL */",
+				"isExplicitlyNotNull": true,
 				"computedTypeByConventionSet": {
-					"Raw": "any",
-					"Parsed": "any"
+					"Raw": "string",
+					"Parsed": "string"
 				}
 			},
 			{
@@ -107,8 +107,8 @@
 				"sourceTable": "Airport",
 				"sourceColumn": "Country",
 				"declaredType": null,
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "any",
@@ -137,8 +137,8 @@
 				"sourceTable": "Flight",
 				"sourceColumn": "Id",
 				"declaredType": "TEXT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "string",
@@ -151,8 +151,8 @@
 				"sourceTable": "Flight",
 				"sourceColumn": "AirlineId",
 				"declaredType": "TEXT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "string",
@@ -165,8 +165,8 @@
 				"sourceTable": "Flight",
 				"sourceColumn": "FlightNumber",
 				"declaredType": "INT",
+				"jsDocComment": "/** Test pass-through comment */",
 				"naormTypeComment": null,
-				"jsDocComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "number",
@@ -179,8 +179,8 @@
 				"sourceTable": "Flight",
 				"sourceColumn": "ScheduledDepartDateTime",
 				"declaredType": "DATETIME_TEXT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "string",
@@ -193,8 +193,8 @@
 				"sourceTable": "Flight",
 				"sourceColumn": "ScheduledArrivalDateTime",
 				"declaredType": "DATETIME_TEXT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "string",
@@ -207,8 +207,8 @@
 				"sourceTable": "Flight",
 				"sourceColumn": "ActualDepartDateTime",
 				"declaredType": "DATETIME_TEXT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "string",
@@ -221,8 +221,8 @@
 				"sourceTable": "Flight",
 				"sourceColumn": "ActualArrivalDateTime",
 				"declaredType": "DATETIME_TEXT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "string",
@@ -235,8 +235,8 @@
 				"sourceTable": "Flight",
 				"sourceColumn": "OriginAirport",
 				"declaredType": "TEXT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "string",
@@ -249,8 +249,8 @@
 				"sourceTable": "Flight",
 				"sourceColumn": "DestinationAirport",
 				"declaredType": "TEXT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "string",
@@ -263,8 +263,8 @@
 				"sourceTable": "Flight",
 				"sourceColumn": "IsCancelled",
 				"declaredType": "TINYINT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "number",
@@ -293,8 +293,8 @@
 				"sourceTable": "Passenger",
 				"sourceColumn": "FirstName",
 				"declaredType": "TEXT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "string",
@@ -307,8 +307,8 @@
 				"sourceTable": "Passenger",
 				"sourceColumn": "LastName",
 				"declaredType": "TEXT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "string",
@@ -321,8 +321,8 @@
 				"sourceTable": "Passenger",
 				"sourceColumn": "Name",
 				"declaredType": "TEXT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "string",
@@ -335,8 +335,8 @@
 				"sourceTable": "Passenger",
 				"sourceColumn": "Name2",
 				"declaredType": "TEXT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "string",
@@ -368,8 +368,8 @@
 				"sourceTable": "Airport",
 				"sourceColumn": "Id",
 				"declaredType": "INT",
+				"jsDocComment": "/** Test expression comment */",
 				"naormTypeComment": null,
-				"jsDocComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "number",
@@ -382,8 +382,8 @@
 				"sourceTable": "Airport",
 				"sourceColumn": "IATACode",
 				"declaredType": null,
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "any",
@@ -396,8 +396,8 @@
 				"sourceTable": "Airport",
 				"sourceColumn": "Country",
 				"declaredType": null,
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "any",
@@ -410,8 +410,8 @@
 				"sourceTable": "Flight",
 				"sourceColumn": "Id",
 				"declaredType": "TEXT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "string",
@@ -424,8 +424,8 @@
 				"sourceTable": "Flight",
 				"sourceColumn": "AirlineId",
 				"declaredType": "TEXT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "string",
@@ -438,8 +438,8 @@
 				"sourceTable": "Flight",
 				"sourceColumn": "FlightNumber",
 				"declaredType": "INT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "number",
@@ -452,8 +452,8 @@
 				"sourceTable": "Flight",
 				"sourceColumn": "ScheduledDepartDateTime",
 				"declaredType": "DATETIME_TEXT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "string",
@@ -466,8 +466,8 @@
 				"sourceTable": "Flight",
 				"sourceColumn": "ScheduledArrivalDateTime",
 				"declaredType": "DATETIME_TEXT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "string",
@@ -480,8 +480,8 @@
 				"sourceTable": "Flight",
 				"sourceColumn": "ActualDepartDateTime",
 				"declaredType": "DATETIME_TEXT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "string",
@@ -494,8 +494,8 @@
 				"sourceTable": "Flight",
 				"sourceColumn": "ActualArrivalDateTime",
 				"declaredType": "DATETIME_TEXT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "string",
@@ -508,8 +508,8 @@
 				"sourceTable": "Flight",
 				"sourceColumn": "OriginAirport",
 				"declaredType": "TEXT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "string",
@@ -522,8 +522,8 @@
 				"sourceTable": "Flight",
 				"sourceColumn": "DestinationAirport",
 				"declaredType": "TEXT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "string",
@@ -536,8 +536,8 @@
 				"sourceTable": "Flight",
 				"sourceColumn": "IsCancelled",
 				"declaredType": "TINYINT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "number",
@@ -550,8 +550,8 @@
 				"sourceTable": null,
 				"sourceColumn": null,
 				"declaredType": null,
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "any",
@@ -640,8 +640,8 @@
 				"sourceTable": "Airport",
 				"sourceColumn": "Id",
 				"declaredType": "INT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "number",
@@ -654,8 +654,8 @@
 				"sourceTable": "Airport",
 				"sourceColumn": "IATACode",
 				"declaredType": null,
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "any",
@@ -668,8 +668,8 @@
 				"sourceTable": "Airport",
 				"sourceColumn": "Country",
 				"declaredType": null,
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "any",
@@ -682,8 +682,8 @@
 				"sourceTable": "Flight",
 				"sourceColumn": "Id",
 				"declaredType": "TEXT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "string",
@@ -696,8 +696,8 @@
 				"sourceTable": "Flight",
 				"sourceColumn": "AirlineId",
 				"declaredType": "TEXT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "string",
@@ -710,8 +710,8 @@
 				"sourceTable": "Flight",
 				"sourceColumn": "FlightNumber",
 				"declaredType": "INT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "number",
@@ -724,8 +724,8 @@
 				"sourceTable": "Flight",
 				"sourceColumn": "ScheduledDepartDateTime",
 				"declaredType": "DATETIME_TEXT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "string",
@@ -738,8 +738,8 @@
 				"sourceTable": "Flight",
 				"sourceColumn": "ScheduledArrivalDateTime",
 				"declaredType": "DATETIME_TEXT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "string",
@@ -752,8 +752,8 @@
 				"sourceTable": "Flight",
 				"sourceColumn": "ActualDepartDateTime",
 				"declaredType": "DATETIME_TEXT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "string",
@@ -766,8 +766,8 @@
 				"sourceTable": "Flight",
 				"sourceColumn": "ActualArrivalDateTime",
 				"declaredType": "DATETIME_TEXT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "string",
@@ -780,8 +780,8 @@
 				"sourceTable": "Flight",
 				"sourceColumn": "OriginAirport",
 				"declaredType": "TEXT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "string",
@@ -794,8 +794,8 @@
 				"sourceTable": "Flight",
 				"sourceColumn": "DestinationAirport",
 				"declaredType": "TEXT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "string",
@@ -808,8 +808,8 @@
 				"sourceTable": "Flight",
 				"sourceColumn": "IsCancelled",
 				"declaredType": "TINYINT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "number",
@@ -822,8 +822,8 @@
 				"sourceTable": null,
 				"sourceColumn": null,
 				"declaredType": null,
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "any",
@@ -867,8 +867,8 @@
 				"sourceTable": "Flight",
 				"sourceColumn": "Id",
 				"declaredType": "TEXT",
-				"naormTypeComment": null,
 				"jsDocComment": null,
+				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "string",
