@@ -1,7 +1,7 @@
 [
 	{
 		"fileName": "aircraft.sql",
-		"fullFilePath": "tests\\test-dbs\\air-travel\\tables\\aircraft.sql",
+		"fullFilePath": "tests/test-dbs/air-travel/tables/aircraft.sql",
 		"fileIdentifier": "aircraft",
 		"preStatementJSDoc": "",
 		"preStatementFullComment": "",
@@ -31,7 +31,7 @@
 	},
 	{
 		"fileName": "airline.sql",
-		"fullFilePath": "tests\\test-dbs\\air-travel\\tables\\airline.sql",
+		"fullFilePath": "tests/test-dbs/air-travel/tables/airline.sql",
 		"fileIdentifier": "airline",
 		"preStatementJSDoc": "",
 		"preStatementFullComment": "",
@@ -61,7 +61,7 @@
 	},
 	{
 		"fileName": "airport.sql",
-		"fullFilePath": "tests\\test-dbs\\air-travel\\tables\\airport.sql",
+		"fullFilePath": "tests/test-dbs/air-travel/tables/airport.sql",
 		"fileIdentifier": "airport",
 		"preStatementJSDoc": "",
 		"preStatementFullComment": "",
@@ -119,7 +119,7 @@
 	},
 	{
 		"fileName": "flight.sql",
-		"fullFilePath": "tests\\test-dbs\\air-travel\\tables\\flight.sql",
+		"fullFilePath": "tests/test-dbs/air-travel/tables/flight.sql",
 		"fileIdentifier": "flight",
 		"preStatementJSDoc": "/** Table containing flights, with two references \r\n    to Airport (one for Origin, one for Destination */",
 		"preStatementFullComment": "/** Table containing flights, with two references \r\n    to Airport (one for Origin, one for Destination */\r\n",
@@ -275,7 +275,7 @@
 	},
 	{
 		"fileName": "passenger.sql",
-		"fullFilePath": "tests\\test-dbs\\air-travel\\tables\\passenger.sql",
+		"fullFilePath": "tests/test-dbs/air-travel/tables/passenger.sql",
 		"fileIdentifier": "passenger",
 		"preStatementJSDoc": "",
 		"preStatementFullComment": "",
@@ -347,7 +347,7 @@
 	},
 	{
 		"fileName": "vw-flight-origins.sql",
-		"fullFilePath": "tests\\test-dbs\\air-travel\\views\\vw-flight-origins.sql",
+		"fullFilePath": "tests/test-dbs/air-travel/views/vw-flight-origins.sql",
 		"fileIdentifier": "vwFlightOrigins",
 		"preStatementJSDoc": "",
 		"preStatementFullComment": "",
@@ -562,7 +562,7 @@
 	},
 	{
 		"fileName": "select-airport.sql",
-		"fullFilePath": "tests\\test-dbs\\air-travel\\selects\\select-airport.sql",
+		"fullFilePath": "tests/test-dbs/air-travel/selects/select-airport.sql",
 		"fileIdentifier": "selectAirport",
 		"preStatementJSDoc": "",
 		"preStatementFullComment": "/*\r\nNAORM-ID: Test1\r\n*/\r\n",
@@ -577,7 +577,7 @@
 	},
 	{
 		"fileName": "select-airport.sql",
-		"fullFilePath": "tests\\test-dbs\\air-travel\\selects\\select-airport.sql",
+		"fullFilePath": "tests/test-dbs/air-travel/selects/select-airport.sql",
 		"fileIdentifier": "selectAirport",
 		"preStatementJSDoc": "",
 		"preStatementFullComment": "\r\n/*\r\nNAORM-ID: Test2\r\n*/\r\n",
@@ -592,7 +592,7 @@
 	},
 	{
 		"fileName": "select-airport.sql",
-		"fullFilePath": "tests\\test-dbs\\air-travel\\views\\select-airport.sql",
+		"fullFilePath": "tests/test-dbs/air-travel/views/select-airport.sql",
 		"fileIdentifier": "selectAirport_1",
 		"preStatementJSDoc": "",
 		"preStatementFullComment": "",
@@ -607,7 +607,7 @@
 	},
 	{
 		"fileName": "select-airport.sql",
-		"fullFilePath": "tests\\test-dbs\\air-travel\\views\\select-airport.sql",
+		"fullFilePath": "tests/test-dbs/air-travel/views/select-airport.sql",
 		"fileIdentifier": "selectAirport_1",
 		"preStatementJSDoc": "",
 		"preStatementFullComment": "\r\n",
@@ -622,7 +622,7 @@
 	},
 	{
 		"fileName": "select-flights-by-origin.sql",
-		"fullFilePath": "tests\\test-dbs\\air-travel\\selects\\select-flights-by-origin.sql",
+		"fullFilePath": "tests/test-dbs/air-travel/selects/select-flights-by-origin.sql",
 		"fileIdentifier": "selectFlightsByOrigin",
 		"preStatementJSDoc": "",
 		"preStatementFullComment": "",
@@ -834,7 +834,7 @@
 	},
 	{
 		"fileName": "select-pragma.sql",
-		"fullFilePath": "tests\\test-dbs\\air-travel\\selects\\select-pragma.sql",
+		"fullFilePath": "tests/test-dbs/air-travel/selects/select-pragma.sql",
 		"fileIdentifier": "selectPragma",
 		"preStatementJSDoc": "",
 		"preStatementFullComment": "",
@@ -849,7 +849,7 @@
 	},
 	{
 		"fileName": "select-pragma.sql",
-		"fullFilePath": "tests\\test-dbs\\air-travel\\selects\\select-pragma.sql",
+		"fullFilePath": "tests/test-dbs/air-travel/selects/select-pragma.sql",
 		"fileIdentifier": "selectPragma",
 		"preStatementJSDoc": "",
 		"preStatementFullComment": "\r\n",
