@@ -20,7 +20,7 @@ export class SQLColumnCommentParser {
             this.pos = statementTokens.length - 1;
         }
 
-    private addResult(columnName: string, commentType: 'jsDocComment' | 'naormTypeComment', value: string) {
+    private addResult(columnName: string, commentType: keyof ColumnComments, value: string) {
         const existingResult = this.resultComments.get(columnName);
         if(existingResult) {
             existingResult[commentType] = value;
@@ -113,4 +113,8 @@ export class SQLColumnCommentParser {
         return this.resultComments;
     }
     
+    public getColumnResult(columnName: string, commentType: keyof ColumnComments): string | null {
+        const columnResult = this.resultComments.get(columnName.toUpperCase());
+        return columnResult?.[commentType] || null;
+    }
 }

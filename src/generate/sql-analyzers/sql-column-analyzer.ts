@@ -12,7 +12,8 @@ export class SQLColumnAnalyzer {
     
     private checkNotNull(naormTypeComment: string | null): boolean {
         if(naormTypeComment) {
-            if(naormTypeComment.includes('NOT NULL') || naormTypeComment.includes('NOTNULL')) {
+            if(naormTypeComment.toUpperCase().includes('NOT NULL') 
+                || naormTypeComment.toUpperCase().includes('NOTNULL')) {
                 return true;
             } else {
                 return false;
@@ -23,6 +24,7 @@ export class SQLColumnAnalyzer {
 
     private getDefaultType(type: string | null): string {
         if(type === null) { return 'any'; }
+        type = type.toUpperCase();
         if(type.includes('INT')) { return 'number'; }
         if(type.includes('CHAR')) { return 'string'; }
         if(type.includes('CLOB')) { return 'string'; }
@@ -41,9 +43,12 @@ export class SQLColumnAnalyzer {
         let defaultType = this.getDefaultType(typeToCheck);
         
         this.config.conventionSets.forEach(conventionSet => {
-            const matchingTypeConvention = conventionSet.typeConventions.find(t => {
-                t.sqliteDeclaredType === typeToCheck;
-            });
+            let matchingTypeConvention;
+            if(typeToCheck) {
+                matchingTypeConvention = conventionSet.typeConventions.find(t => {
+                    return t.sqliteDeclaredType.toUpperCase() === typeToCheck.toUpperCase();
+                });
+            }
             results[conventionSet.name] = matchingTypeConvention 
                 ? matchingTypeConvention.typescriptGeneratedType
                 : defaultType;
@@ -52,13 +57,13 @@ export class SQLColumnAnalyzer {
         columnDefinition.computedTypeByConventionSet = results;
     }
 
-    private applyPropertiesFromDependencies(statement: ParsedSQLStatement, resultColumn: NAORMResultColumn) {
-        if(!resultColumn.naormTypeComment || !resultColumn.jsDocComment) {
+    private applyPropertiesFromDependencies(statementDependencies: string[], resultColumn: NAORMResultColumn) {
+        if(resultColumn.naormTypeComment && resultColumn.jsDocComment) {
             return;
         }
 
-        if(resultColumn.sourceTable && this.tableAndViewStatementMap.get(resultColumn.sourceTable)) {
-            const tableDependency = this.tableAndViewStatementMap.get(resultColumn.sourceTable);
+        if(resultColumn.sourceTable && this.tableAndViewStatementMap.get(resultColumn.sourceTable.toUpperCase())) {
+            const tableDependency = this.tableAndViewStatementMap.get(resultColumn.sourceTable.toUpperCase());
             if(tableDependency) {
                 const dependencyColumn = tableDependency.resultColumns.find(col => col.sourceColumn === resultColumn.sourceColumn);
                 resultColumn.naormTypeComment = resultColumn.naormTypeComment || dependencyColumn?.naormTypeComment || null;
@@ -66,14 +71,14 @@ export class SQLColumnAnalyzer {
             };
         }
         
-        const viewDependencies = statement.statementDependencies.map(d => {
+        const viewDependencies = statementDependencies.map(d => {
             return this.tableAndViewStatementMap.get(d);
-        }).filter(d => d?.statementType === 'view');
+        }).filter(d => d?.statementType === 'view') as ParsedSQLStatement[];
         for(const dependency of viewDependencies) {
             if(resultColumn.naormTypeComment && resultColumn.jsDocComment) {
                 break;
             }
-            const dependencyColumn = dependency?.resultColumns.find(col => col.columnName === resultColumn.columnName);
+            const dependencyColumn = dependency.resultColumns.find(col => col.columnName === resultColumn.columnName);
             resultColumn.naormTypeComment = resultColumn.naormTypeComment || dependencyColumn?.naormTypeComment || null;
             resultColumn.jsDocComment  = resultColumn.jsDocComment || dependencyColumn?.jsDocComment || null;
         }
@@ -83,7 +88,8 @@ export class SQLColumnAnalyzer {
         const resultColumns: NAORMResultColumn[] = [];
     
         const columnNames = new Set(computedColumns.map(c => c.name.toUpperCase()));
-        const columnComments = new SQLColumnCommentParser(statement.statementTokens, statement.preStatementJSDoc, columnNames).parse();
+        const commentParser = new SQLColumnCommentParser(statement.statementTokens, statement.preStatementJSDoc, columnNames);
+        commentParser.parse();
 
         computedColumns.forEach(c => {
             const resultColumn: NAORMResultColumn = {
@@ -92,12 +98,12 @@ export class SQLColumnAnalyzer {
                 sourceTable: c.table,
                 sourceColumn: c.column,
                 declaredType: c.type,
-                jsDocComment: columnComments.get(c.name.toUpperCase())?.jsDocComment || null,
-                naormTypeComment: columnComments.get(c.name.toUpperCase())?.naormTypeComment || null,
+                jsDocComment: commentParser.getColumnResult(c.name, 'jsDocComment'),
+                naormTypeComment: commentParser.getColumnResult(c.name, 'naormTypeComment'),
                 isExplicitlyNotNull: false,
                 computedTypeByConventionSet: {}
             };
-            this.applyPropertiesFromDependencies(statement, resultColumn);
+            this.applyPropertiesFromDependencies(statement.statementDependencies, resultColumn);
             this.applyColumnTypes(resultColumn);
             resultColumns.push(resultColumn);
         });

@@ -268,7 +268,7 @@
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "number",
-					"Parsed": "number"
+					"Parsed": "boolean"
 				}
 			}
 		]
@@ -383,11 +383,11 @@
 				"sourceColumn": "IATACode",
 				"declaredType": null,
 				"jsDocComment": null,
-				"naormTypeComment": null,
-				"isExplicitlyNotNull": false,
+				"naormTypeComment": "/* NAORM-Type: TEXT NOT NULL */",
+				"isExplicitlyNotNull": true,
 				"computedTypeByConventionSet": {
-					"Raw": "any",
-					"Parsed": "any"
+					"Raw": "string",
+					"Parsed": "string"
 				}
 			},
 			{
@@ -438,7 +438,7 @@
 				"sourceTable": "Flight",
 				"sourceColumn": "FlightNumber",
 				"declaredType": "INT",
-				"jsDocComment": null,
+				"jsDocComment": "/** Test pass-through comment */",
 				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
@@ -541,7 +541,7 @@
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "number",
-					"Parsed": "number"
+					"Parsed": "boolean"
 				}
 			},
 			{
@@ -655,11 +655,11 @@
 				"sourceColumn": "IATACode",
 				"declaredType": null,
 				"jsDocComment": null,
-				"naormTypeComment": null,
-				"isExplicitlyNotNull": false,
+				"naormTypeComment": "/* NAORM-Type: TEXT NOT NULL */",
+				"isExplicitlyNotNull": true,
 				"computedTypeByConventionSet": {
-					"Raw": "any",
-					"Parsed": "any"
+					"Raw": "string",
+					"Parsed": "string"
 				}
 			},
 			{
@@ -710,7 +710,7 @@
 				"sourceTable": "Flight",
 				"sourceColumn": "FlightNumber",
 				"declaredType": "INT",
-				"jsDocComment": null,
+				"jsDocComment": "/** Test pass-through comment */",
 				"naormTypeComment": null,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
@@ -813,7 +813,7 @@
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
 					"Raw": "number",
-					"Parsed": "number"
+					"Parsed": "boolean"
 				}
 			},
 			{

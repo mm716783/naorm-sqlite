@@ -21,9 +21,16 @@ test('Column Comment Parser CREATE TABLE', () => {
         },
         'COUNTRY': { jsDocComment: null, naormTypeComment: '/* NAORM-Type: TEXT */' }
     }
-    const result = new SQLColumnCommentParser(tokens, '', columnNames).parse();
-    const resultObj = Object.fromEntries(result);
+    const parser = new SQLColumnCommentParser(tokens, '', columnNames);
+    const result = parser.parse();
+    const resultObj = Object.fromEntries(result);    
     expect(resultObj).toEqual(expectedResult);
+    expect(parser.getColumnResult('Id', 'jsDocComment')).toEqual(expectedResult.ID.jsDocComment);
+    expect(parser.getColumnResult('Id', 'naormTypeComment')).toEqual(expectedResult.ID.naormTypeComment);
+    expect(parser.getColumnResult('IATACode', 'jsDocComment')).toEqual(expectedResult.IATACODE.jsDocComment);
+    expect(parser.getColumnResult('IATACode', 'naormTypeComment')).toEqual(expectedResult.IATACODE.naormTypeComment);
+    expect(parser.getColumnResult('Country', 'jsDocComment')).toEqual(expectedResult.COUNTRY.jsDocComment);
+    expect(parser.getColumnResult('Country', 'naormTypeComment')).toEqual(expectedResult.COUNTRY.naormTypeComment);
 });
 
 
@@ -43,9 +50,12 @@ test('Column Comment Parser SELECT', () => {
             naormTypeComment: '/* NAORM-Type: INT NOT NULL */'
         }
     }
-    const result = new SQLColumnCommentParser(tokens, '/** JSDoc Statement */', columnNames).parse();
+    const parser = new SQLColumnCommentParser(tokens, '/** JSDoc Statement */', columnNames);
+    const result = parser.parse();
     const resultObj = Object.fromEntries(result);
     expect(resultObj).toEqual(expectedResult);
+    expect(parser.getColumnResult('C', 'jsDocComment')).toEqual(expectedResult.C.jsDocComment);
+    expect(parser.getColumnResult('C', 'naormTypeComment')).toEqual(expectedResult.C.naormTypeComment);
+    expect(parser.getColumnResult('Id', 'jsDocComment')).toEqual(null);
+    expect(parser.getColumnResult('Id', 'naormTypeComment')).toEqual(null);
 })
-
-
