@@ -319,7 +319,7 @@ When running the `generate` command, Not an ORM will attempt to identify depende
 
 ## Overriding Dependencies
 
-Not an ORM's dependency identification process is not perfect, and it is also currently subject to some of Not an ORM's [limitations](#limitations) surrounding special characters. It tends to err on the side of identifying too many dependencies, rather than too few. This usually has little noticable effect, unless it causes a circular dependency to be mis-identified.
+Not an ORM's dependency identification process is not perfect - it tends to err on the side of identifying too many dependencies, rather than too few. This usually has little noticable effect, unless it causes a circular dependency to be mis-identified.
 
 In this scenario, or in any other scenario where Not an ORM mis-identifies a dependency, you can specify overrides in `naorm-config.json`. If the `skipStatementCompilation` property is set to `true` for any statement, it will be excluded from the entire chain of dependencies, and the generated TypeScript will not contain an interface or list of columns for it.
 
@@ -891,8 +891,6 @@ Below are some examples of items that Not an ORM, by design, does not do:
 
 
 Besides these, there are also certain limitations when it comes to Not an ORM's intended functionality:
-
-* As the project is currently in an early stage, several of Not an ORM's mechanisms utilize relatively simplistic Regular Expressions. These are used to identify types of SQL statements, names of tables and views, statement dependencies, and comments such as `NAORM-TYPE:`, `NAORM-ID:`, and JSDoc. Though they handle the majority of normal use cases, they can sometimes be fooled by SQL identifiers or string literals containing [keywords or special characters](https://www.sqlite.org/lang_keywords.html), especially if the mechanism for escaping is used inconsistently. In a future enhancement, a proper parser, limited in scope to identifying comments, string literals, and escaped identifiers, should be implemented to solve this.
 
 * Not an ORM does not currently compile statements other than `CREATE TABLE`, `CREATE VIEW`, and DML statements. Therefore, you could write invalid SQL in a different type of statement, and Not an ORM will not throw an error or complain. As such, you may not realize something is wrong until your application tries to run the statement. In a future enhancement, it may become possible to compile a such statements, or perhaps a subset of them, as an additional validation mechanism.
 
