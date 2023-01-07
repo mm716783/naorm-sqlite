@@ -75,7 +75,7 @@ export class SQLite3WASMDB extends BaseDB {
         } else {
             try {
                 // If it's a regular SELECT statement, we can create a TEMP VIEW
-                const stmt2 = this.db.prepare(`CREATE TEMP VIEW ${stmtId} AS ` + stmt);
+                const stmt2 = this.db.prepare(`CREATE TEMP VIEW ${stmtId} AS ` + sql);
                 stmt2.stepFinalize();
                 // Then get the PRAGMA info
                 const columns = this.getPragmaInfo(stmtId);
