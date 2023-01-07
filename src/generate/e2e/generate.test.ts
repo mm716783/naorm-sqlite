@@ -14,6 +14,7 @@ function e2eGenerate(pathToConfigFileFromRoot: string, relativePathToExpectedOut
     generate(configPath);
 
     const outDir = path.join(dbDir, 'naorm-generated');
+    if(!fs.existsSync(outDir)) { fs.mkdirSync(outDir); }
     const outTSConfigPath = path.join(outDir, 'tsconfig.json');
     tsConfig.files = ['barrel.ts'];
     delete tsConfig.include;
@@ -21,10 +22,9 @@ function e2eGenerate(pathToConfigFileFromRoot: string, relativePathToExpectedOut
     fs.writeFileSync(outTSConfigPath, JSON.stringify(tsConfig, null, '\t'));
 
     const outJSONPath = path.join(outDir, 'naorm-output.json');
-    const outJSONContent = JSON.parse(fs.readFileSync(outJSONPath).toString());
-    
+    const outJSONContent = JSON.parse(fs.readFileSync(outJSONPath).toString().replace(/\\r\\n/g, '\\n'));
     const expectedOutJSONPath = path.join(__dirname, relativePathToExpectedOutput);
-    const expectedOutJSONContent = JSON.parse(fs.readFileSync(expectedOutJSONPath).toString());
+    const expectedOutJSONContent = JSON.parse(fs.readFileSync(expectedOutJSONPath).toString().replace(/\\r\\n/g, '\\n'));
     
     expect(outJSONContent).toEqual(expectedOutJSONContent);
     const tsc = `npx tsc --project ` + outDir;
