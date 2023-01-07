@@ -14,10 +14,10 @@
   "license": "MIT",
   "main": "dist/index.js",
   "bin": {
-    "naorm": "dist/index.js"
+    "naorm": "dist/cli.js"
   },
   "scripts": {
-    "start": "npx ts-node src/index.ts generate",
+    "start": "npx ts-node src/cli.ts generate tests/test-dbs/northwind",
     "build": "npx tsc && npm run json",
     "json": "typescript-json-schema ./tsconfig.json NAORMConfig -o dist/naorm-config.schema.json",
     "test": "echo \"Error: no test specified\" && exit 1"
