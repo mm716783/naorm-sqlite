@@ -15,7 +15,7 @@
             "name": "Parsed",
             "typescriptConstruct": "interface",
             "extends": null,
-            "importStatements": [],
+            "importStatements": ["import fs from 'fs'"],
             "typeConventions": [{
                 "sqliteDeclaredType": "TINYINT",
                 "typescriptGeneratedType": "boolean"

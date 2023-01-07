@@ -1,4 +1,4 @@
-import { NAORMResultColumn } from "./naorm-result-column";
+import { NAORMSQLStatement } from "./naorm-sql-statement";
 
 export interface ParsedSQLFile {
     fileName: string;
@@ -8,23 +8,11 @@ export interface ParsedSQLFile {
     sqlStatements: ParsedSQLStatement[]
 }
 
-export interface ParsedSQLStatement {
-    fileName: string;
-    fileIdentifier: string;
-    fullFilePath: string;
-    preStatementJSDoc: string;
-    preStatementFullComment: string;
-    statement: string;
+export interface ParsedSQLStatement extends NAORMSQLStatement {
+    // These properties are only used internally
     statementTokens: LexerToken[];
-    statementCategory: 'create' | 'dml' | 'other';
-    statementType: 'table' | 'view' | 'index' | 'dml' | 'other';
-    statementIdentifier: string;
-    rawStatementIdentifier: string;
-    skipStatementCompilation: boolean;
     possibleStatementDependencies: Set<string>;
     possibleStatementDependenciesArray: string[];
-    statementDependencies: string[];
-    resultColumns: NAORMResultColumn[];
 }
 
 export interface LexerToken {
@@ -33,3 +21,4 @@ export interface LexerToken {
     rawValue: string;
     normalizedValue: string;
 }
+

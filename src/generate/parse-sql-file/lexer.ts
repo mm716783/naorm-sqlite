@@ -1,4 +1,4 @@
-import { LexerToken } from "../interfaces/parsed-sql-file";
+import { LexerToken } from "../../interfaces/parsed-sql-file";
 import { SQLITE_KEYWORDS } from "./sqlite-keywords";
 
 export class Lexer {
@@ -184,12 +184,13 @@ export class Lexer {
             break;
           }
         }
-        
-        this.tokens.push({
-            type: 'whitespace',
-            rawValue: ws,
-            normalizedValue: ''
-        });
+        if(ws.length) {
+            this.tokens.push({
+                type: 'whitespace',
+                rawValue: ws,
+                normalizedValue: ''
+            });
+        } 
     }
 
     public lex() {

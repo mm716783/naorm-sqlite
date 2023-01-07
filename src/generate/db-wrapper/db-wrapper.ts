@@ -1,5 +1,5 @@
 import betterSQLite3 from 'better-sqlite3';
-import { ParsedSQLStatement } from '../interfaces/parsed-sql-file';
+import { ParsedSQLStatement } from '../../interfaces/parsed-sql-file';
 import { BaseDB } from './base-db';
 import { BetterSQLite3DB } from './better-sqlite3-db';
 import { SQLite3WASMDB } from './sqlite3-wasm-db';
