@@ -9,12 +9,13 @@ export function generateTypeScript(allParsedFilesByFileId: Map<string, ParsedSQL
     allParsedFilesByFileId.forEach((f) => generateTypeScriptFile(f, config, outDir));
 }
 
-export function writeBarrelFile(allParsedFilesByFileId: Map<string, ParsedSQLFile>, outDir: string, barrelExportExtension: string) {
+export function writeBarrelFile(allParsedFilesByFileId: Map<string, ParsedSQLFile>, outDir: string, ext: string) {
     const barrelFile = join(outDir, 'barrel.ts');
     const barrelStatements: string[] = [];
     allParsedFilesByFileId.forEach(f => { 
         const importPath = f.fullFilePath.replace(/\\/g, '/').replace('.sql', '');
-        const barrelStatement = `export * from './${importPath}${barrelExportExtension}';`;
+        const extension = typeof ext === 'string' ? ext : '.js'; 
+        const barrelStatement = `export * from './${importPath}${extension}';`;
         barrelStatements.push(barrelStatement);
     });
     writeFileSync(barrelFile, barrelStatements.join('\n'));
