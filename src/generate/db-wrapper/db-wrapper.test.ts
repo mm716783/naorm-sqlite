@@ -11,9 +11,11 @@ afterEach(() => {
 });
 
 test('DB Wrapper Instantiate WASM', () => {
+    /* eslint-disable @typescript-eslint/no-explicit-any */
     (global as any)['naormSQLite3WASM'] = {};
     const initFn = () => new DBWrapper(`:memory:`); 
     expect(initFn).toThrow();
+    /* eslint-disable @typescript-eslint/no-explicit-any */
     delete (global as any)['naormSQLite3WASM'];
 });
 

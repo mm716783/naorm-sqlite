@@ -3,28 +3,28 @@ import { LexerToken, ParsedSQLStatement } from "../../interfaces/parsed-sql-file
 export class Parser {
 
     private fileStatements: ParsedSQLStatement[] = [];
-    private unidentifiedStatementIndex: number = 0;
-    private tokenCount: number = 0;
-    private pos: number = 0;
+    private unidentifiedStatementIndex = 0;
+    private tokenCount = 0;
+    private pos = 0;
 
-    private preStatementJSDoc: string = '';
-    private preStatementFullComment: string = '';
-    private statement: string = '';
+    private preStatementJSDoc = '';
+    private preStatementFullComment = '';
+    private statement = '';
     private statementCategory: 'create' | 'dml' | 'other' | null = null;
     private statementType: 'table' | 'view' | 'index' | 'dml' | 'other' | null = null;
-    private statementIdentifier: string = '';
-    private rawStatementIdentifier: string = '';
+    private statementIdentifier = '';
+    private rawStatementIdentifier = '';
     private possibleStatementDependencies: Set<string> = new Set<string>();
     private possibleStatementDependenciesArray: string[] = [];
-    private lastTokenEndPos: number = 0;
-    private isStatementCommentOnly: boolean = true;
+    private lastTokenEndPos = 0;
+    private isStatementCommentOnly = true;
 
     constructor(private tokens: LexerToken[], 
         private fileName: string, 
         private fullFilePath: string, 
         private fileIdentifier: string) {
-            this.tokenCount = tokens.length;
-        }
+        this.tokenCount = tokens.length;
+    }
 
     private processToken() {
         const t = this.tokens[this.pos];
@@ -45,22 +45,22 @@ export class Parser {
             else if(t.type === 'keyword') {
                 this.isStatementCommentOnly = false;
                 switch(t.normalizedValue) {
-                    case 'CREATE':
-                        this.statementCategory = 'create';
-                        break;
-                    case 'WITH':
-                    case 'SELECT':
-                    case 'INSERT':
-                    case 'REPLACE':
-                    case 'UPDATE':
-                    case 'DELETE':
-                        this.statementCategory = 'dml';
-                        this.statementType = 'dml';
-                        break;
-                    default:
-                        this.statementCategory = 'other';
-                        this.statementType = 'other';
-                        break;
+                case 'CREATE':
+                    this.statementCategory = 'create';
+                    break;
+                case 'WITH':
+                case 'SELECT':
+                case 'INSERT':
+                case 'REPLACE':
+                case 'UPDATE':
+                case 'DELETE':
+                    this.statementCategory = 'dml';
+                    this.statementType = 'dml';
+                    break;
+                default:
+                    this.statementCategory = 'other';
+                    this.statementType = 'other';
+                    break;
                 }
             } else {
                 this.isStatementCommentOnly = false;
@@ -72,21 +72,21 @@ export class Parser {
             if(t.type === 'keyword') {
                 // Then stop when we find the keyword telling us what type of statement it is
                 switch(t.normalizedValue) {
-                    case 'TABLE':
-                        this.statementType = 'table';
-                        break;
-                    case 'VIEW':
-                        this.statementType = 'view';
-                        break;
-                    case 'INDEX':
-                        this.statementType = 'index';
-                        break;
-                    case 'VIRTUAL':
-                    case 'TRIGGER':
-                        // For now, we treat Virtual Tables and Triggers as "Other" statements
-                        this.statementCategory = 'other';
-                        this.statementType = 'other';
-                        break;
+                case 'TABLE':
+                    this.statementType = 'table';
+                    break;
+                case 'VIEW':
+                    this.statementType = 'view';
+                    break;
+                case 'INDEX':
+                    this.statementType = 'index';
+                    break;
+                case 'VIRTUAL':
+                case 'TRIGGER':
+                    // For now, we treat Virtual Tables and Triggers as "Other" statements
+                    this.statementCategory = 'other';
+                    this.statementType = 'other';
+                    break;
                 }
             }
         } 
@@ -146,20 +146,20 @@ export class Parser {
             return this.statementIdentifier;
         }
         // If the user has specified a NAORM-ID comment, then use that
-        else {
-            const match = this.preStatementFullComment.match(/NAORM-ID:\s*(.+?)\s/i);
-            if(match) {
-                return match[1];
-            } else {
-                // Otherwise use the file identifier, and append an index if needed
-                let identifier = this.fileIdentifier;
-                if(this.unidentifiedStatementIndex > 0) {
-                    identifier += `_${this.unidentifiedStatementIndex}`;
-                }
-                this.unidentifiedStatementIndex++;
-                return identifier;
-            }
+        
+        const match = this.preStatementFullComment.match(/NAORM-ID:\s*(.+?)\s/i);
+        if(match) {
+            return match[1];
+        } 
+        // Otherwise use the file identifier, and append an index if needed
+        let identifier = this.fileIdentifier;
+        if(this.unidentifiedStatementIndex > 0) {
+            identifier += `_${this.unidentifiedStatementIndex}`;
         }
+        this.unidentifiedStatementIndex++;
+        return identifier;
+            
+        
     }
         
     private newStatement() {

@@ -10,5 +10,5 @@ export function getFilesFromGlob(rootDir: string, includePatterns: string[], exc
         const globMatches = sync(excludePattern, {cwd: rootDir, root: rootDir});
         globMatches.forEach((m: string) => matchingFiles.delete(m));
     }
-    return Array.from(matchingFiles.values())
+    return Array.from(matchingFiles.values());
 }

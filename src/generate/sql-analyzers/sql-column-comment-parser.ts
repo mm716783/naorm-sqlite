@@ -7,18 +7,18 @@ interface ColumnComments {
 
 export class SQLColumnCommentParser {
 
-    private pos: number = 0;
-    private tokenCount: number = 0;
+    private pos = 0;
+    private tokenCount = 0;
 
     private resultComments = new Map<string, ColumnComments>();
 
     constructor(private statementTokens: LexerToken[], 
         private statementJSDoc: string,
         private columnNames: Set<string>
-        ) {
-            this.tokenCount = statementTokens.length;
-            this.pos = statementTokens.length - 1;
-        }
+    ) {
+        this.tokenCount = statementTokens.length;
+        this.pos = statementTokens.length - 1;
+    }
 
     private addResult(columnName: string, commentType: keyof ColumnComments, value: string) {
         const existingResult = this.resultComments.get(columnName);

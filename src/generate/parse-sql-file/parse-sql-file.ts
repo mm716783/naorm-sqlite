@@ -11,12 +11,12 @@ export function parseSQLFile(filePath: string, fileIdentifier: string): ParsedSQ
     const fileTokens = new Lexer(contents).lex();
     const sqlStatements = new Parser(fileTokens, fileName, fullFilePath, fileIdentifier).parse();
 
-    let parsedSQLFile: ParsedSQLFile = {
+    const parsedSQLFile: ParsedSQLFile = {
         fileName,
         fullFilePath,
         fileIdentifier,
         contents,
         sqlStatements
-    }
+    };
     return parsedSQLFile;
 }

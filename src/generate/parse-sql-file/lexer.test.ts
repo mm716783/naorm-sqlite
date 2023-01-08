@@ -2,7 +2,7 @@ import { LexerToken } from "../../interfaces/parsed-sql-file";
 import { Lexer } from "./lexer";
 
 test('Lexer SELECT', () => {
-    const lexerInput: string = 'SELECT * FROM myTable;'
+    const lexerInput = 'SELECT * FROM myTable;';
     const expectedTokens: LexerToken[] = [
         { type: 'keyword', rawValue: 'SELECT', normalizedValue: 'SELECT' },
         { type: 'whitespace', rawValue: ' ', normalizedValue: '' },
@@ -19,21 +19,21 @@ test('Lexer SELECT', () => {
 
 
 test('Lexer multiple statements', () => {
-    const lexerInput: string = 'SELECT * FROM myTable; delete FROM myTable;'
+    const lexerInput = 'SELECT * FROM myTable; delete FROM myTable;';
     const tokens = new Lexer(lexerInput).lex();
     const semicolonTokens = tokens.filter(t => t.type === 'semicolon');
     expect(semicolonTokens.length).toEqual(2);
 });
 
 test('Lexer JSDoc', () => {
-    const lexerInput: string = '/** JSDoc*/SELECT * FROM myTable;'
+    const lexerInput = '/** JSDoc*/SELECT * FROM myTable;';
     const tokens = new Lexer(lexerInput).lex();
     expect(tokens[0].type).toEqual('jsDocComment');
 });
 
 
 test('Lexer Operator Slash', () => {
-    const lexerInput: string = 'SELECT a / b FROM myTable;'
+    const lexerInput = 'SELECT a / b FROM myTable;';
     const tokens = new Lexer(lexerInput).lex();
     const operatorTokens = tokens.filter(t => t.type === 'operator');
     expect(operatorTokens.length).toEqual(1);
@@ -41,7 +41,7 @@ test('Lexer Operator Slash', () => {
 });
 
 test('Lexer Operator Minus ', () => {
-    const lexerInput: string = 'SELECT a - b FROM myTable;'
+    const lexerInput = 'SELECT a - b FROM myTable;';
     const tokens = new Lexer(lexerInput).lex();
     const operatorTokens = tokens.filter(t => t.type === 'operator');
     expect(operatorTokens.length).toEqual(1);
@@ -50,7 +50,7 @@ test('Lexer Operator Minus ', () => {
 
 
 test('Lexer Dash Comment', () => {
-    const lexerInput: string = 'SELECT a FROM myTable --comment ;'
+    const lexerInput = 'SELECT a FROM myTable --comment ;';
     const tokens = new Lexer(lexerInput).lex();
     const operatorTokens = tokens.filter(t => t.type === 'operator');
     const semicolonTokens = tokens.filter(t => t.type === 'semicolon');
@@ -62,7 +62,7 @@ test('Lexer Dash Comment', () => {
 
 
 test('Lexer Dot', () => {
-    const lexerInput: string = 'CREATE INDEX main.X ON T(Id)'
+    const lexerInput = 'CREATE INDEX main.X ON T(Id)';
     const tokens = new Lexer(lexerInput).lex();
     const dotIndex = tokens.findIndex(t => t.type === 'dot');
     const dotTokens = tokens.filter(t => t.type === 'dot');
@@ -74,7 +74,7 @@ test('Lexer Dot', () => {
 });
 
 test('Lexer AS', () => {
-    const lexerInput: string = 'SELECT a AS B FROM myTable;'
+    const lexerInput = 'SELECT a AS B FROM myTable;';
     const tokens = new Lexer(lexerInput).lex();
     const asTokens = tokens.filter(t => t.type === 'as');
     expect(asTokens.length).toEqual(1);
@@ -83,7 +83,7 @@ test('Lexer AS', () => {
 
 
 test('Lexer Bracket Identifier', () => {
-    const lexerInput: string = 'SELECT a FROM [my+Table]'
+    const lexerInput = 'SELECT a FROM [my+Table]';
     const tokens = new Lexer(lexerInput).lex();
     const operatorTokens = tokens.filter(t => t.type === 'operator');
     const quotedIdentifierToken = tokens.find(t => t.type === 'quotedIdentifier');
@@ -93,7 +93,7 @@ test('Lexer Bracket Identifier', () => {
 });
 
 test('Lexer Double Quote Identifier', () => {
-    const lexerInput: string = `SELECT a FROM "my'Table"`;
+    const lexerInput = `SELECT a FROM "my'Table"`;
     const tokens = new Lexer(lexerInput).lex();
     const quotedIdentifierToken = tokens.find(t => t.type === 'quotedIdentifier');
     expect(quotedIdentifierToken?.rawValue).toEqual(`"my'Table"`);
@@ -102,7 +102,7 @@ test('Lexer Double Quote Identifier', () => {
 
 
 test('Lexer Backtick Identifier', () => {
-    const lexerInput: string = 'SELECT a FROM `my;Table`';
+    const lexerInput = 'SELECT a FROM `my;Table`';
     const tokens = new Lexer(lexerInput).lex();
     const semicolonTokens = tokens.filter(t => t.type === 'semicolon');
     const quotedIdentifierToken = tokens.find(t => t.type === 'quotedIdentifier');
@@ -113,7 +113,7 @@ test('Lexer Backtick Identifier', () => {
 
 
 test('Lexer Single Quote Identifier Recursive', () => {
-    const lexerInput: string = `SELECT a FROM '''my''Tab''le'''`;
+    const lexerInput = `SELECT a FROM '''my''Tab''le'''`;
     const tokens = new Lexer(lexerInput).lex();
     const quotedIdentifierToken = tokens.find(t => t.type === 'quotedIdentifier');
     expect(quotedIdentifierToken?.rawValue).toEqual(`'''my''Tab''le'''`);

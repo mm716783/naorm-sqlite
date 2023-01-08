@@ -6,7 +6,7 @@ export class BetterSQLite3DB extends BaseDB {
     private db: betterSQLite3.Database;
 
     constructor(pathToDB: string) {
-        super(pathToDB);
+        super();
         this.db = new betterSQLite3(pathToDB);
     }
     
@@ -26,13 +26,13 @@ export class BetterSQLite3DB extends BaseDB {
         return [];
     }
 
-    public processDML(sql: string, stmtId: string): betterSQLite3.ColumnDefinition[] {
+    public processDML(sql: string): betterSQLite3.ColumnDefinition[] {
         const preparedStatement = this.db.prepare(sql);
         if(preparedStatement.reader) {
             return preparedStatement.columns();
-        } else {
-            return [];
-        }
+        } 
+        return [];
+        
     }
 
 }

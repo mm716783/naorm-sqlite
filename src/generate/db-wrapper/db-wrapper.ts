@@ -11,16 +11,17 @@ import { SQLite3WASMDB } from './sqlite3-wasm-db';
  */
 export class DBWrapper {
 
-    private isWASM: boolean = false;
+    private isWASM = false;
     private db: BaseDB;
 
     constructor(pathToDB: string) {
         // If running on Stackblitz, the naormSQLite3WASM property will have been set.
+        /* eslint-disable @typescript-eslint/no-explicit-any */
         const SQLite3WASM = (global as any)['naormSQLite3WASM'];
         this.isWASM = !!SQLite3WASM;
         if(this.isWASM) {
             // This tells us that we should use the WASM DB
-            this.db = new SQLite3WASMDB(pathToDB);
+            this.db = new SQLite3WASMDB();
         } else {
             // Otherwise, use the BetterSQLite3 DB
             this.db = new BetterSQLite3DB(pathToDB);
@@ -35,18 +36,18 @@ export class DBWrapper {
     public processStatement(parsedStatement: ParsedSQLStatement): betterSQLite3.ColumnDefinition[] {
         try{ 
             const sql = parsedStatement.statement;
+            const rawId = parsedStatement.rawStatementIdentifier;
+            const stmtId = parsedStatement.statementIdentifier;
             switch(parsedStatement.statementType) {
-                case 'table':
-                case 'view':
-                    const rawId = parsedStatement.rawStatementIdentifier;
-                    return this.db.processTable(sql, rawId);
-                case 'index':
-                    return this.db.processIndex(sql);
-                case 'dml':
-                    const stmtId = parsedStatement.statementIdentifier;
-                    return this.db.processDML(sql, stmtId);
-                default:
-                    return [];
+            case 'table':
+            case 'view':
+                return this.db.processTable(sql, rawId);
+            case 'index':
+                return this.db.processIndex(sql);
+            case 'dml':
+                return this.db.processDML(sql, stmtId);
+            default:
+                return [];
             }
         } catch(e) {
             console.log('Error processing statement: ', parsedStatement.statement);

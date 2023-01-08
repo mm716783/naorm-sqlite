@@ -2,7 +2,7 @@ import { Lexer } from "../parse-sql-file/lexer";
 import { SQLColumnCommentParser } from "./sql-column-comment-parser";
 
 test('Column Comment Parser CREATE TABLE', () => {
-    const lexerInput: string = `
+    const lexerInput = `
     /** JSDoc Statement */
     CREATE TABLE Airport (
         /** JSDoc Id */
@@ -20,7 +20,7 @@ test('Column Comment Parser CREATE TABLE', () => {
             naormTypeComment: '/* NAORM-Type: TEXT NOT NULL */'
         },
         'COUNTRY': { jsDocComment: null, naormTypeComment: '/* NAORM-Type: TEXT */' }
-    }
+    };
     const parser = new SQLColumnCommentParser(tokens, '', columnNames);
     const result = parser.parse();
     const resultObj = Object.fromEntries(result);    
@@ -35,7 +35,7 @@ test('Column Comment Parser CREATE TABLE', () => {
 
 
 test('Column Comment Parser SELECT', () => {
-    const lexerInput: string = `
+    const lexerInput = `
     /** JSDoc Statement */
     SELECT 
         A."Id", B.*, 
@@ -49,7 +49,7 @@ test('Column Comment Parser SELECT', () => {
             jsDocComment: '/** JSDoc C */',
             naormTypeComment: '/* NAORM-Type: INT NOT NULL */'
         }
-    }
+    };
     const parser = new SQLColumnCommentParser(tokens, '/** JSDoc Statement */', columnNames);
     const result = parser.parse();
     const resultObj = Object.fromEntries(result);
@@ -58,4 +58,4 @@ test('Column Comment Parser SELECT', () => {
     expect(parser.getColumnResult('C', 'naormTypeComment')).toEqual(expectedResult.C.naormTypeComment);
     expect(parser.getColumnResult('Id', 'jsDocComment')).toEqual(null);
     expect(parser.getColumnResult('Id', 'naormTypeComment')).toEqual(null);
-})
+});
