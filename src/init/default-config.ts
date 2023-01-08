@@ -5,6 +5,7 @@ export const DEFAULT_NAORM_CONFIG: NAORMConfig = {
     "outDir": "naorm-generated",
     "include": ["**/*.sql"],
     "exclude": [],
+    "barrelExportExtension": '.js',
     "conventionSets": [
         {
             "name": "Raw",

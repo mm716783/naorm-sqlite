@@ -51,6 +51,6 @@ export function generate(pathToConfigFile: string) {
 
     // Step 5 - Generate the TypeScript and write the output
     generateTypeScript(sqlFileAnalyzer.allParsedFilesByFileId, config, outDir);
-    writeBarrelFile(sqlFileAnalyzer.allParsedFilesByFileId, outDir);
+    writeBarrelFile(sqlFileAnalyzer.allParsedFilesByFileId, outDir, config.barrelExportExtension);
     writeOutputFile(sequencedStatements, outDir);
 }
