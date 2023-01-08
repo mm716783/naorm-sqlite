@@ -3,9 +3,9 @@ import { SQLITE_KEYWORDS } from "./sqlite-keywords";
 
 export class Lexer {
 
-    private pos: number = 0;
-    private input: string = '';
-    private inputLength: number = 0;
+    private pos = 0;
+    private input = '';
+    private inputLength = 0;
     private tokens: LexerToken[] = [];
 
     constructor(sqlString: string) {
@@ -39,7 +39,7 @@ export class Lexer {
 
         // Identifiers and Keywords
         else if(this.isValidIdStartChar(c)) {
-            return this.processIdChar();
+            this.processIdChar();
         }
 
         // Other SQL Operators
@@ -63,10 +63,10 @@ export class Lexer {
 
 
     private processIdChar() {
-        var endpos = this.pos + 1;
+        let endpos = this.pos + 1;
         while (endpos < this.inputLength &&
             this.isValidIdChar(this.input.charAt(endpos))) {
-          endpos++;
+            endpos++;
         }
       
         const rawValue = this.input.substring(this.pos, endpos);
@@ -176,13 +176,13 @@ export class Lexer {
     private skipWhiteSpace() {
         let ws = '';
         while (this.pos < this.inputLength) {
-          var c = this.input.charAt(this.pos);
-          if (c == ' ' || c == '\t' || c == '\r' || c == '\n' || c == '\f') {
-            ws += c;
-            this.pos++;
-          } else {
-            break;
-          }
+            const c = this.input.charAt(this.pos);
+            if (c == ' ' || c == '\t' || c == '\r' || c == '\n' || c == '\f') {
+                ws += c;
+                this.pos++;
+            } else {
+                break;
+            }
         }
         if(ws.length) {
             this.tokens.push({

@@ -37,17 +37,17 @@ export class SQLFileAnalyzer {
             this.otherStatements.push(s);
         } else {
             switch(s.statementType) {
-                case 'table':
-                case 'view':
-                    this.tableAndViewStatementMap.set(s.statementIdentifier, s);
-                    break;
-                case 'index':
-                    this.indexStatements.push(s);
-                    break;
-                case 'dml':
-                case 'other':
-                    this.otherStatements.push(s);
-                    break;
+            case 'table':
+            case 'view':
+                this.tableAndViewStatementMap.set(s.statementIdentifier, s);
+                break;
+            case 'index':
+                this.indexStatements.push(s);
+                break;
+            case 'dml':
+            case 'other':
+                this.otherStatements.push(s);
+                break;
             }
         }
     }

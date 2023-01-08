@@ -11,17 +11,17 @@ test('Dependency Analyzer Circular', () => {
         statementIdentifier: 'A',
         possibleStatementDependencies: new Set(['B']),
         statementDependencies: []
-    }
+    };
     const b: Partial<ParsedSQLStatement> = {
         statementIdentifier: 'B',
         possibleStatementDependencies: new Set(['C', 'A']),
         statementDependencies: []
-    }
+    };
     const c: Partial<ParsedSQLStatement> = {
         statementIdentifier: 'C',
         possibleStatementDependencies: new Set(['B']),
         statementDependencies: []
-    }
+    };
     statementMap.set('A', a as ParsedSQLStatement);
     statementMap.set('B', b as ParsedSQLStatement);
     statementMap.set('C', c as ParsedSQLStatement);
@@ -48,22 +48,22 @@ test('Dependency Analyzer Overrides', () => {
         statementIdentifier: 'A',
         possibleStatementDependencies: new Set(['B']),
         statementDependencies: []
-    }
+    };
     const b: Partial<ParsedSQLStatement> = {
         statementIdentifier: 'B',
         possibleStatementDependencies: new Set(['C', 'A']),
         statementDependencies: []
-    }
+    };
     const c: Partial<ParsedSQLStatement> = {
         statementIdentifier: 'C',
         possibleStatementDependencies: new Set(['B']),
         statementDependencies: []
-    }
+    };
     const d: Partial<ParsedSQLStatement> = {
         statementIdentifier: 'D',
         possibleStatementDependencies: new Set(['C']),
         statementDependencies: []
-    }
+    };
     statementMap.set('D', d as ParsedSQLStatement);
     statementMap.set('C', c as ParsedSQLStatement);
     statementMap.set('A', a as ParsedSQLStatement);
@@ -96,7 +96,7 @@ test('Dependency Analyzer Overrides', () => {
     expect(results[1]).toBe(d);
     expect(results[2]).toBe(b);
     expect(results[3]).toBe(a);
-})
+});
 
 
 
@@ -109,13 +109,13 @@ test('Dependency Analyzer Skip', () => {
         statementIdentifier: 'A',
         possibleStatementDependencies: new Set(),
         statementDependencies: []
-    }
+    };
     const b: Partial<ParsedSQLStatement> = {
         skipStatementCompilation: true,
         statementIdentifier: 'B',
         possibleStatementDependencies: new Set(['A']),
         statementDependencies: []
-    }
+    };
     statementMap.set('A', a as ParsedSQLStatement);
     statementMap.set('B', b as ParsedSQLStatement);
     

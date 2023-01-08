@@ -1,4 +1,4 @@
-import { existsSync, rmSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
+import { existsSync, rmSync, mkdirSync, readFileSync } from 'fs';
 import { join, relative } from 'path';
 import { DBWrapper } from './db-wrapper/db-wrapper';
 import { getFilesFromGlob } from './helpers/get-files-from-glob';
@@ -17,7 +17,7 @@ export function generate(pathToConfigFile: string) {
     const config: NAORMConfig = JSON.parse(readFileSync(pathToConfigFile).toString());
     const outDir = join(dbDir, config.outDir);
     const sqlFiles = getFilesFromGlob(dbDir, config.include, config.exclude);
-    if(existsSync(outDir)) { rmSync(outDir, { recursive: true, force: true }) }
+    if(existsSync(outDir)) { rmSync(outDir, { recursive: true, force: true }); }
     mkdirSync(outDir);
 
     // Step 2 - Identify, parse, and analyze each SQL File into SQL Statements

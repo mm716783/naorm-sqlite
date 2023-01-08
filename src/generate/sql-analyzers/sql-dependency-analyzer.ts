@@ -40,7 +40,7 @@ export class SQLDependencyAnalyzer {
         this.sequencedStatements.sort((a, b) => {
             if(a.statementDependencies.includes(b.statementIdentifier) &&
                 b.statementDependencies.includes(a.statementIdentifier)) {
-                    throw 'Circular dependency';
+                throw 'Circular dependency';
             }
             if(a.statementDependencies.includes(b.statementIdentifier)) { return 1; }
             if(b.statementDependencies.includes(a.statementIdentifier)) { return -1; }

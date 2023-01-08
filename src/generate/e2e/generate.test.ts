@@ -33,5 +33,5 @@ function e2eGenerate(pathToConfigFileFromRoot: string, relativePathToExpectedOut
 
 
 test('Generate TS from Air Travel DB', () => {
-    e2eGenerate('tests/test-dbs/air-travel', 'air-travel-expected.json')
+    e2eGenerate('tests/test-dbs/air-travel', 'air-travel-expected.json');
 });

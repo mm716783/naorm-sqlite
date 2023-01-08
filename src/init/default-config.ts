@@ -1,4 +1,4 @@
-import { NAORMConfig } from "../interfaces/naorm-config"
+import { NAORMConfig } from "../interfaces/naorm-config";
 
 export const DEFAULT_NAORM_CONFIG: NAORMConfig = {
     "dbName": "naorm-generated.db",
@@ -40,4 +40,4 @@ export const DEFAULT_NAORM_CONFIG: NAORMConfig = {
         }
     ],
     "statementOverrides": []
-}
+};
