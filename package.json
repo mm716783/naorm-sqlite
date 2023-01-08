@@ -9,7 +9,7 @@
     "naorm",
     "cli"
   ],
-  "homepage": "https://github.com/mm716783/naorm-sqlite",
+  "homepage": "https://stackblitz.com/edit/naorm-sqlite-demo?file=your-app.ts,db%2Fsrc%2Ftables%2Fyour-table.sql",
   "repository": "github:mm716783/naorm-sqlite",
   "license": "MIT",
   "main": "dist/index.js",
