@@ -12,7 +12,7 @@
                 "<node_internals>/**"
             ],
             "runtimeExecutable": "npx",
-            "args": ["ts-node", "src/cli.ts", "generate", "tests/test-dbs/air-travel"],
+            "args": ["ts-node-esm", "src/cli.ts", "generate", "tests/test-dbs/air-travel"],
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ]
@@ -25,7 +25,7 @@
                 "<node_internals>/**"
             ],
             "runtimeExecutable": "npx",
-            "args": ["ts-node", "src/cli.ts", "generate", "tests/test-dbs/chinook"],
+            "args": ["ts-node-esm", "src/cli.ts", "generate", "tests/test-dbs/chinook"],
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ]
@@ -38,7 +38,7 @@
                 "<node_internals>/**"
             ],
             "runtimeExecutable": "npx",
-            "args": ["ts-node", "src/cli.ts", "generate", "tests/test-dbs/northwind"],
+            "args": ["ts-node-esm", "src/cli.ts", "generate", "tests/test-dbs/northwind"],
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ]

@@ -12,12 +12,13 @@
   "homepage": "https://stackblitz.com/edit/naorm-sqlite-demo?file=your-app.ts,db%2Fsrc%2Ftables%2Fyour-table.sql",
   "repository": "github:mm716783/naorm-sqlite",
   "license": "MIT",
+  "type": "module",
   "main": "dist/index.js",
   "bin": {
     "naorm": "dist/cli.js"
   },
   "scripts": {
-    "start": "npx ts-node src/cli.ts generate tests/test-dbs/northwind",
+    "start": "npx ts-node-esm src/cli.ts generate tests/test-dbs/northwind",
     "build": "npx tsc && npm run json",
     "json": "typescript-json-schema ./tsconfig.json NAORMConfig -o dist/naorm-config.schema.json",
     "test": "jest --coverage",
