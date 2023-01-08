@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 import { program } from 'commander';
-import { generate  } from './generate/generate';
-import { getPathToConfigFile } from './generate/helpers/get-path-to-config-file';
-import { init } from './init/init';
+import { generate  } from './generate/generate.js';
+import { getPathToConfigFile } from './generate/helpers/get-path-to-config-file.js';
+import { init } from './init/init.js';
 
 
 program.command('generate')

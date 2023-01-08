@@ -1,8 +1,8 @@
-import { ParsedSQLStatement } from "../../interfaces/parsed-sql-file";
+import { ParsedSQLStatement } from "../../interfaces/parsed-sql-file.js";
 import { ColumnDefinition } from "better-sqlite3";
-import { NAORMResultColumn } from "../../interfaces/naorm-sql-statement";
-import { NAORMConfig } from "../../interfaces/naorm-config";
-import { SQLColumnCommentParser } from "./sql-column-comment-parser";
+import { NAORMResultColumn } from "../../interfaces/naorm-sql-statement.js";
+import { NAORMConfig } from "../../interfaces/naorm-config.js";
+import { SQLColumnCommentParser } from "./sql-column-comment-parser.js";
 
 export class SQLColumnAnalyzer {
 

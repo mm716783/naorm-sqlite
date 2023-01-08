@@ -1,7 +1,7 @@
 import { basename } from "path";
 import { camelCase } from "camel-case";
-import { NAORMConfig, NAORMStatementOverride } from "../../interfaces/naorm-config";
-import { ParsedSQLFile, ParsedSQLStatement } from "../../interfaces/parsed-sql-file";
+import { NAORMConfig, NAORMStatementOverride } from "../../interfaces/naorm-config.js";
+import { ParsedSQLFile, ParsedSQLStatement } from "../../interfaces/parsed-sql-file.js";
 
 export class SQLFileAnalyzer {
 

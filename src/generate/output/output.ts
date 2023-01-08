@@ -1,9 +1,9 @@
 import { writeFileSync } from 'fs';
 import { join } from 'path';
-import { NAORMConfig } from "../../interfaces/naorm-config";
-import { NAORMSQLStatement } from '../../interfaces/naorm-sql-statement';
-import { ParsedSQLFile, ParsedSQLStatement } from "../../interfaces/parsed-sql-file";
-import { generateTypeScriptFile } from './generate-typescript-file';
+import { NAORMConfig } from "../../interfaces/naorm-config.js";
+import { NAORMSQLStatement } from '../../interfaces/naorm-sql-statement.js';
+import { ParsedSQLFile, ParsedSQLStatement } from "../../interfaces/parsed-sql-file.js";
+import { generateTypeScriptFile } from './generate-typescript-file.js';
 
 export function generateTypeScript(allParsedFilesByFileId: Map<string, ParsedSQLFile>, config: NAORMConfig, outDir: string) {
     allParsedFilesByFileId.forEach((f) => generateTypeScriptFile(f, config, outDir));

@@ -1,5 +1,5 @@
 import betterSQLite3 from 'better-sqlite3';
-import { BaseDB } from './base-db';
+import { BaseDB } from './base-db.js';
 
 export class BetterSQLite3DB extends BaseDB {
 

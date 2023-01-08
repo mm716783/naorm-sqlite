@@ -1,4 +1,5 @@
-import { sync } from 'glob';
+import glob from 'glob';
+const { sync } = glob;
 
 export function getFilesFromGlob(rootDir: string, includePatterns: string[], excludePatterns: string[]): string[] {
     const matchingFiles = new Set<string>();

@@ -1,4 +1,4 @@
-import { LexerToken, ParsedSQLStatement } from "../../interfaces/parsed-sql-file";
+import { LexerToken, ParsedSQLStatement } from "../../interfaces/parsed-sql-file.js";
 
 export class Parser {
 
