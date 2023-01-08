@@ -14,7 +14,7 @@ export function writeBarrelFile(allParsedFilesByFileId: Map<string, ParsedSQLFil
     const barrelStatements: string[] = [];
     allParsedFilesByFileId.forEach(f => { 
         const importPath = f.fullFilePath.replace(/\\/g, '/').replace('.sql', '');
-        const barrelStatement = `export * from './${importPath}${barrelExportExtension ? '.js' : ''}';`;
+        const barrelStatement = `export * from './${importPath}${barrelExportExtension}';`;
         barrelStatements.push(barrelStatement);
     });
     writeFileSync(barrelFile, barrelStatements.join('\n'));
