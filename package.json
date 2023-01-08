@@ -13,15 +13,16 @@
   "repository": "github:mm716783/naorm-sqlite",
   "license": "MIT",
   "type": "module",
-  "main": "dist/commonjs/index.js",
-  "types": "dist/types/index.d.ts",
   "exports": {
     ".": {
-        "types": "./dist/types/index.d.ts",
-        "import": "./dist/esm/index.js",
-        "require": "./dist/commonjs/index.cjs"
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/commonjs/index.js",
+      "default": "./dist/esm/index.js"
     }
   },
+  "main": "dist/commonjs/index.js",
+  "types": "dist/types/index.d.ts",
   "bin": {
     "naorm": "dist/esm/cli.js"
   },
@@ -30,7 +31,7 @@
   ],
   "scripts": {
     "start": "npx ts-node-esm src/cli.ts generate tests/test-dbs/northwind",
-    "build": "npx rimraf dist && npx tsc && npx tsc --project tsconfig.cjs.json && npm run json",
+    "build": "npx rimraf dist && npx tsc && npx tsc --project tsconfig.cjs.json && node package.js && npm run json",
     "json": "typescript-json-schema ./tsconfig.json NAORMConfig -o dist/naorm-config.schema.json",
     "test": "jest --coverage",
     "lint": "eslint . --ext .ts"
