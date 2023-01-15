@@ -1,7 +1,8 @@
-import { prompt } from 'enquirer';
 import { existsSync, lstatSync, writeFileSync, appendFileSync } from 'fs';
 import { join, relative, sep, posix } from 'path';
-import { DEFAULT_NAORM_CONFIG } from './default-config';
+import { DEFAULT_NAORM_CONFIG } from './default-config.js';
+import enquirer from 'enquirer';
+const { prompt } = enquirer;
 
 function validateDir(input: string): string | boolean {
     try {

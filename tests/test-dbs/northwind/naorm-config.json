@@ -1,4 +1,5 @@
 {
+    "$schema": "../../../dist/naorm-config.schema.json",
     "dbName": "naorm.db",
     "outDir": "naorm-generated",
     "include": ["**/*.sql"],

@@ -1,14 +1,14 @@
 import { existsSync, rmSync, mkdirSync, readFileSync } from 'fs';
 import { join, relative } from 'path';
-import { DBWrapper } from './db-wrapper/db-wrapper';
-import { getFilesFromGlob } from './helpers/get-files-from-glob';
-import { NAORMConfig } from '../interfaces/naorm-config';
-import { ParsedSQLFile } from '../interfaces/parsed-sql-file';
-import { parseSQLFile } from './parse-sql-file/parse-sql-file';
-import { SQLFileAnalyzer } from './sql-analyzers/sql-file-analyzer';
-import { generateTypeScript, writeBarrelFile, writeOutputFile } from './output/output';
-import { SQLColumnAnalyzer } from './sql-analyzers/sql-column-analyzer';
-import { SQLDependencyAnalyzer } from './sql-analyzers/sql-dependency-analyzer';
+import { DBWrapper } from './db-wrapper/db-wrapper.js';
+import { getFilesFromGlob } from './helpers/get-files-from-glob.js';
+import { NAORMConfig } from '../interfaces/naorm-config.js';
+import { ParsedSQLFile } from '../interfaces/parsed-sql-file.js';
+import { parseSQLFile } from './parse-sql-file/parse-sql-file.js';
+import { SQLFileAnalyzer } from './sql-analyzers/sql-file-analyzer.js';
+import { generateTypeScript, writeBarrelFile, writeOutputFile } from './output/output.js';
+import { SQLColumnAnalyzer } from './sql-analyzers/sql-column-analyzer.js';
+import { SQLDependencyAnalyzer } from './sql-analyzers/sql-dependency-analyzer.js';
 
 export function generate(pathToConfigFile: string) {
 
@@ -51,6 +51,6 @@ export function generate(pathToConfigFile: string) {
 
     // Step 5 - Generate the TypeScript and write the output
     generateTypeScript(sqlFileAnalyzer.allParsedFilesByFileId, config, outDir);
-    writeBarrelFile(sqlFileAnalyzer.allParsedFilesByFileId, outDir);
+    writeBarrelFile(sqlFileAnalyzer.allParsedFilesByFileId, outDir, config.barrelExportExtension);
     writeOutputFile(sequencedStatements, outDir);
 }

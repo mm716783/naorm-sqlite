@@ -1,5 +1,5 @@
-import { NAORMStatementOverride } from "../../interfaces/naorm-config";
-import { ParsedSQLStatement } from "../../interfaces/parsed-sql-file";
+import { NAORMStatementOverride } from "../../interfaces/naorm-config.js";
+import { ParsedSQLStatement } from "../../interfaces/parsed-sql-file.js";
 
 export class SQLDependencyAnalyzer {
     

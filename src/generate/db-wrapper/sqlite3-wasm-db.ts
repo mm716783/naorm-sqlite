@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 import betterSQLite3 from 'better-sqlite3';
-import { BaseDB } from './base-db';
+import { BaseDB } from './base-db.js';
 
 interface SQLiteTableInfoColumn {
     cid: number;

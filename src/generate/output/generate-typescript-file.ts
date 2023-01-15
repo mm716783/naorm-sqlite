@@ -1,8 +1,8 @@
-import { NAORMConfig, NAORMConventionSet } from "../../interfaces/naorm-config";
+import { NAORMConfig, NAORMConventionSet } from "../../interfaces/naorm-config.js";
 import { join } from 'path';
 import { mkdirSync, writeFileSync } from 'fs';
-import { ParsedSQLFile, ParsedSQLStatement } from "../../interfaces/parsed-sql-file";
-import { NAORMResultColumn } from "../../interfaces/naorm-sql-statement";
+import { ParsedSQLFile, ParsedSQLStatement } from "../../interfaces/parsed-sql-file.js";
+import { NAORMResultColumn } from "../../interfaces/naorm-sql-statement.js";
 
 export function generateTypeScriptFile(parsedSQLFile: ParsedSQLFile, config: NAORMConfig, outDir: string) {
     const parsedStatements = parsedSQLFile.sqlStatements;

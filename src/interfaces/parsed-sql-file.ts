@@ -1,4 +1,4 @@
-import { NAORMSQLStatement } from "./naorm-sql-statement";
+import { NAORMSQLStatement } from "./naorm-sql-statement.js";
 
 export interface ParsedSQLFile {
     fileName: string;

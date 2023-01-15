@@ -1,10 +1,11 @@
-import { NAORMConfig } from "../interfaces/naorm-config";
+import { NAORMConfig } from "../interfaces/naorm-config.js";
 
 export const DEFAULT_NAORM_CONFIG: NAORMConfig = {
     "dbName": "naorm-generated.db",
     "outDir": "naorm-generated",
     "include": ["**/*.sql"],
     "exclude": [],
+    "barrelExportExtension": '.js',
     "conventionSets": [
         {
             "name": "Raw",
