@@ -1,5 +1,5 @@
-import { LexerToken } from "../../interfaces/parsed-sql-file";
-import { Lexer } from "./lexer";
+import { LexerToken } from "../../interfaces/parsed-sql-file.js";
+import { Lexer } from "./lexer.js";
 
 test('Lexer SELECT', () => {
     const lexerInput = 'SELECT * FROM myTable;';

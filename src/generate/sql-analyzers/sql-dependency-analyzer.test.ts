@@ -1,6 +1,6 @@
-import { NAORMStatementOverride } from '../../interfaces/naorm-config';
-import { ParsedSQLStatement } from '../../interfaces/parsed-sql-file';
-import { SQLDependencyAnalyzer } from './sql-dependency-analyzer';
+import { NAORMStatementOverride } from '../../interfaces/naorm-config.js';
+import { ParsedSQLStatement } from '../../interfaces/parsed-sql-file.js';
+import { SQLDependencyAnalyzer } from './sql-dependency-analyzer.js';
 
 test('Dependency Analyzer Circular', () => {
     // A depends on B depends on C

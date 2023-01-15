@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { execFileSync } from 'child_process';
-import { generate } from '../generate';
+import { generate } from '../generate.js';
 
 function e2eGenerate(pathToConfigFileFromRoot: string, relativePathToExpectedOutput: string, module: 'commonjs' | 'esm') {
     
