@@ -1,7 +1,6 @@
 {
     "branches": [
-        "master",
-        "feat/changelog"
+        "master"
     ],
     "plugins": [
         "@semantic-release/commit-analyzer",
