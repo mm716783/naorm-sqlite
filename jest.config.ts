@@ -1,7 +1,7 @@
 import type { JestConfigWithTsJest } from 'ts-jest';
 
 const jestConfig: JestConfigWithTsJest = {
-    rootDir: 'src',
+    roots: ['src'],
     coveragePathIgnorePatterns: [
         'sqlite3-wasm-db.ts'
     ],
