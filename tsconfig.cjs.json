@@ -6,7 +6,7 @@
       "declaration": false,
       "outDir": "dist/commonjs", 
       "esModuleInterop": true,
-      "moduleResolution": "Node16",
+      "moduleResolution": "Node",
       "skipLibCheck": true,
       "strictNullChecks": true
     },
