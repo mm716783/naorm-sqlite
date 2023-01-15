@@ -51,7 +51,7 @@ export function generateTypeScriptFile(parsedSQLFile: ParsedSQLFile, config: NAO
 function generateOneTypeScriptProperty(col: NAORMResultColumn, conventionSet: NAORMConventionSet) {
     const jsDocComment = col.jsDocComment ? `\t${col.jsDocComment.trim()}\n` : '';
     const computedType = col.computedTypeByConventionSet[conventionSet.name];
-    const propertyName = `${col.columnName.replace(/"/g, '\\"')}`;
+    const propertyName = `${col.columnName.replace(/\\"/g, '\\\\"').replace(/"/g, '\\"')}`;
     const type = `${computedType}${col.isExplicitlyNotNull ? '' : ' | null'}`;
     return `${jsDocComment}\t"${propertyName}": ${type};`;
 }
@@ -73,7 +73,7 @@ function generateColumnArrayString(parsedStatement: ParsedSQLStatement, varName:
 }
 
 function generateSourceSQLStatement(parsedStatement: ParsedSQLStatement, sqlVarName: string) {
-    const escapedSQLStatement = parsedStatement.statement.replace(/`/g, "\\`");
+    const escapedSQLStatement = parsedStatement.statement.replace(/\\`/g, '\\\\`').replace(/`/g, '\\`');
     const sourceSQLString = parsedStatement.preStatementJSDoc + 
         `export const ${sqlVarName} = \`${escapedSQLStatement}\`;`;
     return sourceSQLString;    
