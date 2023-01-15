@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { execSync } from 'child_process';
+import { execFileSync } from 'child_process';
 import { generate } from '../generate';
 
 function e2eGenerate(pathToConfigFileFromRoot: string, relativePathToExpectedOutput: string, module: 'commonjs' | 'esm') {
@@ -37,8 +37,7 @@ function e2eGenerate(pathToConfigFileFromRoot: string, relativePathToExpectedOut
     const expectedOutJSONContent = JSON.parse(fs.readFileSync(expectedOutJSONPath).toString().replace(/\\r\\n/g, '\\n'));
     
     expect(outJSONContent).toEqual(expectedOutJSONContent);
-    const tsc = `npx tsc --project ` + outDir;
-    expect(() => execSync(tsc)).not.toThrow();
+    expect(() => execFileSync('npx', ['tsc', '--project', outDir], { shell: true })).not.toThrow();
 }
 
 
