@@ -1,8 +1,8 @@
-import { NAORMConfig, NAORMConventionSet } from "../../interfaces/naorm-config";
+import { NAORMConfig, NAORMConventionSet } from "../../interfaces/naorm-config.js";
 import { join } from 'path';
 import { mkdirSync, writeFileSync } from 'fs';
-import { ParsedSQLFile, ParsedSQLStatement } from "../../interfaces/parsed-sql-file";
-import { NAORMResultColumn } from "../../interfaces/naorm-sql-statement";
+import { ParsedSQLFile, ParsedSQLStatement } from "../../interfaces/parsed-sql-file.js";
+import { NAORMResultColumn } from "../../interfaces/naorm-sql-statement.js";
 
 export function generateTypeScriptFile(parsedSQLFile: ParsedSQLFile, config: NAORMConfig, outDir: string) {
     const parsedStatements = parsedSQLFile.sqlStatements;
@@ -51,23 +51,23 @@ export function generateTypeScriptFile(parsedSQLFile: ParsedSQLFile, config: NAO
 function generateOneTypeScriptProperty(col: NAORMResultColumn, conventionSet: NAORMConventionSet) {
     const jsDocComment = col.jsDocComment ? `\t${col.jsDocComment.trim()}\n` : '';
     const computedType = col.computedTypeByConventionSet[conventionSet.name];
-    const propertyName = `${col.columnName.replace(/"/g, '\"')}`;
+    const propertyName = `${col.columnName.replace(/"/g, '\\"')}`;
     const type = `${computedType}${col.isExplicitlyNotNull ? '' : ' | null'}`;
-    return `${jsDocComment}\t"${propertyName}": ${type};`
+    return `${jsDocComment}\t"${propertyName}": ${type};`;
 }
 
 function generateOneTypeScriptModel(parsedStatement: ParsedSQLStatement, conventionSet: NAORMConventionSet, varName: string): string {
     const resultColumns: string[] = parsedStatement.resultColumns.map(c => generateOneTypeScriptProperty(c, conventionSet));
     const extendsStr = conventionSet.extends || '';
-    let modelString = parsedStatement.preStatementJSDoc +
+    const modelString = parsedStatement.preStatementJSDoc +
     `export ${conventionSet.typescriptConstruct} ${varName} ${extendsStr} {`
-        + `\n${resultColumns.join('\n')}` + '\n};'
+        + `\n${resultColumns.join('\n')}` + '\n};';
     return modelString;
 }
 
 function generateColumnArrayString(parsedStatement: ParsedSQLStatement, varName: string): string {
     const jsDocComment = parsedStatement.preStatementJSDoc ? parsedStatement.preStatementJSDoc.trim() + '\n' : '';
-    const columnsJSON = JSON.stringify(parsedStatement.resultColumns, null, '\t')
+    const columnsJSON = JSON.stringify(parsedStatement.resultColumns, null, '\t');
     const arrayString = `${jsDocComment}export const ${varName} = ${columnsJSON};`;
     return arrayString;
 }

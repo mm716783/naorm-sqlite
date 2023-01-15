@@ -4,6 +4,7 @@ export interface NAORMConfig {
     outDir: string,
     include: string[],
     exclude: string[],
+    barrelExportExtension: string;
     conventionSets: NAORMConventionSet[];
     statementOverrides: NAORMStatementOverride[];
 }

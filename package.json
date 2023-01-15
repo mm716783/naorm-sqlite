@@ -1,6 +1,6 @@
 {
   "name": "naorm-sqlite",
-  "version": "0.1.1",
+  "version": "0.0.0-development",
   "description": "A Command-Line Interface that generates TypeScript code from SQLite files in your code base.",
   "keywords": [
     "sqlite",
@@ -9,28 +9,51 @@
     "naorm",
     "cli"
   ],
-  "homepage": "https://github.com/mm716783/naorm-sqlite",
+  "homepage": "https://stackblitz.com/edit/naorm-sqlite-demo?file=your-app.ts,db%2Fsrc%2Ftables%2Fyour-table.sql",
   "repository": "github:mm716783/naorm-sqlite",
   "license": "MIT",
-  "main": "dist/index.js",
-  "bin": {
-    "naorm": "dist/cli.js"
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/commonjs/index.js",
+      "default": "./dist/esm/index.js"
+    }
   },
-  "scripts": {
-    "start": "npx ts-node src/cli.ts generate tests/test-dbs/northwind",
-    "build": "npx tsc && npm run json",
-    "json": "typescript-json-schema ./tsconfig.json NAORMConfig -o dist/naorm-config.schema.json",
-    "test": "jest --coverage"
+  "main": "dist/commonjs/index.js",
+  "types": "dist/types/index.d.ts",
+  "bin": {
+    "naorm": "dist/esm/cli.js"
   },
   "files": [
     "dist"
   ],
+  "scripts": {
+    "start": "npx ts-node-esm src/cli.ts generate tests/test-dbs/northwind",
+    "build": "npx rimraf dist && npx tsc && npx tsc --project tsconfig.cjs.json && node package.js && npm run json",
+    "json": "typescript-json-schema ./tsconfig.cjs.json NAORMConfig -o dist/naorm-config.schema.json",
+    "test": "jest --coverage",
+    "lint": "eslint . --ext .ts",
+    "prepare": "husky install",
+    "semantic-release": "semantic-release"
+  },
   "author": "Matthew Moran",
   "devDependencies": {
+    "@commitlint/cli": "^17.4.2",
+    "@commitlint/config-conventional": "^17.4.2",
+    "@semantic-release/changelog": "^6.0.2",
+    "@semantic-release/git": "^10.0.1",
     "@types/better-sqlite3": "^7.6.3",
     "@types/glob": "^8.0.0",
     "@types/jest": "^29.2.5",
+    "@typescript-eslint/eslint-plugin": "^5.48.0",
+    "@typescript-eslint/parser": "^5.48.0",
+    "eslint": "^8.31.0",
+    "husky": "^8.0.0",
     "jest": "^29.3.1",
+    "rimraf": "^3.0.2",
+    "semantic-release": "^20.0.2",
     "ts-jest": "^29.0.3",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.4",

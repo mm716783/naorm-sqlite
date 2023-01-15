@@ -1,8 +1,8 @@
-import { ParsedSQLStatement } from "../../interfaces/parsed-sql-file";
+import { ParsedSQLStatement } from "../../interfaces/parsed-sql-file.js";
 import { ColumnDefinition } from "better-sqlite3";
-import { NAORMResultColumn } from "../../interfaces/naorm-sql-statement";
-import { NAORMConfig } from "../../interfaces/naorm-config";
-import { SQLColumnCommentParser } from "./sql-column-comment-parser";
+import { NAORMResultColumn } from "../../interfaces/naorm-sql-statement.js";
+import { NAORMConfig } from "../../interfaces/naorm-config.js";
+import { SQLColumnCommentParser } from "./sql-column-comment-parser.js";
 
 export class SQLColumnAnalyzer {
 
@@ -15,9 +15,9 @@ export class SQLColumnAnalyzer {
             if(naormTypeComment.toUpperCase().includes('NOT NULL') 
                 || naormTypeComment.toUpperCase().includes('NOTNULL')) {
                 return true;
-            } else {
-                return false;
-            }
+            } 
+            return false;
+            
         }
         return false;
     }
@@ -40,7 +40,7 @@ export class SQLColumnAnalyzer {
         const results: { [key: string]: string } = {};
         const typeToCheck = columnDefinition.naormTypeComment || columnDefinition.declaredType;
         columnDefinition.isExplicitlyNotNull = this.checkNotNull(columnDefinition.naormTypeComment);
-        let defaultType = this.getDefaultType(typeToCheck);
+        const defaultType = this.getDefaultType(typeToCheck);
         
         this.config.conventionSets.forEach(conventionSet => {
             let matchingTypeConvention;
@@ -68,7 +68,7 @@ export class SQLColumnAnalyzer {
                 const dependencyColumn = tableDependency.resultColumns.find(col => col.sourceColumn === resultColumn.sourceColumn);
                 resultColumn.naormTypeComment = resultColumn.naormTypeComment || dependencyColumn?.naormTypeComment || null;
                 resultColumn.jsDocComment  = resultColumn.jsDocComment || dependencyColumn?.jsDocComment || null;    
-            };
+            }
         }
         
         const viewDependencies = statementDependencies.map(d => {
@@ -82,7 +82,7 @@ export class SQLColumnAnalyzer {
             resultColumn.naormTypeComment = resultColumn.naormTypeComment || dependencyColumn?.naormTypeComment || null;
             resultColumn.jsDocComment  = resultColumn.jsDocComment || dependencyColumn?.jsDocComment || null;
         }
-    };
+    }
 
     public getColumnMetadata(statement: ParsedSQLStatement, computedColumns: ColumnDefinition[]): NAORMResultColumn[] {
         const resultColumns: NAORMResultColumn[] = [];

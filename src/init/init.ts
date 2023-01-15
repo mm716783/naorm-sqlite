@@ -1,7 +1,8 @@
-import { prompt } from 'enquirer';
 import { existsSync, lstatSync, writeFileSync, appendFileSync } from 'fs';
 import { join, relative, sep, posix } from 'path';
-import { DEFAULT_NAORM_CONFIG } from './default-config';
+import { DEFAULT_NAORM_CONFIG } from './default-config.js';
+import enquirer from 'enquirer';
+const { prompt } = enquirer;
 
 function validateDir(input: string): string | boolean {
     try {
@@ -9,12 +10,12 @@ function validateDir(input: string): string | boolean {
         if(existsSync(input)) {
             if(lstatSync(input).isDirectory()) {
                 return true;
-            } else {
-                return 'Could not resolve directory ' + input;
-            }
-        } else {
+            } 
             return 'Could not resolve directory ' + input;
-        }
+            
+        } 
+        return 'Could not resolve directory ' + input;
+        
     } catch(e) {
         return 'Could not resolve directory ' + input;
     }
@@ -25,20 +26,20 @@ export async function init() {
     console.log('Welcome to Not an ORM for SQLite. NAORM (pronounced "norm") is a Command Line Interface for generating TypeScript from SQLite files in your code base.', '\n');
 
     const { configDir } = await prompt({ 
-            name: 'configDir', 
-            type: 'input', 
-            message: 'Please specify your database directory, or leave blank to use CWD: ', 
-            validate: validateDir,
-            initial: () => process.cwd()
-    }) as any;
+        name: 'configDir', 
+        type: 'input', 
+        message: 'Please specify your database directory, or leave blank to use CWD: ', 
+        validate: validateDir,
+        initial: () => process.cwd()
+    }) as { configDir: string };
         
     const { useRecommended } = await prompt(
         { name: 'useRecommended', type: 'confirm', message: 'Use recommended Custom Type Conventions?', initial: true }
-    ) as any;
+    ) as { useRecommended: boolean };
     
     const { gitIgnore } = await prompt(
         { name: 'gitIgnore', type: 'confirm', message: 'Add naorm-generated directory to gitignore?', initial: true }
-    ) as any;
+    ) as { gitIgnore: boolean };
 
     const schemaFilePath = join(__dirname, '..', 'naorm-config.schema.json');
     const outFile = join(configDir, 'naorm-config.json');

@@ -1,7 +1,7 @@
 import { basename } from "path";
 import { camelCase } from "camel-case";
-import { NAORMConfig, NAORMStatementOverride } from "../../interfaces/naorm-config";
-import { ParsedSQLFile, ParsedSQLStatement } from "../../interfaces/parsed-sql-file";
+import { NAORMConfig, NAORMStatementOverride } from "../../interfaces/naorm-config.js";
+import { ParsedSQLFile, ParsedSQLStatement } from "../../interfaces/parsed-sql-file.js";
 
 export class SQLFileAnalyzer {
 
@@ -37,17 +37,17 @@ export class SQLFileAnalyzer {
             this.otherStatements.push(s);
         } else {
             switch(s.statementType) {
-                case 'table':
-                case 'view':
-                    this.tableAndViewStatementMap.set(s.statementIdentifier, s);
-                    break;
-                case 'index':
-                    this.indexStatements.push(s);
-                    break;
-                case 'dml':
-                case 'other':
-                    this.otherStatements.push(s);
-                    break;
+            case 'table':
+            case 'view':
+                this.tableAndViewStatementMap.set(s.statementIdentifier, s);
+                break;
+            case 'index':
+                this.indexStatements.push(s);
+                break;
+            case 'dml':
+            case 'other':
+                this.otherStatements.push(s);
+                break;
             }
         }
     }

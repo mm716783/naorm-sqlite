@@ -1,8 +1,13 @@
 # Not an ORM (NAORM) for SQLite
 
-A Command Line Interface for generating TypeScript from SQLite files in your code base.
+[![Coverage Status](https://coveralls.io/repos/github/mm716783/naorm-sqlite/badge.svg?branch=develop)](https://coveralls.io/github/mm716783/naorm-sqlite?branch=develop) [![Node.js CI](https://github.com/mm716783/naorm-sqlite/actions/workflows/node.js.yml/badge.svg)](https://github.com/mm716783/naorm-sqlite/actions/workflows/node.js.yml) ![GitHub](https://img.shields.io/github/license/mm716783/naorm-sqlite) ![npm (tag)](https://img.shields.io/npm/v/naorm-sqlite/latest) [![semantic-release: angular](https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
 
-Many [TypeScript](https://www.typescriptlang.org/) projects use [SQLite](https://www.sqlite.org/index.html), but maintaining SQL in a TypeScript code base is challenging and fraught with pitfalls. And while using an Object-Relational Mapping (ORM) tool can solve certain problems, it also comes with learning curves and limitations for SQL developers. Not an ORM (NAORM - pronounced "norm") allows SQLite projects to leverage the benefits of TypeScript with a SQL-first approach. 
+A Command Line Interface for generating TypeScript from SQLite files.
+
+NAORM (pronounced “norm”) is a CLI tool that bridges the gap between SQLite and TypeScript. It allows you to maintain your database schema, queries, and other statements in SQL files, then generates corresponding TypeScript for you to import into your application. It is a fast and lightweight alternative to using an ORM.
+
+*Try NAORM now [on Stackblitz](https://stackblitz.com/edit/naorm-sqlite-demo?file=your-app.ts,db%2Fsrc%2Ftables%2Fyour-table.sql)!*
+
 
 ### Key Features:
 
@@ -43,6 +48,8 @@ npx naorm generate
 ```
 
 # How it Works
+
+Many [TypeScript](https://www.typescriptlang.org/) projects use [SQLite](https://www.sqlite.org/index.html), but maintaining SQL in a TypeScript code base is challenging and fraught with pitfalls. And while using an Object-Relational Mapping (ORM) tool can solve certain problems, it also comes with learning curves and limitations for SQL developers. Not an ORM for SQLite allows SQLite projects to leverage the benefits of TypeScript with a SQL-first approach. 
 
 Not an ORM lets you develop all kinds of SQLite statements in SQL files, then use these statements in your TypeScript application. This allows you to leverage the ecosystem available for SQLite development, such as [alexcvzz's VS Code extension](https://marketplace.visualstudio.com/items?itemName=alexcvzz.vscode-sqlite) and the standalone tool [DB Browser for SQLite](https://sqlitebrowser.org/). No more maintaining SQL in JS/TS strings! And though it is "Not an ORM", it can generate TypeScript classes or interfaces for any SQLite table, view, or query result.
 

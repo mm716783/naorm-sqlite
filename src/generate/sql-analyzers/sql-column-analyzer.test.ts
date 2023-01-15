@@ -111,21 +111,21 @@ test('Column Analyzer applyPropertiesFromDependencies', () => {
         sourceColumn: 'b',
         jsDocComment: '/** JSDoc B */',
         naormTypeComment: '/** NAORM-TYPE: B */'
-    }
+    };
     const viewColumnC: Partial<NAORMResultColumn> = {
         columnName: 'c',
         sourceTable: null,
         sourceColumn: null,
         jsDocComment: null,
         naormTypeComment: null
-    }
+    };
     const viewColumnD: Partial<NAORMResultColumn> = {
         columnName: 'd',
         sourceTable: null,
         sourceColumn: null,
         jsDocComment: '/** JSDoc D */',
         naormTypeComment: '/** NAORM-TYPE: D */'
-    }
+    };
     
     const tableStatement: Partial<ParsedSQLStatement> = {
         statementType: 'table',

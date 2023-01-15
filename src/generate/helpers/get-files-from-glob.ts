@@ -1,4 +1,5 @@
-import { sync } from 'glob';
+import glob from 'glob';
+const { sync } = glob;
 
 export function getFilesFromGlob(rootDir: string, includePatterns: string[], excludePatterns: string[]): string[] {
     const matchingFiles = new Set<string>();
@@ -10,5 +11,5 @@ export function getFilesFromGlob(rootDir: string, includePatterns: string[], exc
         const globMatches = sync(excludePattern, {cwd: rootDir, root: rootDir});
         globMatches.forEach((m: string) => matchingFiles.delete(m));
     }
-    return Array.from(matchingFiles.values())
+    return Array.from(matchingFiles.values());
 }

@@ -1,5 +1,5 @@
-import { NAORMStatementOverride } from "../../interfaces/naorm-config";
-import { ParsedSQLStatement } from "../../interfaces/parsed-sql-file";
+import { NAORMStatementOverride } from "../../interfaces/naorm-config.js";
+import { ParsedSQLStatement } from "../../interfaces/parsed-sql-file.js";
 
 export class SQLDependencyAnalyzer {
     
@@ -40,7 +40,7 @@ export class SQLDependencyAnalyzer {
         this.sequencedStatements.sort((a, b) => {
             if(a.statementDependencies.includes(b.statementIdentifier) &&
                 b.statementDependencies.includes(a.statementIdentifier)) {
-                    throw 'Circular dependency';
+                throw 'Circular dependency';
             }
             if(a.statementDependencies.includes(b.statementIdentifier)) { return 1; }
             if(b.statementDependencies.includes(a.statementIdentifier)) { return -1; }

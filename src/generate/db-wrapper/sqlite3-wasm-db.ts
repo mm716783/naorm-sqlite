@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 import betterSQLite3 from 'better-sqlite3';
-import { BaseDB } from './base-db';
+import { BaseDB } from './base-db.js';
 
 interface SQLiteTableInfoColumn {
     cid: number;
@@ -14,10 +14,12 @@ interface SQLiteTableInfoColumn {
 
 export class SQLite3WASMDB extends BaseDB {
 
+    /* eslint-disable @typescript-eslint/no-explicit-any */
     private db: any;
 
-    constructor(pathToDB: string) {
-        super(pathToDB);
+    constructor() {
+        super();
+        /* eslint-disable @typescript-eslint/no-explicit-any */
         const SQLite3WASM = (global as any)['naormSQLite3WASM'];
         this.db = new SQLite3WASM.oo1.DB(":memory:",'c');
     }
@@ -27,7 +29,7 @@ export class SQLite3WASMDB extends BaseDB {
     }
 
     private getPragmaInfo(id: string) {
-        let resultRows: SQLiteTableInfoColumn[] = [];
+        const resultRows: SQLiteTableInfoColumn[] = [];
 
         /*  
         SQLite WASM does not currently support some of the C function for retrieving
@@ -35,9 +37,9 @@ export class SQLite3WASMDB extends BaseDB {
         The Declared Type is the most important one, we can get it using the table_info PRAGMA.
         */
         this.db.exec({
-          sql: `PRAGMA table_info(${id})`,
-          rowMode: 'object',
-          resultRows: resultRows
+            sql: `PRAGMA table_info(${id})`,
+            rowMode: 'object',
+            resultRows: resultRows
         });
 
         const computedColumns = resultRows.map(s => {
@@ -72,24 +74,24 @@ export class SQLite3WASMDB extends BaseDB {
             // If the statement returns no columns, then it's a regular 
             // INSERT, UPDATE, or DELETE with no RETURNING clause.
             return [];
-        } else {
-            try {
-                // If it's a regular SELECT statement, we can create a TEMP VIEW
-                const stmt2 = this.db.prepare(`CREATE TEMP VIEW ${stmtId} AS ` + sql);
-                stmt2.stepFinalize();
-                // Then get the PRAGMA info
-                const columns = this.getPragmaInfo(stmtId);
-                // And drop the view
-                const stmt3 = this.db.prepare(`DROP VIEW ${stmtId}`);
-                stmt3.stepFinalize();
-                return columns;
-            } catch (e) {
-                // If there was an error trying to create the TEMP VIEW, then 
-                // it was almost certainly a statement with a RETURNING clause.
-                // This isn't possible to get info for using PRAGMA, so return [] for now.
-                return [];
-            }
+        } 
+        try {
+            // If it's a regular SELECT statement, we can create a TEMP VIEW
+            const stmt2 = this.db.prepare(`CREATE TEMP VIEW ${stmtId} AS ` + sql);
+            stmt2.stepFinalize();
+            // Then get the PRAGMA info
+            const columns = this.getPragmaInfo(stmtId);
+            // And drop the view
+            const stmt3 = this.db.prepare(`DROP VIEW ${stmtId}`);
+            stmt3.stepFinalize();
+            return columns;
+        } catch (e) {
+            // If there was an error trying to create the TEMP VIEW, then 
+            // it was almost certainly a statement with a RETURNING clause.
+            // This isn't possible to get info for using PRAGMA, so return [] for now.
+            return [];
         }
+        
     }
 
 }
