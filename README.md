@@ -1,6 +1,6 @@
 # Not an ORM (NAORM) for SQLite
 
-[![Coverage Status](https://coveralls.io/repos/github/mm716783/naorm-sqlite/badge.svg?branch=develop)](https://coveralls.io/github/mm716783/naorm-sqlite?branch=develop) [![Node.js CI](https://github.com/mm716783/naorm-sqlite/actions/workflows/node.js.yml/badge.svg)](https://github.com/mm716783/naorm-sqlite/actions/workflows/node.js.yml) ![GitHub](https://img.shields.io/github/license/mm716783/naorm-sqlite) ![npm (tag)](https://img.shields.io/npm/v/naorm-sqlite/latest)
+[![Coverage Status](https://coveralls.io/repos/github/mm716783/naorm-sqlite/badge.svg?branch=develop)](https://coveralls.io/github/mm716783/naorm-sqlite?branch=develop) [![Node.js CI](https://github.com/mm716783/naorm-sqlite/actions/workflows/node.js.yml/badge.svg)](https://github.com/mm716783/naorm-sqlite/actions/workflows/node.js.yml) ![GitHub](https://img.shields.io/github/license/mm716783/naorm-sqlite) ![npm (tag)](https://img.shields.io/npm/v/naorm-sqlite/latest) [![semantic-release: angular](https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
 
 A Command Line Interface for generating TypeScript from SQLite files.
 
