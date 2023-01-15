@@ -62,7 +62,7 @@
   "dependencies": {
     "better-sqlite3": ">=5.2.0",
     "camel-case": "~4.1.2",
-    "commander": "~9.4.1",
+    "commander": "~10.0.0",
     "enquirer": "~2.3.6",
     "glob": "~8.0.3"
   }
