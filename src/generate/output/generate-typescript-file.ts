@@ -59,14 +59,15 @@ function generateOneTypeScriptProperty(col: NAORMResultColumn, conventionSet: NA
 function generateOneTypeScriptModel(parsedStatement: ParsedSQLStatement, conventionSet: NAORMConventionSet, varName: string): string {
     const resultColumns: string[] = parsedStatement.resultColumns.map(c => generateOneTypeScriptProperty(c, conventionSet));
     const extendsStr = conventionSet.extends || '';
-    const modelString = parsedStatement.preStatementJSDoc +
+    const jsDocComment = getJSDocComment(parsedStatement.preStatementJSDoc);
+    const modelString = jsDocComment +
     `export ${conventionSet.typescriptConstruct} ${varName} ${extendsStr} {`
         + `\n${resultColumns.join('\n')}` + '\n};';
     return modelString;
 }
 
 function generateColumnArrayString(parsedStatement: ParsedSQLStatement, varName: string): string {
-    const jsDocComment = parsedStatement.preStatementJSDoc ? parsedStatement.preStatementJSDoc.trim() + '\n' : '';
+    const jsDocComment = getJSDocComment(parsedStatement.preStatementJSDoc);
     const columnsJSON = JSON.stringify(parsedStatement.resultColumns, null, '\t');
     const arrayString = `${jsDocComment}export const ${varName} = ${columnsJSON};`;
     return arrayString;
@@ -74,9 +75,14 @@ function generateColumnArrayString(parsedStatement: ParsedSQLStatement, varName:
 
 function generateSourceSQLStatement(parsedStatement: ParsedSQLStatement, sqlVarName: string) {
     const escapedSQLStatement = parsedStatement.statement.replace(/\\`/g, '\\\\`').replace(/`/g, '\\`');
-    const sourceSQLString = parsedStatement.preStatementJSDoc + 
+    const jsDocComment = getJSDocComment(parsedStatement.preStatementJSDoc);
+    const sourceSQLString = jsDocComment + 
         `export const ${sqlVarName} = \`${escapedSQLStatement}\`;`;
     return sourceSQLString;    
+}
+
+function getJSDocComment(preStatementJSDoc: string) {
+    return preStatementJSDoc ? preStatementJSDoc.trim() + '\n' : '';
 }
 
 function getBatchArrayExport(fileIdentifier: string, sqlStatementStringIds: string[]) {
