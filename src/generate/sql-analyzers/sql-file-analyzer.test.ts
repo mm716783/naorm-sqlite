@@ -1,7 +1,7 @@
-import { DEFAULT_NAORM_CONFIG } from "../../init/default-config";
-import { NAORMConfig } from "../../interfaces/naorm-config";
-import { ParsedSQLStatement } from "../../interfaces/parsed-sql-file";
-import { SQLFileAnalyzer } from "./sql-file-analyzer";
+import { DEFAULT_NAORM_CONFIG } from "../../init/default-config.js";
+import { NAORMConfig } from "../../interfaces/naorm-config.js";
+import { ParsedSQLStatement } from "../../interfaces/parsed-sql-file.js";
+import { SQLFileAnalyzer } from "./sql-file-analyzer.js";
 
 test('ensureUniqueStatementId with unique', () => {
     const sqlFileAnalyzer = new SQLFileAnalyzer(DEFAULT_NAORM_CONFIG);
