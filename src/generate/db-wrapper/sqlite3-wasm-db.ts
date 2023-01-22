@@ -62,7 +62,7 @@ export class SQLite3WASMDB extends BaseDB {
     }
 
     public processIndex(sql: string): betterSQLite3.ColumnDefinition[] {
-        this.db.prepare(sql).run();
+        this.db.prepare(sql).stepFinalize();
         return [];
     }
 
