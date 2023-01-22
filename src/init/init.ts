@@ -1,5 +1,6 @@
 import { existsSync, lstatSync, writeFileSync, appendFileSync } from 'fs';
 import { join, relative, sep, posix } from 'path';
+import { fileURLToPath } from 'url'; 
 import { DEFAULT_NAORM_CONFIG } from './default-config.js';
 import enquirer from 'enquirer';
 const { prompt } = enquirer;
@@ -40,8 +41,10 @@ export async function init() {
     const { gitIgnore } = await prompt(
         { name: 'gitIgnore', type: 'confirm', message: 'Add naorm-generated directory to gitignore?', initial: true }
     ) as { gitIgnore: boolean };
-
-    const schemaFilePath = join(__dirname, '..', 'naorm-config.schema.json');
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    const fileName = global.__filename ? __filename : fileURLToPath(import.meta.url);
+    const schemaFilePath = join(fileName, '..', '..', '..', 'naorm-config.schema.json');
     const outFile = join(configDir, 'naorm-config.json');
     const outFileContent = {
         $schema: `.${posix.sep}${relative(configDir, schemaFilePath).split(sep).join(posix.sep)}`,
