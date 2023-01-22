@@ -1,6 +1,6 @@
-import { LexerToken, ParsedSQLStatement } from "../../interfaces/parsed-sql-file";
-import { Lexer } from "./lexer";
-import { Parser } from "./parser";
+import { LexerToken, ParsedSQLStatement } from "../../interfaces/parsed-sql-file.js";
+import { Lexer } from "./lexer.js";
+import { Parser } from "./parser.js";
 
 // These can be reused for all Parser tests
 const [ fileName, fullFilePath, fileIdentifier ] = ['my-file.sql', 'my-dir/my-file.sql', 'myFile'];

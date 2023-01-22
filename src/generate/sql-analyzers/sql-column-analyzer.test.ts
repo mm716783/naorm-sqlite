@@ -1,8 +1,8 @@
-import { ParsedSQLStatement } from '../../interfaces/parsed-sql-file';
-import { SQLColumnAnalyzer } from './sql-column-analyzer';
-import { DEFAULT_NAORM_CONFIG } from '../../init/default-config';
-import { NAORMResultColumn } from '../../interfaces/naorm-sql-statement';
-import { NAORMConfig, NAORMConventionSet, NAORMTypeConvention } from '../../interfaces/naorm-config';
+import { ParsedSQLStatement } from '../../interfaces/parsed-sql-file.js';
+import { SQLColumnAnalyzer } from './sql-column-analyzer.js';
+import { DEFAULT_NAORM_CONFIG } from '../../init/default-config.js';
+import { NAORMResultColumn } from '../../interfaces/naorm-sql-statement.js';
+import { NAORMConfig, NAORMConventionSet, NAORMTypeConvention } from '../../interfaces/naorm-config.js';
 
 test('Column Analyzer checkNotNull', () => {
     const statementMap = new Map<string, ParsedSQLStatement>();

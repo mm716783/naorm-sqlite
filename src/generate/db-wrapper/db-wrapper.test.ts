@@ -1,6 +1,6 @@
-import { DBWrapper } from "./db-wrapper";
+import { DBWrapper } from "./db-wrapper.js";
 import { ColumnDefinition } from 'better-sqlite3';
-import { ParsedSQLStatement } from "../../interfaces/parsed-sql-file";
+import { ParsedSQLStatement } from "../../interfaces/parsed-sql-file.js";
 
 let db: DBWrapper;
 beforeEach(() => {

@@ -1,5 +1,5 @@
-import { Lexer } from "../parse-sql-file/lexer";
-import { SQLColumnCommentParser } from "./sql-column-comment-parser";
+import { Lexer } from "../parse-sql-file/lexer.js";
+import { SQLColumnCommentParser } from "./sql-column-comment-parser.js";
 
 test('Column Comment Parser CREATE TABLE', () => {
     const lexerInput = `
