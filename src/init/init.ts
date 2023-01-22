@@ -50,7 +50,15 @@ export async function init() {
         $schema: `.${posix.sep}${relative(configDir, schemaFilePath).split(sep).join(posix.sep)}`,
         ...DEFAULT_NAORM_CONFIG
     };
-    if(!useRecommended) { outFileContent.conventionSets = []; }
+    if(!useRecommended) {
+        outFileContent.conventionSets = [{
+            name: '',
+            typescriptConstruct: 'interface',
+            extends: null,
+            importStatements: [],
+            typeConventions: [],
+        }]; 
+    }
     writeFileSync(outFile, JSON.stringify(outFileContent, null, '\t'));
 
     if(gitIgnore) {
