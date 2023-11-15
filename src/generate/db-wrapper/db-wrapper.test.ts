@@ -1,6 +1,6 @@
 import { DBWrapper } from "./db-wrapper.js";
-import { ColumnDefinition } from 'better-sqlite3';
 import { ParsedSQLStatement } from "../../interfaces/parsed-sql-file.js";
+import { NAORMColumnDefinition } from "../../interfaces/naorm-sql-statement.js";
 
 let db: DBWrapper;
 beforeEach(() => {
@@ -21,7 +21,7 @@ test('DB Wrapper Instantiate WASM', () => {
 
 function createTable() {
     const parsedSQLStatement: Partial<ParsedSQLStatement> = {
-        statement: 'CREATE TABLE t(a TEXT, b INT);',
+        statement: 'CREATE TABLE t(a TEXT NOT NULL, b INT);',
         statementType: 'table',
         statementIdentifier: 'T',
         rawStatementIdentifier: 't'
@@ -30,9 +30,9 @@ function createTable() {
 }
 
 test('DB Wrapper CREATE TABLE', () => {
-    const expectedComputedColumns: ColumnDefinition[] = [
-        { name: 'a', type: 'TEXT', column: 'a', table: 't', database: 'main' },
-        { name: 'b', type: 'INT', column: 'b', table: 't', database: 'main' }
+    const expectedComputedColumns: NAORMColumnDefinition[] = [
+        { name: 'a', type: 'TEXT', column: 'a', table: 't', database: 'main', declaredNotNull: true },
+        { name: 'b', type: 'INT', column: 'b', table: 't', database: 'main', declaredNotNull: false }
     ];
     const columns = createTable();
     expect(columns).toEqual(expectedComputedColumns);
@@ -46,7 +46,7 @@ test('DB Wrapper CREATE INDEX', () => {
         statementIdentifier: 'X',
         rawStatementIdentifier: 'x'
     };
-    const expectedComputedColumns: ColumnDefinition[] = [];
+    const expectedComputedColumns: NAORMColumnDefinition[] = [];
     const columns = db.processStatement(parsedSQLStatement as ParsedSQLStatement);
     expect(columns).toEqual(expectedComputedColumns);
 });
@@ -59,9 +59,9 @@ test('DB Wrapper CREATE VIEW', () => {
         statementIdentifier: 'V',
         rawStatementIdentifier: 'v'
     };
-    const expectedComputedColumns: ColumnDefinition[] = [
-        { name: 'a', type: 'TEXT', column: 'a', table: 't', database: 'main' },
-        { name: 'E', type: null, column: null, table: null, database: null }
+    const expectedComputedColumns: NAORMColumnDefinition[] = [
+        { name: 'a', type: 'TEXT', column: 'a', table: 't', database: 'main', declaredNotNull: false },
+        { name: 'E', type: null, column: null, table: null, database: null, declaredNotNull: false }
     ];
     const columns = db.processStatement(parsedSQLStatement as ParsedSQLStatement);
     expect(columns).toEqual(expectedComputedColumns);
@@ -75,10 +75,10 @@ test('DB Wrapper SELECT *', () => {
         statementIdentifier: 'S',
         rawStatementIdentifier: ''
     };
-    const expectedComputedColumns: ColumnDefinition[] = [
-        { name: 'a', type: 'TEXT', column: 'a', table: 't', database: 'main' },
-        { name: 'b', type: 'INT', column: 'b', table: 't', database: 'main' },
-        { name: 'E', type: null, column: null, table: null, database: null }
+    const expectedComputedColumns: NAORMColumnDefinition[] = [
+        { name: 'a', type: 'TEXT', column: 'a', table: 't', database: 'main', declaredNotNull: false },
+        { name: 'b', type: 'INT', column: 'b', table: 't', database: 'main', declaredNotNull: false },
+        { name: 'E', type: null, column: null, table: null, database: null, declaredNotNull: false }
     ];
     const columns = db.processStatement(parsedSQLStatement as ParsedSQLStatement);
     expect(columns).toEqual(expectedComputedColumns);
@@ -92,7 +92,7 @@ test('DB Wrapper INSERT', () => {
         statementIdentifier: 'I',
         rawStatementIdentifier: ''
     };
-    const expectedComputedColumns: ColumnDefinition[] = [];
+    const expectedComputedColumns: NAORMColumnDefinition[] = [];
     const columns = db.processStatement(parsedSQLStatement as ParsedSQLStatement);
     expect(columns).toEqual(expectedComputedColumns);
 });
@@ -105,8 +105,8 @@ test('DB Wrapper DELETE RETURNING', () => {
         statementIdentifier: 'D',
         rawStatementIdentifier: ''
     };
-    const expectedComputedColumns: ColumnDefinition[] = [
-        { name: 'a', type: 'TEXT', column: 'a', table: 't', database: 'main' }
+    const expectedComputedColumns: NAORMColumnDefinition[] = [
+        { name: 'a', type: 'TEXT', column: 'a', table: 't', database: 'main', declaredNotNull: false }
     ];
     const columns = db.processStatement(parsedSQLStatement as ParsedSQLStatement);
     expect(columns).toEqual(expectedComputedColumns);
@@ -121,7 +121,7 @@ test('DB Wrapper DROP', () => {
         statementIdentifier: 'X',
         rawStatementIdentifier: ''
     };
-    const expectedComputedColumns: ColumnDefinition[] = [];
+    const expectedComputedColumns: NAORMColumnDefinition[] = [];
     const columns = db.processStatement(parsedSQLStatement as ParsedSQLStatement);
     expect(columns).toEqual(expectedComputedColumns);
 });
@@ -134,7 +134,7 @@ test('DB Wrapper PRAGMA', () => {
         statementIdentifier: 'P',
         rawStatementIdentifier: ''
     };
-    const expectedComputedColumns: ColumnDefinition[] = [];
+    const expectedComputedColumns: NAORMColumnDefinition[] = [];
     const columns = db.processStatement(parsedSQLStatement as ParsedSQLStatement);
     expect(columns).toEqual(expectedComputedColumns);
 });
