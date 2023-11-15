@@ -12,6 +12,7 @@ export interface NAORMConfig {
 export interface NAORMConventionSet {
     name: string;
     typescriptConstruct: 'class' | 'interface';
+    inferNotNullFromColumn: boolean;
     extends: string | null;
     importStatements: string[];
     typeConventions: NAORMTypeConvention[];
