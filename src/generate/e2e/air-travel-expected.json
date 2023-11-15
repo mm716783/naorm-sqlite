@@ -21,10 +21,11 @@
 				"declaredType": "TEXT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "string",
-					"Parsed": "string"
+					"Raw": "string | null",
+					"Parsed": "string | null"
 				}
 			}
 		]
@@ -51,10 +52,11 @@
 				"declaredType": "TEXT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "string",
-					"Parsed": "string"
+					"Raw": "string | null",
+					"Parsed": "string | null"
 				}
 			}
 		]
@@ -81,10 +83,11 @@
 				"declaredType": "INT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "number",
-					"Parsed": "number"
+					"Raw": "number | null",
+					"Parsed": "number | null"
 				}
 			},
 			{
@@ -95,6 +98,7 @@
 				"declaredType": null,
 				"jsDocComment": null,
 				"naormTypeComment": "/* NAORM-Type: TEXT NOT NULL */",
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": true,
 				"computedTypeByConventionSet": {
 					"Raw": "string",
@@ -109,9 +113,10 @@
 				"declaredType": null,
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": true,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "any",
+					"Raw": "any | null",
 					"Parsed": "any"
 				}
 			}
@@ -139,10 +144,11 @@
 				"declaredType": "TEXT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "string",
-					"Parsed": "string"
+					"Raw": "string | null",
+					"Parsed": "string | null"
 				}
 			},
 			{
@@ -153,10 +159,11 @@
 				"declaredType": "TEXT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "string",
-					"Parsed": "string"
+					"Raw": "string | null",
+					"Parsed": "string | null"
 				}
 			},
 			{
@@ -167,10 +174,11 @@
 				"declaredType": "INT",
 				"jsDocComment": "/** Test pass-through comment */",
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "number",
-					"Parsed": "number"
+					"Raw": "number | null",
+					"Parsed": "number | null"
 				}
 			},
 			{
@@ -181,10 +189,11 @@
 				"declaredType": "DATETIME_TEXT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "string",
-					"Parsed": "string"
+					"Raw": "string | null",
+					"Parsed": "string | null"
 				}
 			},
 			{
@@ -195,10 +204,11 @@
 				"declaredType": "DATETIME_TEXT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "string",
-					"Parsed": "string"
+					"Raw": "string | null",
+					"Parsed": "string | null"
 				}
 			},
 			{
@@ -209,10 +219,11 @@
 				"declaredType": "DATETIME_TEXT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "string",
-					"Parsed": "string"
+					"Raw": "string | null",
+					"Parsed": "string | null"
 				}
 			},
 			{
@@ -223,10 +234,11 @@
 				"declaredType": "DATETIME_TEXT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "string",
-					"Parsed": "string"
+					"Raw": "string | null",
+					"Parsed": "string | null"
 				}
 			},
 			{
@@ -237,10 +249,11 @@
 				"declaredType": "TEXT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "string",
-					"Parsed": "string"
+					"Raw": "string | null",
+					"Parsed": "string | null"
 				}
 			},
 			{
@@ -251,10 +264,11 @@
 				"declaredType": "TEXT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "string",
-					"Parsed": "string"
+					"Raw": "string | null",
+					"Parsed": "string | null"
 				}
 			},
 			{
@@ -265,10 +279,11 @@
 				"declaredType": "TINYINT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "number",
-					"Parsed": "boolean"
+					"Raw": "number | null",
+					"Parsed": "boolean | null"
 				}
 			}
 		]
@@ -295,10 +310,11 @@
 				"declaredType": "TEXT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "string",
-					"Parsed": "string"
+					"Raw": "string | null",
+					"Parsed": "string | null"
 				}
 			},
 			{
@@ -309,10 +325,11 @@
 				"declaredType": "TEXT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "string",
-					"Parsed": "string"
+					"Raw": "string | null",
+					"Parsed": "string | null"
 				}
 			},
 			{
@@ -323,10 +340,11 @@
 				"declaredType": "TEXT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "string",
-					"Parsed": "string"
+					"Raw": "string | null",
+					"Parsed": "string | null"
 				}
 			},
 			{
@@ -337,10 +355,11 @@
 				"declaredType": "TEXT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "string",
-					"Parsed": "string"
+					"Raw": "string | null",
+					"Parsed": "string | null"
 				}
 			}
 		]
@@ -370,10 +389,11 @@
 				"declaredType": "INT",
 				"jsDocComment": "/** Test expression comment */",
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "number",
-					"Parsed": "number"
+					"Raw": "number | null",
+					"Parsed": "number | null"
 				}
 			},
 			{
@@ -384,6 +404,7 @@
 				"declaredType": null,
 				"jsDocComment": null,
 				"naormTypeComment": "/* NAORM-Type: TEXT NOT NULL */",
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": true,
 				"computedTypeByConventionSet": {
 					"Raw": "string",
@@ -398,9 +419,10 @@
 				"declaredType": null,
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": true,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "any",
+					"Raw": "any | null",
 					"Parsed": "any"
 				}
 			},
@@ -412,10 +434,11 @@
 				"declaredType": "TEXT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "string",
-					"Parsed": "string"
+					"Raw": "string | null",
+					"Parsed": "string | null"
 				}
 			},
 			{
@@ -426,10 +449,11 @@
 				"declaredType": "TEXT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "string",
-					"Parsed": "string"
+					"Raw": "string | null",
+					"Parsed": "string | null"
 				}
 			},
 			{
@@ -440,10 +464,11 @@
 				"declaredType": "INT",
 				"jsDocComment": "/** Test pass-through comment */",
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "number",
-					"Parsed": "number"
+					"Raw": "number | null",
+					"Parsed": "number | null"
 				}
 			},
 			{
@@ -454,10 +479,11 @@
 				"declaredType": "DATETIME_TEXT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "string",
-					"Parsed": "string"
+					"Raw": "string | null",
+					"Parsed": "string | null"
 				}
 			},
 			{
@@ -468,10 +494,11 @@
 				"declaredType": "DATETIME_TEXT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "string",
-					"Parsed": "string"
+					"Raw": "string | null",
+					"Parsed": "string | null"
 				}
 			},
 			{
@@ -482,10 +509,11 @@
 				"declaredType": "DATETIME_TEXT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "string",
-					"Parsed": "string"
+					"Raw": "string | null",
+					"Parsed": "string | null"
 				}
 			},
 			{
@@ -496,10 +524,11 @@
 				"declaredType": "DATETIME_TEXT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "string",
-					"Parsed": "string"
+					"Raw": "string | null",
+					"Parsed": "string | null"
 				}
 			},
 			{
@@ -510,10 +539,11 @@
 				"declaredType": "TEXT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "string",
-					"Parsed": "string"
+					"Raw": "string | null",
+					"Parsed": "string | null"
 				}
 			},
 			{
@@ -524,10 +554,11 @@
 				"declaredType": "TEXT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "string",
-					"Parsed": "string"
+					"Raw": "string | null",
+					"Parsed": "string | null"
 				}
 			},
 			{
@@ -538,10 +569,11 @@
 				"declaredType": "TINYINT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "number",
-					"Parsed": "boolean"
+					"Raw": "number | null",
+					"Parsed": "boolean | null"
 				}
 			},
 			{
@@ -552,10 +584,11 @@
 				"declaredType": null,
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "any",
-					"Parsed": "any"
+					"Raw": "any | null",
+					"Parsed": "any | null"
 				}
 			}
 		]
@@ -642,10 +675,11 @@
 				"declaredType": "INT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "number",
-					"Parsed": "number"
+					"Raw": "number | null",
+					"Parsed": "number | null"
 				}
 			},
 			{
@@ -656,6 +690,7 @@
 				"declaredType": null,
 				"jsDocComment": null,
 				"naormTypeComment": "/* NAORM-Type: TEXT NOT NULL */",
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": true,
 				"computedTypeByConventionSet": {
 					"Raw": "string",
@@ -670,9 +705,10 @@
 				"declaredType": null,
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": true,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "any",
+					"Raw": "any | null",
 					"Parsed": "any"
 				}
 			},
@@ -684,10 +720,11 @@
 				"declaredType": "TEXT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "string",
-					"Parsed": "string"
+					"Raw": "string | null",
+					"Parsed": "string | null"
 				}
 			},
 			{
@@ -698,10 +735,11 @@
 				"declaredType": "TEXT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "string",
-					"Parsed": "string"
+					"Raw": "string | null",
+					"Parsed": "string | null"
 				}
 			},
 			{
@@ -712,10 +750,11 @@
 				"declaredType": "INT",
 				"jsDocComment": "/** Test pass-through comment */",
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "number",
-					"Parsed": "number"
+					"Raw": "number | null",
+					"Parsed": "number | null"
 				}
 			},
 			{
@@ -726,10 +765,11 @@
 				"declaredType": "DATETIME_TEXT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "string",
-					"Parsed": "string"
+					"Raw": "string | null",
+					"Parsed": "string | null"
 				}
 			},
 			{
@@ -740,10 +780,11 @@
 				"declaredType": "DATETIME_TEXT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "string",
-					"Parsed": "string"
+					"Raw": "string | null",
+					"Parsed": "string | null"
 				}
 			},
 			{
@@ -754,10 +795,11 @@
 				"declaredType": "DATETIME_TEXT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "string",
-					"Parsed": "string"
+					"Raw": "string | null",
+					"Parsed": "string | null"
 				}
 			},
 			{
@@ -768,10 +810,11 @@
 				"declaredType": "DATETIME_TEXT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "string",
-					"Parsed": "string"
+					"Raw": "string | null",
+					"Parsed": "string | null"
 				}
 			},
 			{
@@ -782,10 +825,11 @@
 				"declaredType": "TEXT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "string",
-					"Parsed": "string"
+					"Raw": "string | null",
+					"Parsed": "string | null"
 				}
 			},
 			{
@@ -796,10 +840,11 @@
 				"declaredType": "TEXT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "string",
-					"Parsed": "string"
+					"Raw": "string | null",
+					"Parsed": "string | null"
 				}
 			},
 			{
@@ -810,10 +855,11 @@
 				"declaredType": "TINYINT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "number",
-					"Parsed": "boolean"
+					"Raw": "number | null",
+					"Parsed": "boolean | null"
 				}
 			},
 			{
@@ -824,10 +870,11 @@
 				"declaredType": null,
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "any",
-					"Parsed": "any"
+					"Raw": "any | null",
+					"Parsed": "any | null"
 				}
 			}
 		]
@@ -869,10 +916,11 @@
 				"declaredType": "TEXT",
 				"jsDocComment": null,
 				"naormTypeComment": null,
+				"isDeclaredNotNull": false,
 				"isExplicitlyNotNull": false,
 				"computedTypeByConventionSet": {
-					"Raw": "string",
-					"Parsed": "string"
+					"Raw": "string | null",
+					"Parsed": "string | null"
 				}
 			}
 		]
