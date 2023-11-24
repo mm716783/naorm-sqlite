@@ -1,13 +1,13 @@
 {
     "compilerOptions": {
       "target": "ES6",
-      "module": "ES2020", 
+      "module": "NodeNext", 
       "esModuleInterop": true,
       "strict": true,
       "declaration": true,
       "declarationDir": "dist/types",
       "outDir": "dist/esm", 
-      "moduleResolution": "Node16",
+      "moduleResolution": "NodeNext",
       "skipLibCheck": true,
       "strictNullChecks": true
     },
