@@ -19,7 +19,7 @@ export class BetterSQLite3DB extends BaseDB {
         this.db.prepare(sql).run();
         const preparedStatement = this.db.prepare('SELECT * FROM ' + rawId);
         const declaredColumns = preparedStatement.columns();
-        const pragmaInfoRows: SQLiteTableInfoColumn[] = this.db.prepare(`PRAGMA table_xinfo(${rawId})`).all();
+        const pragmaInfoRows: SQLiteTableInfoColumn[] = this.db.prepare(`PRAGMA table_xinfo(${rawId})`).all() as SQLiteTableInfoColumn[];
         const pragmaInfoMap = new Map<string, SQLiteTableInfoColumn>();
         pragmaInfoRows.forEach(p => {
             pragmaInfoMap.set(p.name, p);
