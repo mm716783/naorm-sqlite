@@ -28,7 +28,7 @@ NAORM (pronounced “norm”) is a CLI tool that bridges the gap between SQLite 
 * [Limitations](#limitations)
 
 
-*For more on NOARM, check out the [author's blog](https://medium.com/@mm716783) on Medium.*
+*For more on NAORM, check out the [author's blog](https://medium.com/@mm716783) on Medium.*
 
 # Getting Started
 
@@ -68,9 +68,9 @@ To generate TypeScript for a database table, add a SQL file containing a [`CREAT
 
 ```
 CREATE TABLE Airport (
-    Id INT,
-    IATACode TEXT,
-    Country TEXT
+	Id INT,
+	IATACode TEXT,
+	Country TEXT
 );
 ```
 
@@ -79,46 +79,46 @@ After running `npx naorm generate`, a TypeScript file will be generated with an 
 export interface Airport  {
 	"Id": number | null;
 	"IATACode": string | null;
-    "Country": string | null;
+	"Country": string | null;
 }
 
 export const AirportColumns = [
 	{
-        "columnName": "Id",
-        "sourceColumn": "Id",
-        "sourceTable": "Airport",
-        "sourceDatabase": "main",
-        "declaredType": "INT",
-        "naormTypeComment": null,
-        "typeScriptTypeAnnotation": "number | null",
-        "jsDocComment": null
+		"columnName": "Id",
+		"sourceColumn": "Id",
+		"sourceTable": "Airport",
+		"sourceDatabase": "main",
+		"declaredType": "INT",
+		"naormTypeComment": null,
+		"typeScriptTypeAnnotation": "number | null",
+		"jsDocComment": null
 	},
 	{
-        "columnName": "IATACode",
-        "sourceColumn": "IATACode",
-        "sourceTable": "Airport",
-        "sourceDatabase": "main",
-        "declaredType": "TEXT",
-        "naormTypeComment": null,
-        "typeScriptTypeAnnotation": "string | null",
-        "jsDocComment": null
+		"columnName": "IATACode",
+		"sourceColumn": "IATACode",
+		"sourceTable": "Airport",
+		"sourceDatabase": "main",
+		"declaredType": "TEXT",
+		"naormTypeComment": null,
+		"typeScriptTypeAnnotation": "string | null",
+		"jsDocComment": null
 	},
 	{
-        "columnName": "Country",
-        "sourceColumn": "Country",
-        "sourceTable": "Airport",
-        "sourceDatabase": "main",
-        "declaredType": "TEXT",
-        "naormTypeComment": null,
-        "typeScriptTypeAnnotation": "string | null",
-        "jsDocComment": null
+		"columnName": "Country",
+		"sourceColumn": "Country",
+		"sourceTable": "Airport",
+		"sourceDatabase": "main",
+		"declaredType": "TEXT",
+		"naormTypeComment": null,
+		"typeScriptTypeAnnotation": "string | null",
+		"jsDocComment": null
 	}
 ]
 
 export const AirportSQL = `CREATE TABLE Airport (
-    Id INT,
-    IATACode TEXT,
-    Country TEXT
+	Id INT,
+	IATACode TEXT,
+	Country TEXT
 )`;
 ```
 
@@ -137,51 +137,51 @@ After running `npx naorm generate`, a similar TypeScript file will be generated.
 ```
 export interface vwFlightOrigin  {
 	"Id": number | null;
-    "OriginAirportId": number | null;
-    "DestinationAirportId": number | null;
+	"OriginAirportId": number | null;
+	"DestinationAirportId": number | null;
 	"IATACode": string | null;
 }
 
 export const vwFlightOriginColumns = [
 	{
-        "columnName": "Id",
-        "sourceColumn": "Id",
-        "sourceTable": "Flight",
-        "sourceDatabase": "main",
-        "declaredType": "INT",
-        "naormTypeComment": null,
-        "typeScriptTypeAnnotation": "number | null",
-        "jsDocComment": null
+		"columnName": "Id",
+		"sourceColumn": "Id",
+		"sourceTable": "Flight",
+		"sourceDatabase": "main",
+		"declaredType": "INT",
+		"naormTypeComment": null,
+		"typeScriptTypeAnnotation": "number | null",
+		"jsDocComment": null
 	},
 	{
-        "columnName": "OriginAirportId",
-        "sourceColumn": "OriginAirportId",
-        "sourceTable": "Flight",
-        "sourceDatabase": "main",
-        "declaredType": "INT",
-        "naormTypeComment": null,
-        "typeScriptTypeAnnotation": "number | null",
-        "jsDocComment": null
+		"columnName": "OriginAirportId",
+		"sourceColumn": "OriginAirportId",
+		"sourceTable": "Flight",
+		"sourceDatabase": "main",
+		"declaredType": "INT",
+		"naormTypeComment": null,
+		"typeScriptTypeAnnotation": "number | null",
+		"jsDocComment": null
 	},
 	{
-        "columnName": "DestinationAirportId",
-        "sourceColumn": "DestinationAirportId",
-        "sourceTable": "Flight",
-        "sourceDatabase": "main",
-        "declaredType": "INT",
-        "naormTypeComment": null,
-        "typeScriptTypeAnnotation": "number | null",
-        "jsDocComment": null
+		"columnName": "DestinationAirportId",
+		"sourceColumn": "DestinationAirportId",
+		"sourceTable": "Flight",
+		"sourceDatabase": "main",
+		"declaredType": "INT",
+		"naormTypeComment": null,
+		"typeScriptTypeAnnotation": "number | null",
+		"jsDocComment": null
 	},
 	{
-        "columnName": "IATACode",
-        "sourceColumn": "IATACode",
-        "sourceTable": "Airport",
-        "sourceDatabase": "main",
-        "declaredType": "TEXT",
-        "naormTypeComment": null,
-        "typeScriptTypeAnnotation": "string | null",        
-        "jsDocComment": null
+		"columnName": "IATACode",
+		"sourceColumn": "IATACode",
+		"sourceTable": "Airport",
+		"sourceDatabase": "main",
+		"declaredType": "TEXT",
+		"naormTypeComment": null,
+		"typeScriptTypeAnnotation": "string | null",		
+		"jsDocComment": null
 	}
 ]
 
@@ -217,14 +217,14 @@ export interface queryFlights  {
 
 export const queryFlightsColumns = [
 	{
-        "columnName": "Id",
-        "sourceColumn": "Id",
-        "sourceTable": "Flight",
-        "sourceDatabase": "main",
-        "declaredType": "INT",
-        "naormTypeComment": null,
-        "typeScriptTypeAnnotation": "number | null",
-        "jsDocComment": null
+		"columnName": "Id",
+		"sourceColumn": "Id",
+		"sourceTable": "Flight",
+		"sourceDatabase": "main",
+		"declaredType": "INT",
+		"naormTypeComment": null,
+		"typeScriptTypeAnnotation": "number | null",
+		"jsDocComment": null
 	}
 ]
 
@@ -247,14 +247,14 @@ export interface deleteFlight  {
 
 export const deleteFlightColumns = [
 	{
-        "columnName": "Id",
-        "sourceColumn": "Id",
-        "sourceTable": "Flight",
-        "sourceDatabase": "main",
-        "declaredType": "INT",
-        "naormTypeComment": null,
-        "typeScriptTypeAnnotation": "number | null",
-        "jsDocComment": null
+		"columnName": "Id",
+		"sourceColumn": "Id",
+		"sourceTable": "Flight",
+		"sourceDatabase": "main",
+		"declaredType": "INT",
+		"naormTypeComment": null,
+		"typeScriptTypeAnnotation": "number | null",
+		"jsDocComment": null
 	}
 ]
 
@@ -303,8 +303,8 @@ export const createAirportIndicesSQL = `CREATE UNIQUE INDEX Airport_IX1 ON Airpo
 export const createAirportIndices_1SQL = `CREATE UNIQUE INDEX Airport_IX2 ON Airport(Id);`;
 
 export const createAirportIndicesSQLStatements = [
-    createAirportIndicesSQL,
-    createAirportIndices_1SQL
+	createAirportIndicesSQL,
+	createAirportIndices_1SQL
 ];
 ```
 
@@ -332,20 +332,20 @@ In this scenario, or in any other scenario where Not an ORM mis-identifies a dep
 
 ```
 "statementOverrides": [{
-    "statementIdentifier": "Passenger",
-    "skipStatementCompilation": true,
-    "dependentOn": [],
-    "notDependentOn": []
+	"statementIdentifier": "Passenger",
+	"skipStatementCompilation": true,
+	"dependentOn": [],
+	"notDependentOn": []
 },{
-    "statementIdentifier": "vwFlightOrigins",
-    "skipStatementCompilation": false,
-    "dependentOn": ["Flight", "Airport"],
-    "notDependentOn": []
+	"statementIdentifier": "vwFlightOrigins",
+	"skipStatementCompilation": false,
+	"dependentOn": ["Flight", "Airport"],
+	"notDependentOn": []
 },{
-    "statementIdentifier": "queryFlights_1",
-    "skipStatementCompilation": false,
-    "dependentOn": [],
-    "notDependentOn": ["Passenger"]
+	"statementIdentifier": "queryFlights_1",
+	"skipStatementCompilation": false,
+	"dependentOn": [],
+	"notDependentOn": ["Passenger"]
 }];
 ```
 
@@ -358,11 +358,11 @@ To use this feature with SQL columns, place a JSDoc comment (beginning with `/**
 
 ```
 CREATE TABLE Airport (
-    Id INT,
-    /** 3-letter International Air Transport Association's (IATA) Location Identifier */
-    IATACode TEXT,
-    /** 2-letter ALPHA-2 Country Code from ISO 3166 */
-    Country TEXT
+	Id INT,
+	/** 3-letter International Air Transport Association's (IATA) Location Identifier */
+	IATACode TEXT,
+	/** 2-letter ALPHA-2 Country Code from ISO 3166 */
+	Country TEXT
 )
 ```
 
@@ -370,10 +370,10 @@ This will generate a TypeScript model with the JSDoc comment included above the 
 ```
 export interface Airport  {
 	"Id": number;
-    /** 3-letter International Air Transport Association's (IATA) Location Identifier */
+	/** 3-letter International Air Transport Association's (IATA) Location Identifier */
 	"IATACode": string;
-    /** 2-letter ALPHA-2 Country Code from ISO 3166 */
-    "Country": string;
+	/** 2-letter ALPHA-2 Country Code from ISO 3166 */
+	"Country": string;
 }
 ...
 ```
@@ -395,10 +395,10 @@ In this example, the JSDoc comment for `Country` comes from the source table def
 ```
 export interface vwFlightOrigin  {
 	"FlightId": number;
-    /** The IATA Code for the flight's origin airport */
+	/** The IATA Code for the flight's origin airport */
 	"IATACode": string;
-    /** 2-letter ALPHA-2 Country Code from ISO 3166 */
-    "Country": string;
+	/** 2-letter ALPHA-2 Country Code from ISO 3166 */
+	"Country": string;
 }
 ```
 
@@ -429,7 +429,7 @@ This feature can be used in combination with the ability to specify variable nam
 
 ```
 /** NAORM-ID: airportIdIndex
-    Command to create a unique index on the Airport Id 
+	Command to create a unique index on the Airport Id 
 */
 CREATE UNIQUE INDEX Airport_IX1 ON Airport(Id);
 
@@ -441,7 +441,7 @@ CREATE UNIQUE INDEX Airport_IX2 ON Airport(IATACode);
 
 ```
 /** NAORM-ID: airportIdIndex
-    Command to create a unique index on the Airport Id 
+	Command to create a unique index on the Airport Id 
 */
 export const airportIdIndexSQL = `CREATE UNIQUE INDEX Airport_IX1 ON Airport(IATACode);`;
 
@@ -449,8 +449,8 @@ export const airportIdIndexSQL = `CREATE UNIQUE INDEX Airport_IX1 ON Airport(IAT
 export const airportIATACodeIndexSQL = `CREATE UNIQUE INDEX Airport_IX2 ON Airport(IATACode);`;
 
 export const createAirportIndicesSQLStatements = [
-    airportIdIndexSQL,
-    airportIATACodeIndexSQL
+	airportIdIndexSQL,
+	airportIATACodeIndexSQL
 ];
 ```
 
@@ -502,9 +502,9 @@ However, even with column aliases, SQL expressions remain problematic for genera
 To solve for this, you can add a C-style comment in your SQL statement containing the SQLite Declared Type that you would like to associate to the expression, using the syntax `NAORM-TYPE: <your-declared-type>`. Such a comment must be placed directly after the column alias - it must be before any comma, parentheses, or other non-whitespace characters. Not an ORM will recognize the comment and use it to calculate the type for your TypeScript model.  
 ```
 SELECT 
-    COUNT(*) AS FlightCount /* NAORM-TYPE: INT */,
-    AVERAGE(Capacity) AS AverageCapacity /* NAORM-TYPE: REAL */,
-    SUM(Capacity) AS TotalCapacity /* NAORM-TYPE: INT */
+	COUNT(*) AS FlightCount /* NAORM-TYPE: INT */,
+	AVERAGE(Capacity) AS AverageCapacity /* NAORM-TYPE: REAL */,
+	SUM(Capacity) AS TotalCapacity /* NAORM-TYPE: INT */
 FROM Flight;
 ```
 
@@ -513,9 +513,9 @@ FROM Flight;
 In SQLite, it is possible to [define a column without a Declared Type](https://www.sqlite.org/quirks.html#the_datatype_is_optional). In this case, a `NAORM-TYPE:` comment can be placed directly after the column name, before any constraints, and it will be used when generating TypeScript.
 ```
 CREATE TABLE Airport (
-    Id INT,
-    IATACode /* NAORM-TYPE: TEXT */ UNIQUE CHECK(LENGTH(IATACode) = 3),
-    Country /* NAORM-TYPE: TEXT */
+	Id INT,
+	IATACode /* NAORM-TYPE: TEXT */ UNIQUE CHECK(LENGTH(IATACode) = 3),
+	Country /* NAORM-TYPE: TEXT */
 )
 ```
 
@@ -533,14 +533,14 @@ export interface vwAirportId  {
 
 export const vwFlightOriginColumns = [
 	{
-        "columnName": "Id",
-        "sourceColumn": "Id",
-        "sourceTable": "Flight",
-        "sourceDatabase": "main",
-        "declaredType": "INT",
-        "naormTypeComment": "TEXT",
-        "typeScriptTypeAnnotation": "string | null",
-        "jsDocComment": null
+		"columnName": "Id",
+		"sourceColumn": "Id",
+		"sourceTable": "Flight",
+		"sourceDatabase": "main",
+		"declaredType": "INT",
+		"naormTypeComment": "TEXT",
+		"typeScriptTypeAnnotation": "string | null",
+		"jsDocComment": null
 	}
 ]
 ...
@@ -550,12 +550,14 @@ export const vwFlightOriginColumns = [
 
 [`NOT NULL` constraints](https://www.sqlite.org/lang_createtable.html#notnullconst) are used in SQLite to prevent columns from containing null values. These are commonly used in combination with a [default value](https://www.sqlite.org/lang_createtable.html#dfltval), [autoincrement](https://www.sqlite.org/autoinc.html), or [trigger](https://www.sqlite.org/lang_createtrigger.html) that operates at the database level to populate non-null data into such a column.
 
-This may mean that your application needs to work with models that allow null values for properties corresponding to columns with `NOT NULL` constraints. By default, Not an ORM will not consider `NOT NULL` constraints, and will generate TypeScript interfaces that [allow null values](https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html#strict-null--undefined-checks) for all properties by using a [union type](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#union-types) such as `string | null`.
+This may mean that your application needs to work with models that allow null values for properties corresponding to columns with `NOT NULL` constraints, especially when creating records where certain columns will have values populated by database logic upon insertion. 
 
-If desired, you can explicitly indicate `NOT NULL` within a `NAORM-TYPE:` comment immediately after the column name.
+By default, Not an ORM will not consider `NOT NULL` constraints, and will generate TypeScript interfaces that [allow null values](https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html#strict-null--undefined-checks) for all properties by using a [union type](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#union-types) such as `string | null`. However, you can change the default behavior using [Custom Type Conventions](#custom-type-conventions). 
+
+Additionally, if desired, you can explicitly indicate `NOT NULL` within a `NAORM-TYPE:` comment immediately after a column name to override the behavior for the column.
 ```
 CREATE TABLE Airport (
-    Id /* NAORM-TYPE: INT NOT NULL */ INT NOT NULL
+	Id /* NAORM-TYPE: INT NOT NULL */ INT
 );
 ```
 
@@ -567,14 +569,14 @@ export interface Airport  {
 
 export const AirportColumns = [
 	{
-        "columnName": "Id",
-        "sourceColumn": "Id",
-        "sourceTable": "Airport",
-        "sourceDatabase": "main",
-        "declaredType": "INT",
-        "naormTypeComment": "INT NOT NULL",
-        "typeScriptTypeAnnotation": "number",
-        "jsDocComment": null
+		"columnName": "Id",
+		"sourceColumn": "Id",
+		"sourceTable": "Airport",
+		"sourceDatabase": "main",
+		"declaredType": "INT",
+		"naormTypeComment": "INT NOT NULL",
+		"typeScriptTypeAnnotation": "number",
+		"jsDocComment": null
 	}
 ]
 ```
@@ -591,13 +593,14 @@ To solve these problems, Not an ORM defines a concept called a Type Convention. 
 The TypeScript snippets in the examples above were all generated using Not an ORM's default Type Conventions, which map the Declared Types of SQL columns to TypeScript types using rules similar to [the ones used by SQLite to map Declared Types to Type Affinities](https://www.sqlite.org/datatype3.html#determination_of_column_affinity). Custom Type Conventions can be defined in the `naorm-config.json` file. The concepts utilized in these configurations are described sequentially in the sections below by way of example.
 
 * [Custom Type Conventions for Booleans](#custom-type-conventions-for-booleans)
+* [Custom Type Conventions for Nullable Columns](#custom-type-conventions-for-non-nullable-columns)
 * [Custom Type Conventions for Dates](#custom-type-conventions-for-dates)
 * [Custom Type Conventions for Complex Types](#custom-type-conventions-for-complex-types)
 * [Multiple Custom  Type Conventions Sets](#multiple-custom-type-convention-sets)
 
 **IMPORTANT:** *Not an ORM does not convert or cast any data within your application's runtime. Not an ORM is a Command Line Interface which should only be used to generate TypeScript prior to your application's TS compilation. NAORM generates TypeScript interfaces following the configured conventions, so that you can implement type conversion logic within your application in a type-safe way. Your application is responsible for converting types at runtime.*
 
-## Type Conventions for Booleans
+## Custom Type Conventions for Booleans
 
 A classic type-handling issue arises with booleans in TypeScript, which are [typically stored in SQLite in `INTEGER` columns with value `0` or `1`](https://www.sqlite.org/datatype3.html#boolean_datatype). However, using an alternate Declared Type when defining a column will allow Not an ORM to reference it later and generate a TypeScript interface with a boolean type.
 
@@ -605,7 +608,7 @@ For example, the `CREATE TABLE` statement below defines a column, `IsCancelled`,
 
 ```
 CREATE TABLE Flight (
-    IsCancelled BOOLINT
+	IsCancelled BOOLINT
 )
 ```
 
@@ -616,22 +619,71 @@ In the Custom Type Convention Set below, the Declared Type of `BOOLINT` is confi
 ```
 ...
 "customTypeConventionSets": [
-    {
-        "name": "",
-        "typescriptConstruct": "interface",
-        "extends": null,
-        "importStatements": [],
-        "typeConventions": [{
-            "sqliteDeclaredType": "BOOLINT",
-            "typescriptGeneratedType": "boolean"
-        }]
-    }
+	{
+		"name": "",
+		"typescriptConstruct": "interface",
+		"extends": null,
+		"inferNotNullFromColumn": false,
+		"importStatements": [],
+		"typeConventions": [{
+			"sqliteDeclaredType": "BOOLINT",
+			"typescriptGeneratedType": "boolean"
+		}]
+	}
 ]
 ...
 ```
 
-After running `npx naorm generate` with the above configuration, the generated TypeScript interface contains the `IsCancelled` property with a type of `boolean`, rather than `number`. Note that when using Custom Type Conventions, Not an ORM will not automatically assign an union type containing a null type to a property.
+After running `npx naorm generate` with the above configuration, the generated TypeScript interface contains the `IsCancelled` property with a type of `boolean | null`, rather than `number | null`.
 
+```
+export interface Flight  {
+	"IsCancelled": boolean | null;
+}
+```
+
+If you are using [SQLite's `STRICT` mode](https://www.sqlite.org/stricttables.html) for your table, you will not be able to define a column with a Declared Type other than the ones allowed. However, you can still use a `NAORM-TYPE:` comment, as below.
+```
+CREATE TABLE Flight (
+	IsCancelled /* NAORM-TYPE: BOOLINT */ INT NOT NULL
+) STRICT;
+```
+
+Not an ORM will always generate TypeScript based on the `NAORM-TYPE:` comment if one is specified.
+```
+export interface Flight  {
+	"IsCancelled": boolean | null;
+}
+```
+
+## Custom Type Conventions for Non-Nullable Columns
+
+By default, NAORM [does not consider NOT NULL constraints](#not-null-constraints) when generating TypeScript. 
+
+```
+CREATE TABLE Flight (
+	IsCancelled BOOLINT NOT NULL
+)
+```
+However, the `inferNotNullFromColumn` option allows you to change this behavior.
+```
+...
+"customTypeConventionSets": [
+	{
+		"name": "",
+		"typescriptConstruct": "interface",
+		"extends": null,
+		"inferNotNullFromColumn": true,
+		"importStatements": [],
+		"typeConventions": [{
+			"sqliteDeclaredType": "BOOLINT",
+			"typescriptGeneratedType": "boolean"
+		}]
+	}
+]
+...
+```
+When the `inferNotNullFromColumn` property is set to `true`, NAORM will recognize the `NOT NULL` constraint from the underlying column definition, and will not apply `null` as a Union Type in the generated TypeScript.
 ```
 export interface Flight  {
 	"IsCancelled": boolean;
@@ -639,43 +691,36 @@ export interface Flight  {
 ```
 
 
-However, it is also sometimes useful to have a nullable boolean column, which can be accomplished with a separate Declared Type.
+Additionally, you can use a separate Declared Type in a `NAORM-TYPE:` comment, along with a Custom Type Convention, to distinguish how NAORM should generate the TypeScript for a specific type of nullable column. This can be useful if you'd like to enforce a `NOT NULL` constraint at the database level without enforcing it in TypeScript.
+
 ```
 CREATE TABLE Flight (
-    IsCancelled BOOLINT NOT NULL,
-    IsDelayed NULLABLE_BOOLINT
+	IsCancelled BOOLINT NOT NULL,
+	IsDelayed /* NAORM-TYPE: NULLABLE_BOOLINT */ BOOLINT NOT NULL DEFAULT 0
 )
 ```
-Within the Custom Type Convention, the union type `boolean | null` is specified as a string. 
+In this example, the union type `boolean | null` is specified as a string within the Custom Type Convention.
 ```
 ...
 "customTypeConventionSets": [
-    {
-        "name": "",
-        "typescriptConstruct": "interface",
-        "extends": null,
-        "importStatements": [],
-        "typeConventions": [{
-            "sqliteDeclaredType": "BOOLINT",
-            "typescriptGeneratedType": "boolean"
-        },{
-            "sqliteDeclaredType": "NULLABLE_BOOLINT",
-            "typescriptGeneratedType": "boolean | null"
-        }]
-    }
+	{
+		"name": "",
+		"typescriptConstruct": "interface",
+		"extends": null,
+		"inferNotNullFromColumn": true,
+		"importStatements": [],
+		"typeConventions": [{
+			"sqliteDeclaredType": "BOOLINT",
+			"typescriptGeneratedType": "boolean"
+		},{
+			"sqliteDeclaredType": "NULLABLE_BOOLINT",
+			"typescriptGeneratedType": "boolean | null"
+		}]
+	}
 ]
 ...
 ```
-
-If you are using [SQLite's `STRICT` mode](https://www.sqlite.org/stricttables.html) for your table, you will not be able to define a column with a Declared Type other than the ones allowed. However, you can still use a `NAORM-TYPE:` comment, as below.
-```
-CREATE TABLE Flight (
-    IsCancelled /* NAORM-TYPE: BOOLINT */ INT NOT NULL,
-    IsDelayed  /* NAORM-TYPE: NULLABLE_BOOLINT */ INT 
-) STRICT;
-```
-
-When using  `CREATE TABLE...STRICT` statements, Not an ORM will always use the `NAORM-TYPE:` comment.
+In this case, the `null` type is included as a Union Type due to its presence in the convention set, even though the column is defined as `NOT NULL` in the database.
 ```
 export interface Flight  {
 	"IsCancelled": boolean;
@@ -684,16 +729,16 @@ export interface Flight  {
 ```
 
 
-## Type Conventions for Dates
+## Custom Type Conventions for Dates
 Another type-handling issue arises with date and date/time values, since [SQLite does not have a dedicated type for either](https://www.sqlite.org/quirks.html#no_separate_datetime_datatype). The JavaScript [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) object contains date, time, and time zone information, which can be properly [stored and queried in SQLite](https://www.sqlite.org/datatype3.html#date_and_time_datatype) as `TEXT`, `INT`, or `REAL`. There is no concept of a date-only value in JavaScript, however, you may want to store one in SQLite, using a format such as a date-only ISO string (e.g. `2022-12-20`).
 
 The `CREATE TABLE` statement below defines three columns with Declared Types ending in `TEXT`, so that [SQLite will assign a Type Affinity of `TEXT` to these columns](https://www.sqlite.org/datatype3.html#determination_of_column_affinity).
 
 ```
 CREATE TABLE Flight (
-    DepartureTime DATETIME_TEXT,
-    ArrivalTime DATETIME_OFFSET_TEXT,
-    InspectionDate DATE_TEXT
+	DepartureTime DATETIME_TEXT,
+	ArrivalTime DATETIME_OFFSET_TEXT,
+	InspectionDate DATE_TEXT
 )
 ```
 
@@ -702,33 +747,34 @@ In the Custom Type Convention Set below, all three of the Declared Types are con
 ```
 ...
 "customTypeConventionSets": [
-    {
-        "name": "",
-        "typescriptConstruct": "interface",
-        "extends": null,
-        "importStatements": [],
-        "typeConventions": [{
-            "sqliteDeclaredType": "DATETIME_TEXT",
-            "typescriptGeneratedType": "Date"
-        },{
-            "sqliteDeclaredType": "DATETIME_OFFSET_TEXT",
-            "typescriptGeneratedType": "Date"
-        },{
-            "sqliteDeclaredType": "DATE_TEXT",
-            "typescriptGeneratedType": "Date"
-        }]
-    }
+	{
+		"name": "",
+		"typescriptConstruct": "interface",
+		"extends": null,
+		"inferNotNullFromColumn": false,
+		"importStatements": [],
+		"typeConventions": [{
+			"sqliteDeclaredType": "DATETIME_TEXT",
+			"typescriptGeneratedType": "Date"
+		},{
+			"sqliteDeclaredType": "DATETIME_OFFSET_TEXT",
+			"typescriptGeneratedType": "Date"
+		},{
+			"sqliteDeclaredType": "DATE_TEXT",
+			"typescriptGeneratedType": "Date"
+		}]
+	}
 ]
 ...
 ```
 
-After running `npx naorm generate` with the above configuration, the generated TypeScript interface contains all three properties with a type of `Date`. Your application can then decide how to convert these properties to and from your desired `TEXT` form when saving and retrieving data.
+After running `npx naorm generate` with the above configuration, the generated TypeScript interface contains all three properties with a type of `Date | null`. Your application can then decide how to convert these properties to and from your desired `TEXT` form when saving and retrieving data.
 
 ```
 export interface Flight  {
-	"DepartureTime": Date;
-	"ArrivalTime": Date;
-	"InspectionDate": Date;
+	"DepartureTime": Date | null;
+	"ArrivalTime": Date | null;
+	"InspectionDate": Date | null;
 }
 ```
 
@@ -736,7 +782,7 @@ export interface Flight  {
 You may want to use a library like [Moment.js](https://momentjs.com/) or [Luxon](https://moment.github.io/luxon/#/) to work with dates and times in your TypeScript application, and you can specify your own Declared Types to facilitate this. 
 ```
 CREATE TABLE Flight (
-    DepartureTime LUXON_DATETIME_TEXT
+	DepartureTime LUXON_DATETIME_TEXT
 )
 ```
 
@@ -745,16 +791,17 @@ In the Custom Type Convention Set below, the `LUXON_DATETIME_TEXT` is mapped to 
 ```
 ...
 "customTypeConventionSets": [
-    {
-        "name": "",
-        "typescriptConstruct": "interface",
-        "extends": null,
-        "importStatements": ['import { DateTime } from "luxon";'],
-        "typeConventions": [{
-            "sqliteDeclaredType": "LUXON_DATETIME_TEXT",
-            "typescriptGeneratedType": "DateTime"
-        }]
-    }
+	{
+		"name": "",
+		"typescriptConstruct": "interface",
+		"extends": null,
+		"inferNotNullFromColumn": false,
+		"importStatements": ['import { DateTime } from "luxon";'],
+		"typeConventions": [{
+			"sqliteDeclaredType": "LUXON_DATETIME_TEXT",
+			"typescriptGeneratedType": "DateTime"
+		}]
+	}
 ]
 ...
 ```
@@ -765,16 +812,16 @@ After running `npx naorm generate` with the above configuration, the generated T
 import { DateTime } from "luxon";
 
 export interface Flight  {
-	"DepartureTime": DateTime;
+	"DepartureTime": DateTime | null;
 }
 ```
 
-## Type Conventions for Complex Types
+## Custom Type Conventions for Complex Types
 There may be instances where you would like to [store a JSON string](https://www.sqlite.org/json1.html), representing some data with a complex type in your application, as `TEXT` in SQLite. This can be acheived with a similar approach to dates, by defining a column with your own custom Declared Type.
 
 ```
 CREATE TABLE Flight (
-    FlightPlan FLIGHT_PLAN_TEXT
+	FlightPlan FLIGHT_PLAN_TEXT
 )
 ```
 
@@ -783,16 +830,17 @@ In this scenario, your `FlightPlan` type is probably defined somewhere within yo
 ```
 ...
 "customTypeConventionSets": [
-    {
-        "name": "",
-        "typescriptConstruct": "interface",
-        "extends": null,
-        "importStatements": ['import { FlightPlan } from "<path-to>/flight-plan.ts";'],
-        "typeConventions": [{
-            "sqliteDeclaredType": "FLIGHT_PLAN_TEXT",
-            "typescriptGeneratedType": "FlightPlan"
-        }]
-    }
+	{
+		"name": "",
+		"typescriptConstruct": "interface",
+		"extends": null,
+		"inferNotNullFromColumn": false,
+		"importStatements": ['import { FlightPlan } from "<path-to>/flight-plan.ts";'],
+		"typeConventions": [{
+			"sqliteDeclaredType": "FLIGHT_PLAN_TEXT",
+			"typescriptGeneratedType": "FlightPlan"
+		}]
+	}
 ]
 ...
 ```
@@ -803,7 +851,7 @@ After running `npx naorm generate` with the above configuration, the generated T
 import { FlightPlan } from "../../<path-to>/flight-plan.ts";
 
 export interface Flight  {
-	"FlightPlan": FlightPlan;
+	"FlightPlan": FlightPlan | null;
 }
 ```
 
@@ -812,7 +860,7 @@ There may be instances where it is helpful to generate multiple TypeScript model
 
 ```
 CREATE TABLE Flight (
-    FlightPlan FLIGHT_PLAN_TEXT
+	FlightPlan FLIGHT_PLAN_TEXT
 )
 ```
 
@@ -821,23 +869,25 @@ The configuration file below contains two Custom Type Convention Sets, each with
 ```
 ...
 "customTypeConventionSets": [
-    {
-        "name": "Raw",
-        "typescriptConstruct": "interface",
-        "extends": null,
-        "importStatements": [],
-        "typeConventions": []
-    },
-    {
-        "name": "Parsed",
-        "typescriptConstruct": "interface",
-        "extends": null,
-        "importStatements": ['import { FlightPlan } from "../helpers/flight-plan.ts";'],
-        "typeConventions": [{
-            "sqliteDeclaredType": "FLIGHT_PLAN_TEXT",
-            "typescriptGeneratedType": "FlightPlan | null"
-        }]
-    }
+	{
+		"name": "Raw",
+		"typescriptConstruct": "interface",
+		"extends": null,
+		"inferNotNullFromColumn": false,
+		"importStatements": [],
+		"typeConventions": []
+	},
+	{
+		"name": "Parsed",
+		"typescriptConstruct": "interface",
+		"extends": null,
+		"inferNotNullFromColumn": false,
+		"importStatements": ['import { FlightPlan } from "../helpers/flight-plan.ts";'],
+		"typeConventions": [{
+			"sqliteDeclaredType": "FLIGHT_PLAN_TEXT",
+			"typescriptGeneratedType": "FlightPlan"
+		}]
+	}
 ]
 ...
 ```
@@ -848,36 +898,36 @@ After running `npx naorm generate` with the above configuration, the generated T
 import { FlightPlan } from "../../../../helpers/flight-plan.ts";
 
 export interface FlightRaw  {
-	"FlightPlan": string;
+	"FlightPlan": string | null;
 }
 
 export interface FlightParsed  {
-	"FlightPlan": FlightPlan;
+	"FlightPlan": FlightPlan | null;
 }
 
 export const FlightRawColumns = [
 	{
-        "columnName": "FlightPlan",
-        "sourceColumn": "FlightPlan",
-        "sourceTable": "Airport",
-        "sourceDatabase": "main",
-        "declaredType": "FLIGHT_PLAN_TEXT",
-        "naormTypeComment": null,
-        "typeScriptTypeAnnotation": "string | null",
-        "jsDocComment": null
+		"columnName": "FlightPlan",
+		"sourceColumn": "FlightPlan",
+		"sourceTable": "Airport",
+		"sourceDatabase": "main",
+		"declaredType": "FLIGHT_PLAN_TEXT",
+		"naormTypeComment": null,
+		"typeScriptTypeAnnotation": "string | null",
+		"jsDocComment": null
 	}
 ]
 
 export const FlightParsedColumns = [
 	{
-        "columnName": "FlightPlan",
-        "sourceColumn": "FlightPlan",
-        "sourceTable": "Airport",
-        "sourceDatabase": "main",
-        "declaredType": "FLIGHT_PLAN_TEXT",
-        "naormTypeComment": null,
-        "typeScriptTypeAnnotation": "FlightPlan | null",
-        "jsDocComment": null
+		"columnName": "FlightPlan",
+		"sourceColumn": "FlightPlan",
+		"sourceTable": "Airport",
+		"sourceDatabase": "main",
+		"declaredType": "FLIGHT_PLAN_TEXT",
+		"naormTypeComment": null,
+		"typeScriptTypeAnnotation": "FlightPlan | null",
+		"jsDocComment": null
 	}
 ]
 
