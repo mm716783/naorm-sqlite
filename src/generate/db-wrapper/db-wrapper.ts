@@ -1,8 +1,8 @@
-import betterSQLite3 from 'better-sqlite3';
 import { ParsedSQLStatement } from '../../interfaces/parsed-sql-file.js';
 import { BaseDB } from './base-db.js';
 import { BetterSQLite3DB } from './better-sqlite3-db.js';
 import { SQLite3WASMDB } from './sqlite3-wasm-db.js';
+import { NAORMColumnDefinition } from '../../interfaces/naorm-sql-statement.js';
 
 /**
  * Wrapper class to encapsulate the database logic. Currently supports two DB engines:
@@ -33,7 +33,7 @@ export class DBWrapper {
         this.db.close();
     }
 
-    public processStatement(parsedStatement: ParsedSQLStatement): betterSQLite3.ColumnDefinition[] {
+    public processStatement(parsedStatement: ParsedSQLStatement): NAORMColumnDefinition[] {
         try{ 
             const sql = parsedStatement.statement;
             const rawId = parsedStatement.rawStatementIdentifier;

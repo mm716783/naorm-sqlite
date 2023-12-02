@@ -4,13 +4,13 @@ import { DEFAULT_NAORM_CONFIG } from '../../init/default-config.js';
 import { NAORMResultColumn } from '../../interfaces/naorm-sql-statement.js';
 import { NAORMConfig, NAORMConventionSet, NAORMTypeConvention } from '../../interfaces/naorm-config.js';
 
-test('Column Analyzer checkNotNull', () => {
+test('Column Analyzer checkNotNullComment', () => {
     const statementMap = new Map<string, ParsedSQLStatement>();
     const columnAnalyzer = new SQLColumnAnalyzer(statementMap, DEFAULT_NAORM_CONFIG);
-    expect(columnAnalyzer['checkNotNull'](null)).toEqual(false);
-    expect(columnAnalyzer['checkNotNull']('TEXT')).toEqual(false);
-    expect(columnAnalyzer['checkNotNull']('text not null')).toEqual(true);
-    expect(columnAnalyzer['checkNotNull']('INT NOTNULL')).toEqual(true);
+    expect(columnAnalyzer['checkNotNullComment'](null)).toEqual(false);
+    expect(columnAnalyzer['checkNotNullComment']('TEXT')).toEqual(false);
+    expect(columnAnalyzer['checkNotNullComment']('text not null')).toEqual(true);
+    expect(columnAnalyzer['checkNotNullComment']('INT NOTNULL')).toEqual(true);
 });
 
 
@@ -57,12 +57,13 @@ test('Column Analyzer applyColumnTypes', () => {
         declaredType: 'DATE_TEXT',
         jsDocComment: null,
         naormTypeComment: null,
+        isDeclaredNotNull: false,
         isExplicitlyNotNull: false,
         computedTypeByConventionSet: {}
     };
     const expectedResultA: { [key: string]: string } = {
-        'Parsed': 'Date',
-        'Raw': 'string'
+        'Parsed': 'Date | null',
+        'Raw': 'string | null'
     };
 
     columnAnalyzer['applyColumnTypes'](columnA);
@@ -76,12 +77,13 @@ test('Column Analyzer applyColumnTypes', () => {
         declaredType: 'INT',
         jsDocComment: null,
         naormTypeComment: null,
+        isDeclaredNotNull: false,
         isExplicitlyNotNull: false,
         computedTypeByConventionSet: {}
     };
     const expectedResultB: { [key: string]: string } = {
-        'Parsed': 'number',
-        'Raw': 'number'
+        'Parsed': 'number | null',
+        'Raw': 'number | null'
     };
 
     columnAnalyzer['applyColumnTypes'](columnB);

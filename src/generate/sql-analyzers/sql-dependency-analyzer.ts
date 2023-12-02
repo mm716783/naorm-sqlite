@@ -4,11 +4,11 @@ import { ParsedSQLStatement } from "../../interfaces/parsed-sql-file.js";
 export class SQLDependencyAnalyzer {
     
     private readonly tableAndViewIdentifiers;
-    private readonly sequencedStatements;
+    private readonly unsortedStatements;
     constructor(private readonly tableAndViewStatementMap: Map<string, ParsedSQLStatement>, 
         private allStatementOverrides: Map<string, NAORMStatementOverride>) {
         this.tableAndViewIdentifiers = Array.from(this.tableAndViewStatementMap.keys());
-        this.sequencedStatements = Array.from(this.tableAndViewStatementMap.values());
+        this.unsortedStatements = Array.from(this.tableAndViewStatementMap.values());
     }
 
     private determineStatementDependencies(parsedSQLStatement: ParsedSQLStatement) {
@@ -33,20 +33,38 @@ export class SQLDependencyAnalyzer {
         return [...dependencies, ...Array.from(additionalDependencies.values())];
     }
 
-    public getStatementExecutionOrder(): ParsedSQLStatement[] {
-        this.sequencedStatements.forEach(statement => {
-            statement.statementDependencies = this.determineStatementDependencies(statement);
-        });
-        this.sequencedStatements.sort((a, b) => {
-            if(a.statementDependencies.includes(b.statementIdentifier) &&
-                b.statementDependencies.includes(a.statementIdentifier)) {
-                throw 'Circular dependency';
-            }
-            if(a.statementDependencies.includes(b.statementIdentifier)) { return 1; }
-            if(b.statementDependencies.includes(a.statementIdentifier)) { return -1; }
-            return 0;
-        });
-        return this.sequencedStatements;
-    }
+    private checkStatementDependencyRecursive(statementId: string, visitedStatements: Set<string>, 
+        dependentIds: Set<string>, statementMap: Map<string, ParsedSQLStatement>, results: ParsedSQLStatement[]) {
+        if(dependentIds.has(statementId)) {
+            throw 'Circular dependency';
+        }
+      
+        if (visitedStatements.has(statementId)) {
+            return;
+        }
+        visitedStatements.add(statementId);
 
+        const statement = statementMap.get(statementId)!;
+        const dependencies = statement.statementDependencies;
+        dependentIds.add(statementId);
+        dependencies.forEach((dependencyId) => {
+            this.checkStatementDependencyRecursive(dependencyId, visitedStatements, dependentIds, statementMap, results);
+        });
+        results.push(statement);
+    }
+    
+    public getStatementExecutionOrder(): ParsedSQLStatement[] {
+        const statementMap = new Map<string, ParsedSQLStatement>();
+        this.unsortedStatements.forEach(statement => {
+            statement.statementDependencies = this.determineStatementDependencies(statement);
+            statementMap.set(statement.statementIdentifier, statement);
+        });
+        const sortedStatements: ParsedSQLStatement[] = []; 
+        const visitedStatements = new Set<string>();
+        this.unsortedStatements.forEach(statement => {
+            this.checkStatementDependencyRecursive(statement.statementIdentifier, visitedStatements, new Set(), statementMap, sortedStatements);
+        });
+
+        return sortedStatements;
+    }
 }

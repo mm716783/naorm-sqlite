@@ -1,5 +1,6 @@
 import betterSQLite3 from 'better-sqlite3';
 import { BaseDB } from './base-db.js';
+import { NAORMColumnDefinition, SQLiteTableInfoColumn } from '../../interfaces/naorm-sql-statement.js';
 
 export class BetterSQLite3DB extends BaseDB {
 
@@ -14,22 +15,35 @@ export class BetterSQLite3DB extends BaseDB {
         this.db.close();  
     }
 
-    public processTable(sql: string, rawId: string): betterSQLite3.ColumnDefinition[] {
+    public processTable(sql: string, rawId: string): NAORMColumnDefinition[] {
         this.db.prepare(sql).run();
         const preparedStatement = this.db.prepare('SELECT * FROM ' + rawId);
-        const computedColumns = preparedStatement.columns();
+        const declaredColumns = preparedStatement.columns();
+        const pragmaInfoRows: SQLiteTableInfoColumn[] = this.db.prepare(`PRAGMA table_xinfo(${rawId})`).all() as SQLiteTableInfoColumn[];
+        const pragmaInfoMap = new Map<string, SQLiteTableInfoColumn>();
+        pragmaInfoRows.forEach(p => {
+            pragmaInfoMap.set(p.name, p);
+        });
+        const computedColumns: NAORMColumnDefinition[] = declaredColumns.map(d => {
+            const pragmaInfo = pragmaInfoMap.get(d.name);
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            const declaredNotNull = pragmaInfo!.notnull === 1; 
+            return { ...d, declaredNotNull };
+        });
         return computedColumns;
     }
 
-    public processIndex(sql: string): betterSQLite3.ColumnDefinition[] {
+    public processIndex(sql: string): NAORMColumnDefinition[] {
         this.db.prepare(sql).run();
         return [];
     }
 
-    public processDML(sql: string): betterSQLite3.ColumnDefinition[] {
+    public processDML(sql: string): NAORMColumnDefinition[] {
         const preparedStatement = this.db.prepare(sql);
         if(preparedStatement.reader) {
-            return preparedStatement.columns();
+            return preparedStatement.columns().map(c => { 
+                return { ...c, declaredNotNull: false };
+            });
         } 
         return [];
         

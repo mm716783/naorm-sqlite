@@ -1,16 +1,6 @@
 /* istanbul ignore file */
-import betterSQLite3 from 'better-sqlite3';
 import { BaseDB } from './base-db.js';
-
-interface SQLiteTableInfoColumn {
-    cid: number;
-    name: string;
-    dflt_value: string;
-    notnull: number;
-    pk: number;
-    type: string;
-}
-
+import { NAORMColumnDefinition, SQLiteTableInfoColumn } from '../../interfaces/naorm-sql-statement.js';
 
 export class SQLite3WASMDB extends BaseDB {
 
@@ -34,39 +24,40 @@ export class SQLite3WASMDB extends BaseDB {
         /*  
         SQLite WASM does not currently support some of the C function for retrieving
         certain column information like the Source Table, Source Column, and Declared Type.
-        The Declared Type is the most important one, we can get it using the table_info PRAGMA.
+        The Declared Type is the most important one, we can get it using the table_xinfo PRAGMA.
         */
         this.db.exec({
-            sql: `PRAGMA table_info(${id})`,
+            sql: `PRAGMA table_xinfo(${id})`,
             rowMode: 'object',
             resultRows: resultRows
         });
 
-        const computedColumns = resultRows.map(s => {
-            const c: betterSQLite3.ColumnDefinition = {
+        const computedColumns = resultRows.filter(s => s.hidden !== 1).map(s => {
+            const c: NAORMColumnDefinition = {
                 name: s.name,
                 type: s.type,
                 column: null,
                 table: null,
                 database: null,
+                declaredNotNull: s.notnull === 1
             };
             return c;
         });
         return computedColumns;
     }
 
-    public processTable(sql: string, rawId: string): betterSQLite3.ColumnDefinition[] {
+    public processTable(sql: string, rawId: string): NAORMColumnDefinition[] {
         const stmt = this.db.prepare(sql);
         stmt.stepFinalize();
         return this.getPragmaInfo(rawId);
     }
 
-    public processIndex(sql: string): betterSQLite3.ColumnDefinition[] {
+    public processIndex(sql: string): NAORMColumnDefinition[] {
         this.db.prepare(sql).stepFinalize();
         return [];
     }
 
-    public processDML(sql: string, stmtId: string): betterSQLite3.ColumnDefinition[] {
+    public processDML(sql: string, stmtId: string): NAORMColumnDefinition[] {
         const stmt = this.db.prepare(sql);
         const columnCount = stmt.columnCount;
         stmt.finalize();
