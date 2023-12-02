@@ -10,6 +10,7 @@
             "name": "Raw",
             "typescriptConstruct": "interface",
             "extends": null,
+			"inferNotNullFromColumn": false,
             "importStatements": [],
             "typeConventions": []
         },
@@ -17,6 +18,7 @@
             "name": "Parsed",
             "typescriptConstruct": "interface",
             "extends": null,
+			"inferNotNullFromColumn": true,
             "importStatements": ["import fs from 'fs'"],
             "typeConventions": [{
                 "sqliteDeclaredType": "TINYINT",

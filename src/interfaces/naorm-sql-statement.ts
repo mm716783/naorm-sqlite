@@ -1,3 +1,6 @@
+import { ColumnDefinition } from 'better-sqlite3';
+export type NAORMColumnDefinition = ColumnDefinition & { declaredNotNull: boolean };
+
 export interface NAORMSQLStatement {
     fileName: string;
     fileIdentifier: string;
@@ -22,8 +25,19 @@ export interface NAORMResultColumn {
     declaredType: string | null;
     jsDocComment: string | null;
     naormTypeComment: string | null;
+    isDeclaredNotNull: boolean;
     isExplicitlyNotNull: boolean;
     computedTypeByConventionSet: { 
         [key: string]: string 
     };
+}
+
+export interface SQLiteTableInfoColumn {
+    cid: number;
+    name: string;
+    dflt_value: string;
+    notnull: number;
+    pk: number;
+    type: string;
+    hidden: number;
 }

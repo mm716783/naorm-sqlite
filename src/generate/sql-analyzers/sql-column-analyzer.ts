@@ -1,6 +1,5 @@
 import { ParsedSQLStatement } from "../../interfaces/parsed-sql-file.js";
-import { ColumnDefinition } from "better-sqlite3";
-import { NAORMResultColumn } from "../../interfaces/naorm-sql-statement.js";
+import { NAORMColumnDefinition, NAORMResultColumn } from "../../interfaces/naorm-sql-statement.js";
 import { NAORMConfig } from "../../interfaces/naorm-config.js";
 import { SQLColumnCommentParser } from "./sql-column-comment-parser.js";
 
@@ -10,7 +9,7 @@ export class SQLColumnAnalyzer {
         private readonly config: NAORMConfig
     ) {}
     
-    private checkNotNull(naormTypeComment: string | null): boolean {
+    private checkNotNullComment(naormTypeComment: string | null): boolean {
         if(naormTypeComment) {
             if(naormTypeComment.toUpperCase().includes('NOT NULL') 
                 || naormTypeComment.toUpperCase().includes('NOTNULL')) {
@@ -39,7 +38,7 @@ export class SQLColumnAnalyzer {
     private applyColumnTypes(columnDefinition: NAORMResultColumn) {
         const results: { [key: string]: string } = {};
         const typeToCheck = columnDefinition.naormTypeComment || columnDefinition.declaredType;
-        columnDefinition.isExplicitlyNotNull = this.checkNotNull(columnDefinition.naormTypeComment);
+        columnDefinition.isExplicitlyNotNull = this.checkNotNullComment(columnDefinition.naormTypeComment);
         const defaultType = this.getDefaultType(typeToCheck);
         
         this.config.conventionSets.forEach(conventionSet => {
@@ -49,25 +48,28 @@ export class SQLColumnAnalyzer {
                     return t.sqliteDeclaredType.toUpperCase() === typeToCheck.toUpperCase();
                 });
             }
-            results[conventionSet.name] = matchingTypeConvention 
+            let computedType = matchingTypeConvention 
                 ? matchingTypeConvention.typescriptGeneratedType
                 : defaultType;
+            const enforceNotNull = columnDefinition.isExplicitlyNotNull 
+                || (conventionSet.inferNotNullFromColumn && columnDefinition.isDeclaredNotNull);
+            if(!enforceNotNull) {
+                computedType += ' | null';
+            }
+            results[conventionSet.name] = computedType;
         });
         
         columnDefinition.computedTypeByConventionSet = results;
     }
 
     private applyPropertiesFromDependencies(statementDependencies: string[], resultColumn: NAORMResultColumn) {
-        if(resultColumn.naormTypeComment && resultColumn.jsDocComment) {
-            return;
-        }
-
         if(resultColumn.sourceTable && this.tableAndViewStatementMap.get(resultColumn.sourceTable.toUpperCase())) {
             const tableDependency = this.tableAndViewStatementMap.get(resultColumn.sourceTable.toUpperCase());
             if(tableDependency) {
                 const dependencyColumn = tableDependency.resultColumns.find(col => col.sourceColumn === resultColumn.sourceColumn);
                 resultColumn.naormTypeComment = resultColumn.naormTypeComment || dependencyColumn?.naormTypeComment || null;
                 resultColumn.jsDocComment  = resultColumn.jsDocComment || dependencyColumn?.jsDocComment || null;    
+                resultColumn.isDeclaredNotNull  = resultColumn.isDeclaredNotNull || dependencyColumn?.isDeclaredNotNull || false;    
             }
         }
         
@@ -84,7 +86,7 @@ export class SQLColumnAnalyzer {
         }
     }
 
-    public getColumnMetadata(statement: ParsedSQLStatement, computedColumns: ColumnDefinition[]): NAORMResultColumn[] {
+    public getColumnMetadata(statement: ParsedSQLStatement, computedColumns: NAORMColumnDefinition[]): NAORMResultColumn[] {
         const resultColumns: NAORMResultColumn[] = [];
     
         const columnNames = new Set(computedColumns.map(c => c.name.toUpperCase()));
@@ -100,6 +102,7 @@ export class SQLColumnAnalyzer {
                 declaredType: c.type,
                 jsDocComment: commentParser.getColumnResult(c.name, 'jsDocComment'),
                 naormTypeComment: commentParser.getColumnResult(c.name, 'naormTypeComment'),
+                isDeclaredNotNull: c.declaredNotNull,
                 isExplicitlyNotNull: false,
                 computedTypeByConventionSet: {}
             };

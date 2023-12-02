@@ -52,8 +52,7 @@ function generateOneTypeScriptProperty(col: NAORMResultColumn, conventionSet: NA
     const jsDocComment = col.jsDocComment ? `\t${col.jsDocComment.trim()}\n` : '';
     const computedType = col.computedTypeByConventionSet[conventionSet.name];
     const propertyName = `${col.columnName.replace(/\\"/g, '\\\\"').replace(/"/g, '\\"')}`;
-    const type = `${computedType}${col.isExplicitlyNotNull ? '' : ' | null'}`;
-    return `${jsDocComment}\t"${propertyName}": ${type};`;
+    return `${jsDocComment}\t"${propertyName}": ${computedType};`;
 }
 
 function generateOneTypeScriptModel(parsedStatement: ParsedSQLStatement, conventionSet: NAORMConventionSet, varName: string): string {

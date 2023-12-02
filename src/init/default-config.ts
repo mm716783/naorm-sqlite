@@ -11,6 +11,7 @@ export const DEFAULT_NAORM_CONFIG: NAORMConfig = {
             "name": "Raw",
             "typescriptConstruct": "interface",
             "extends": null,
+            "inferNotNullFromColumn": false,
             "importStatements": [],
             "typeConventions": []
         },
@@ -18,6 +19,7 @@ export const DEFAULT_NAORM_CONFIG: NAORMConfig = {
             "name": "Parsed",
             "typescriptConstruct": "interface",
             "extends": null,
+            "inferNotNullFromColumn": true,
             "importStatements": [],
             "typeConventions": [{
                 "sqliteDeclaredType": "BOOLINT",

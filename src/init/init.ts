@@ -55,6 +55,7 @@ export async function init() {
             name: '',
             typescriptConstruct: 'interface',
             extends: null,
+            inferNotNullFromColumn: false,
             importStatements: [],
             typeConventions: [],
         }]; 
